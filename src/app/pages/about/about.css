@@ -1,0 +1,142 @@
+.article-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  min-height: 100vh;
+  padding: 0 1rem; /* Añadir padding horizontal */
+}
+
+.article-content {
+  padding: 2rem 0; /* Ajustar padding vertical */
+}
+
+.article-header {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: center; /* Centrar el título */
+}
+
+.article-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1a202c;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: #4a5568;
+  font-weight: 400;
+  margin-top: 0.5rem;
+}
+
+.article-body {
+  line-height: 1.8;
+  color: #2d3748;
+}
+
+.lead {
+  font-size: 1.125rem;
+  color: #4a5568;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #f7fafc;
+  border-left: 4px solid #667eea;
+  border-radius: 0 8px 8px 0;
+}
+
+.content-section {
+  margin-bottom: 3rem;
+}
+
+.content-section h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #f1f5f9;
+}
+
+.content-section p {
+  margin-bottom: 1rem;
+}
+
+.mission-points {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.point-item {
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.point-item:hover {
+  border-color: #667eea;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.1);
+}
+
+.point-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.point-item h4 {
+  color: #1a202c;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.point-item p {
+  color: #4a5568;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.content-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.5rem;
+}
+
+.content-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #2d3748;
+}
+
+.content-list li::before {
+  content: "•"; /* O un SVG de checkmark si se prefiere */
+  position: absolute;
+  left: 0;
+  color: #667eea;
+  font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .article-header {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .lead {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .mission-points {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,251 @@
+<app-navbar></app-navbar>
+
+<div class="article-container">
+  <app-breadcrumbs [items]="breadcrumbItems"></app-breadcrumbs>
+  
+  <button class="back-button" (click)="goBack()" title="Regresar">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M19 12H5M12 19l-7-7 7-7"/>
+    </svg>
+    <span>Regresar</span>
+  </button>
+
+  <article class="article-content">
+    <header class="article-header">
+      <div class="article-meta">
+        <span class="category-tag ia-personalizada">IA Personalizada</span>
+        <span class="read-time">7 min de lectura</span>
+        <span class="publish-date">Publicado el 15 de julio de 2025</span>
+      </div>
+      
+      <h1 class="article-title">
+        Cómo crear tu propia asistente virtual con inteligencia artificial
+        <span class="subtitle">(sin saber programar)</span>
+      </h1>
+      
+      <div class="article-actions">
+       
+        <button class="action-btn" (click)="shareArticle()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="18" cy="5" r="3"/>
+            <circle cx="6" cy="12" r="3"/>
+            <circle cx="18" cy="19" r="3"/>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+          </svg>
+          Compartir
+        </button>
+      </div>
+    </header>
+
+    <div class="article-body">
+      <p class="lead">
+        ¿Te imaginas tener tu propia asistente virtual, como Jarvis de Iron Man, pero hecha por ti mismo y sin tener que escribir una sola línea de código?
+        Gracias a los avances de la inteligencia artificial y las plataformas sin código (no-code), ahora puedes crear tu asistente virtual personalizada para que te ayude con:
+      </p>
+      <ul class="feature-list">
+        <li>Recordatorios</li>
+        <li>Organización de tareas</li>
+        <li>Enviar mensajes</li>
+        <li>Buscar información</li>
+        <li>Automatizar respuestas</li>
+      </ul>
+      <p>Todo eso usando herramientas como Voiceflow, ChatGPT y Zapier.</p>
+      <p>
+        En este artículo aprenderás cómo crearla paso a paso, sin ser programador, con imágenes de ejemplo y una idea de caso de uso real.
+      </p>
+
+      <section class="content-section">
+        <h2>🔧 Herramientas que vas a necesitar</h2>
+        <p>Estas son las herramientas clave para construir tu asistente virtual:</p>
+        <div class="tools-table">
+          <div class="table-header">
+            <span>Herramienta</span>
+            <span>¿Para qué sirve?</span>
+            <span>Enlace</span>
+          </div>
+          <div class="table-row">
+            <span>Voiceflow</span>
+            <span>Diseñar el flujo de conversación</span>
+            <span><a href="https://www.voiceflow.com" target="_blank" rel="noopener noreferrer" class="external-link">voiceflow.com</a></span>
+          </div>
+          <div class="table-row">
+            <span>ChatGPT API</span>
+            <span>Darle inteligencia a tu asistente</span>
+            <span><a href="https://platform.openai.com" target="_blank" rel="noopener noreferrer" class="external-link">platform.openai.com</a></span>
+          </div>
+          <div class="table-row">
+            <span>Zapier</span>
+            <span>Automatizar tareas entre apps</span>
+            <span><a href="https://zapier.com" target="_blank" rel="noopener noreferrer" class="external-link">zapier.com</a></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>🧪 Ejemplo práctico: asistente que te organiza el día</h2>
+        <div class="objective-box">
+          <h4>🟢 Objetivo:</h4>
+          <p>Crear un asistente que:</p>
+          <ul>
+            <li>Te salude</li>
+            <li>Te pregunte qué tareas tienes hoy</li>
+            <li>Te sugiera un orden de prioridad</li>
+            <li>Te envíe un resumen por correo o WhatsApp</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>🧭 Paso 1: Diseña la conversación en Voiceflow</h2>
+        <p>Voiceflow es tu lienzo para el diálogo. Aquí es donde defines cómo interactuará tu asistente.</p>
+        <div class="step-box">
+          <ul class="checklist">
+            <li>Crea una cuenta gratuita en <a href="https://www.voiceflow.com" target="_blank" rel="noopener noreferrer" class="external-link">Voiceflow</a></li>
+            <li>Dirígete a la pestaña "projects" y haz clic en "New project”</li>
+            <li>Selecciona el tipo: <strong>Chat Assistant</strong></li>
+            <li>Arrastra bloques de conversación como:
+              <ul>
+                <li>**Speak** → para saludar: “Hola, soy tu asistente personal. ¿Qué necesitas organizar hoy?”</li>
+                <li>**Capture** → para que el usuario escriba su lista de tareas</li>
+                <li>**Text** → para ordenar las tareas (usa una llamada a la IA)</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="image-placeholder">
+          <img src="/placeholder.svg?height=400&width=700" alt="Vista de Voiceflow con bloques de conversación" />
+          <p class="image-caption">Diseño de conversación en Voiceflow</p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>🤖 Paso 2: Conecta ChatGPT con Voiceflow</h2>
+        <p>Aquí es donde tu asistente cobra vida con la inteligencia de ChatGPT.</p>
+        <div class="step-box">
+          <ul class="checklist">
+            <li>En Voiceflow, usa un bloque <strong>API</strong></li>
+            <li>Pega tu API Key de OpenAI desde <a href="https://platform.openai.com/account/api-keys" target="_blank" rel="noopener noreferrer" class="external-link">platform.openai.com/account/api-keys</a></li>
+            <li>Envía el texto capturado al modelo <code>gpt-3.5-turbo</code></li>
+            <li>Configura para que la IA responda con:
+              <div class="prompt-example">
+                <div class="prompt-header">
+                  <span class="prompt-label">Ejemplo de respuesta de IA:</span>
+                </div>
+                <p class="prompt-text">
+                  Aquí tienes tu día organizado por prioridad:<br>
+                  - Llamar a Juan<br>
+                  - Entregar informe<br>
+                  - Ir al supermercado...
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="image-placeholder">
+          <img src="/placeholder.svg?height=400&width=700" alt="Configuración del bloque API en Voiceflow" />
+          <p class="image-caption">Configuración del bloque API en Voiceflow para conectar con ChatGPT</p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>🔁 Paso 3: Automatiza la salida con Zapier</h2>
+        <p>Zapier te permite conectar tu asistente con otras aplicaciones para automatizar acciones.</p>
+        <div class="step-box">
+          <ul class="checklist">
+            <li>En <a href="https://zapier.com" target="_blank" rel="noopener noreferrer" class="external-link">Zapier</a>, crea un nuevo Zap</li>
+            <li>Activa la automatización para que cuando se recibe una respuesta en Voiceflow, se:
+              <ul>
+                <li>Envíe por correo electrónico (usando Gmail, Outlook, etc.)</li>
+                <li>O se envíe por WhatsApp usando Twilio (opcional)</li>
+              </ul>
+            </li>
+            <li>Puedes usar Gmail, Outlook, WhatsApp o Telegram según prefieras.</li>
+          </ul>
+        </div>
+        <div class="image-placeholder">
+          <img src="/placeholder.svg?height=400&width=700" alt="Ejemplo de flujo en Zapier" />
+          <p class="image-caption">Ejemplo de flujo de automatización en Zapier</p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>🧪 Caso de éxito: Andrés y su asistente de rutina diaria</h2>
+        <p>
+          Andrés, estudiante universitario de diseño gráfico, tenía problemas para cumplir con tareas y horarios. Se sentía abrumado y disperso.
+          Intentó usar agendas de papel, recordatorios en WhatsApp y post-its... pero nada funcionaba.
+        </p>
+        <p>
+          Creó un asistente simple en Voiceflow que cada mañana le preguntaba:
+        </p>
+        <div class="quote-box">
+          <p>“¿Qué tienes pendiente hoy?”</p>
+        </div>
+        <p>
+          El sistema analizaba su lista, priorizaba tareas y le mandaba un resumen al correo. Incluso integró recordatorios por Telegram.
+        </p>
+        <div class="success-results">
+          <h4>Resultado después de 2 semanas:</h4>
+          <ul>
+            <li>Su productividad aumentó un 60%</li>
+            <li>Redujo el estrés al tener claridad cada mañana</li>
+            <li>Ya no olvidaba reuniones ni entregas</li>
+          </ul>
+        </div>
+        <div class="image-placeholder">
+          <img src="/placeholder.svg?height=400&width=700" alt="Captura del resumen diario enviado por el asistente" />
+          <p class="image-caption">Resumen diario de tareas enviado por el asistente de Andrés</p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>🔐 ¿Y si no quiero dar mi número o datos?</h2>
+        <p>
+          ¡Tranquilo! Puedes usar correos temporales, limitar permisos o hacer que el asistente solo funcione dentro de tu navegador o cuenta. La privacidad es clave.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <h2>✅ Conclusión</h2>
+        <p>
+          Hoy en día, no necesitas ser programador para tener una asistente inteligente, personalizable y eficiente.
+          Con herramientas como Voiceflow y ChatGPT, puedes crear un sistema que te escuche, te ayude y actúe por ti, sin complicaciones técnicas.
+        </p>
+        <p>
+          Empieza con algo pequeño como una lista de tareas, y en poco tiempo podrías tener tu propia IA que gestiona tu semana.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <h2>📂 Recursos útiles</h2>
+        <ul class="resources-list">
+          <li><a href="https://www.voiceflow.com" target="_blank" rel="noopener noreferrer" class="external-link">Voiceflow</a></li>
+          <li><a href="https://platform.openai.com" target="_blank" rel="noopener noreferrer" class="external-link">OpenAI API</a></li>
+          <li><a href="https://zapier.com" target="_blank" rel="noopener noreferrer" class="external-link">Zapier</a></li>
+          <li><a href="https://www.make.com" target="_blank" rel="noopener noreferrer" class="external-link">Make.com</a> (alternativa a Zapier)</li>
+        </ul>
+      </section>
+    </div>
+
+ 
+
+    <nav class="article-navigation">
+      <a routerLink="/articulos" class="nav-all-articles">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+        Ver todos los artículos
+      </a>
+      <div class="nav-adjacent">
+        <a routerLink="/articulos/organiza-tareas-ia" class="nav-prev">
+          <span class="nav-label">Anterior</span>
+          <span class="nav-title">Organiza tus tareas con IA</span>
+        </a>
+        <a class="nav-next disabled">
+          <span class="nav-label">Siguiente</span>
+          <span class="nav-title">Próximamente más artículos</span>
+        </a>
+      </div>
+    </nav>
+  </article>
+</div>

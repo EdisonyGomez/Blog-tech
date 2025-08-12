@@ -1,0 +1,358 @@
+<app-navbar></app-navbar>
+
+<div class="article-container">
+  <app-breadcrumbs [items]="breadcrumbItems"></app-breadcrumbs>
+  
+  <button class="back-button" (click)="goBack()" title="Regresar">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M19 12H5M12 19l-7-7 7-7"/>
+    </svg>
+    <span>Regresar</span>
+  </button>
+
+  <article class="article-content">
+    <header class="article-header">
+      <div class="article-meta">
+        <span class="category-tag herramientas">Herramientas</span>
+        <span class="read-time">7 min de lectura</span>
+        <span class="publish-date">Publicado el 8 de julio de 2025</span>
+      </div>
+      
+      <h1 class="article-title">
+        Canva AI: Diseña presentaciones profesionales en minutos
+        <span class="subtitle">Sin experiencia en diseño</span>
+      </h1>
+      
+      <div class="article-actions">
+        <button class="action-btn" (click)="toggleBookmark()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
+          </svg>
+          Guardar
+        </button>
+        <button class="action-btn" (click)="shareArticle()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="18" cy="5" r="3"/>
+            <circle cx="6" cy="12" r="3"/>
+            <circle cx="18" cy="19" r="3"/>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+          </svg>
+          Compartir
+        </button>
+      </div>
+    </header>
+
+    <div class="article-body">
+      <p class="lead">
+        ¿Te da pereza hacer presentaciones porque no sabes diseñar? ¿Sientes que tus diapositivas se ven amateur 
+        comparadas con las de tus colegas? <strong>Canva AI</strong> llegó para cambiar eso. En esta guía te enseño 
+        cómo crear presentaciones que parezcan hechas por un diseñador profesional, en una fracción del tiempo.
+      </p>
+      
+      <p>Lo mejor de todo: <strong>no necesitas saber nada de diseño</strong>. La IA hace el trabajo pesado por ti.</p>
+
+      <section class="content-section">
+        <h2>🚀 Paso 1: Configuración inicial y acceso a Canva AI</h2>
+        <p>
+          Antes de empezar, necesitas tener acceso a las funciones de IA de Canva. Aquí te explico cómo:
+        </p>
+        
+        <div class="step-box">
+          <h4>✅ Checklist de configuración:</h4>
+          <ul class="checklist">
+            <li>Crea una cuenta gratuita en <strong>canva.com</strong></li>
+            <li>Actualiza a Canva Pro (tiene prueba gratuita de 30 días)</li>
+            <li>Busca el ícono de "Magic Design" en el panel izquierdo</li>
+            <li>Activa las funciones de IA en configuración</li>
+          </ul>
+        </div>
+
+        <p><strong>Tip:</strong> La versión gratuita tiene funciones limitadas de IA, pero la Pro vale cada peso por el tiempo que te ahorra.</p>
+      </section>
+
+      <section class="content-section">
+        <h2>🎨 Paso 2: Magic Design - Tu asistente de presentaciones</h2>
+        <p>
+          Magic Design es la función estrella. Le dices qué tipo de presentación necesitas y te genera opciones completas en segundos.
+        </p>
+        
+        <div class="prompt-example">
+          <div class="prompt-header">
+            <span class="prompt-label">Prompt para Magic Design:</span>
+            <button class="copy-btn" (click)="copyPrompt(prompt1)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              Copiar
+            </button>
+          </div>
+          <p class="prompt-text">
+            {{ prompt1 }}
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h4>Estructura automática</h4>
+            <p>Organiza tu contenido en el orden más lógico</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <h4>Diseño coherente</h4>
+            <p>Mantiene el mismo estilo en todas las diapositivas</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h4>Generación rápida</h4>
+            <p>10-15 diapositivas listas en menos de 2 minutos</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>✍️ Paso 3: Magic Write para contenido inteligente</h2>
+        <p>
+          ¿No sabes qué escribir en cada diapositiva? Magic Write te ayuda a generar contenido relevante y bien estructurado.
+        </p>
+        
+        <div class="prompt-example">
+          <div class="prompt-header">
+            <span class="prompt-label">Ejemplo para generar contenido:</span>
+            <button class="copy-btn" (click)="copyPrompt(prompt2)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              Copiar
+            </button>
+          </div>
+          <p class="prompt-text">
+            {{ prompt2 }}
+          </p>
+        </div>
+
+        <div class="tip-box">
+          <h4>💡 Trucos para mejor contenido:</h4>
+          <ul>
+            <li><strong>Sé específico:</strong> "4 puntos principales" funciona mejor que "algunos puntos"</li>
+            <li><strong>Define la audiencia:</strong> "Para ejecutivos" vs "Para estudiantes"</li>
+            <li><strong>Limita las palabras:</strong> "Máximo 15 palabras por punto"</li>
+            <li><strong>Pide íconos:</strong> Hace las diapositivas más visuales</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>🎨 Paso 4: Brand Kit y paletas inteligentes</h2>
+        <p>
+          Una presentación profesional necesita colores coherentes. Canva AI puede sugerir paletas perfectas para tu tema.
+        </p>
+        
+        <div class="prompt-example">
+          <div class="prompt-header">
+            <span class="prompt-label">Prompt para paleta de colores:</span>
+            <button class="copy-btn" (click)="copyPrompt(prompt3)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              Copiar
+            </button>
+          </div>
+          <p class="prompt-text">
+            {{ prompt3 }}
+          </p>
+        </div>
+
+        <div class="color-guide">
+          <h4>🎨 Guía rápida de colores por industria:</h4>
+          <div class="color-examples">
+            <div class="color-item">
+              <div class="color-swatch tech"></div>
+              <span><strong>Tecnología:</strong> Azules y grises</span>
+            </div>
+            <div class="color-item">
+              <div class="color-swatch finance"></div>
+              <span><strong>Finanzas:</strong> Azul marino y dorado</span>
+            </div>
+            <div class="color-item">
+              <div class="color-swatch health"></div>
+              <span><strong>Salud:</strong> Verde y blanco</span>
+            </div>
+            <div class="color-item">
+              <div class="color-swatch creative"></div>
+              <span><strong>Creativo:</strong> Colores vibrantes</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>📊 Paso 5: Gráficos y visualizaciones automáticas</h2>
+        <p>
+          Los datos aburridos se vuelven interesantes con las visualizaciones de IA de Canva. Solo necesitas subir tus números.
+        </p>
+
+        <div class="visualization-types">
+          <div class="viz-card">
+            <h4>📈 Gráficos inteligentes</h4>
+            <p>Sube un CSV y Canva sugiere el mejor tipo de gráfico</p>
+          </div>
+          <div class="viz-card">
+            <h4>🗺️ Mapas automáticos</h4>
+            <p>Datos geográficos se convierten en mapas interactivos</p>
+          </div>
+          <div class="viz-card">
+            <h4>📊 Infografías dinámicas</h4>
+            <p>Transforma listas aburridas en infografías atractivas</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>🎯 Paso 6: Toques finales que marcan la diferencia</h2>
+        <p>
+          Estos detalles pequeños separan una presentación amateur de una profesional:
+        </p>
+
+        <div class="final-tips">
+          <div class="tip-item">
+            <div class="tip-number">1</div>
+            <div class="tip-content">
+              <h4>Animaciones sutiles</h4>
+              <p>Usa "Fade in" o "Slide up" - nada muy dramático</p>
+            </div>
+          </div>
+          <div class="tip-item">
+            <div class="tip-number">2</div>
+            <div class="tip-content">
+              <h4>Espacios en blanco</h4>
+              <p>No llenes cada centímetro - el espacio respira</p>
+            </div>
+          </div>
+          <div class="tip-item">
+            <div class="tip-number">3</div>
+            <div class="tip-content">
+              <h4>Tipografía consistente</h4>
+              <p>Máximo 2 fuentes: una para títulos, otra para texto</p>
+            </div>
+          </div>
+          <div class="tip-item">
+            <div class="tip-number">4</div>
+            <div class="tip-content">
+              <h4>Imágenes de calidad</h4>
+              <p>Usa el banco de imágenes de Canva - son profesionales</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>⚡ Flujo de trabajo completo (15 minutos)</h2>
+        <p>
+          Aquí tienes el proceso paso a paso para crear una presentación profesional súper rápido:
+        </p>
+
+        <div class="workflow">
+          <div class="workflow-step">
+            <div class="step-time">2 min</div>
+            <div class="step-content">
+              <h4>Planificación</h4>
+              <p>Define tema, audiencia y número de diapositivas</p>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <div class="step-time">3 min</div>
+            <div class="step-content">
+              <h4>Magic Design</h4>
+              <p>Genera la estructura base con IA</p>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <div class="step-time">5 min</div>
+            <div class="step-content">
+              <h4>Contenido</h4>
+              <p>Usa Magic Write para llenar las diapositivas</p>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <div class="step-time">3 min</div>
+            <div class="step-content">
+              <h4>Personalización</h4>
+              <p>Ajusta colores, fuentes y añade tu logo</p>
+            </div>
+          </div>
+          <div class="workflow-step">
+            <div class="step-time">2 min</div>
+            <div class="step-content">
+              <h4>Revisión final</h4>
+              <p>Revisa ortografía y coherencia visual</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>🎁 Bonus: Templates que siempre funcionan</h2>
+        <p>
+          Guarda estos templates en tus favoritos - son comodines para cualquier situación:
+        </p>
+
+        <div class="template-list">
+          <div class="template-item">
+            <h4>📋 Presentación de proyecto</h4>
+            <p>Problema → Solución → Plan → Resultados → Próximos pasos</p>
+          </div>
+          <div class="template-item">
+            <h4>📊 Reporte de resultados</h4>
+            <p>Resumen → Métricas clave → Análisis → Recomendaciones</p>
+          </div>
+          <div class="template-item">
+            <h4>🎯 Pitch de ventas</h4>
+            <p>Problema → Solución → Beneficios → Prueba social → Call to action</p>
+          </div>
+          <div class="template-item">
+            <h4>📚 Presentación educativa</h4>
+            <p>Introducción → Conceptos clave → Ejemplos → Práctica → Resumen</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>Conclusión</h2>
+        <p>
+          Canva AI democratizó el diseño profesional. Ya no necesitas años de experiencia o software costoso 
+          para crear presentaciones que impresionen. Con estas técnicas, puedes competir con cualquier diseñador.
+        </p>
+        <p>
+          <strong>El secreto está en combinar la potencia de la IA con tu conocimiento del contenido.</strong> 
+          La tecnología hace el trabajo técnico, tú aportas la estrategia y el mensaje.
+        </p>
+      </section>
+    </div>
+
+    
+
+    <nav class="article-navigation">
+      <a routerLink="/articulos" class="nav-all-articles">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+        Ver todos los artículos
+      </a>
+      <div class="nav-adjacent">
+        <a routerLink="/articulos/usar-chatgpt-vida-diaria" class="nav-prev">
+          <span class="nav-label">Anterior</span>
+          <span class="nav-title">5 formas prácticas de usar ChatGPT</span>
+        </a>
+        <a routerLink="/articulos/automatizar-correo-ia" class="nav-next">
+          <span class="nav-label">Siguiente</span>
+          <span class="nav-title">Automatiza tu correo con IA en 3 pasos</span>
+        </a>
+      </div>
+    </nav>
+  </article>
+</div>

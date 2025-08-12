@@ -1,0 +1,773 @@
+<app-navbar></app-navbar>
+
+<div class="max-w-6xl mx-auto bg-white min-h-screen">
+  <app-breadcrumbs [items]="breadcrumbItems"></app-breadcrumbs>
+  
+  <!-- Botón de regreso flotante -->
+  <button 
+    (click)="goBack()" 
+    class="fixed top-20 left-5 z-50 flex items-center gap-2 px-4 py-3 bg-white border-2 border-gray-200 rounded-full font-medium text-gray-600 transition-all duration-200 shadow-lg hover:border-blue-500 hover:text-blue-500 hover:-translate-x-1"
+    title="Regresar"
+  >
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M19 12H5M12 19l-7-7 7-7"/>
+    </svg>
+    <span>Regresar</span>
+  </button>
+
+  <!-- CTA Flotante -->
+  <button 
+    (click)="scrollToAnalyzer()"
+    class="fixed bottom-8 right-8 z-50 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-pulse"
+  >
+    📄 Analiza tu CV
+  </button>
+
+  <article class="px-8 py-8" [@fadeInUp]>
+    <!-- Encabezado del artículo -->
+    <header class="mb-12 pb-8 border-b border-gray-200">
+      <div class="flex flex-wrap gap-4 items-center mb-6">
+        <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold uppercase rounded-full">
+          Herramientas
+        </span>
+        <span class="text-sm text-gray-500">12 min de lectura</span>
+        <span class="text-sm text-gray-500">Publicado el 30 de julio de 2025</span>
+      </div>
+      
+      <h1 class="text-4xl md:text-6xl font-bold leading-tight text-gray-900 mb-4">
+        Cómo crear tu currículum con 
+        <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+          inteligencia artificial
+        </span>
+        <span class="block text-2xl md:text-3xl text-gray-600 font-normal mt-4">
+          (y destacar frente a cientos de candidatos)
+        </span>
+      </h1>
+      
+      <!-- Acciones del artículo -->
+      <div class="flex gap-4 mt-6">
+        <button 
+          (click)="toggleBookmark()" 
+          class="flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg font-medium text-gray-600 transition-all duration-200 hover:bg-gray-100 hover:border-blue-500 hover:text-blue-500"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
+          </svg>
+          Guardar
+        </button>
+        <button 
+          (click)="shareArticle()" 
+          class="flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg font-medium text-gray-600 transition-all duration-200 hover:bg-gray-100 hover:border-blue-500 hover:text-blue-500"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="18" cy="5" r="3"/>
+            <circle cx="6" cy="12" r="3"/>
+            <circle cx="18" cy="19" r="3"/>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+          </svg>
+          Compartir
+        </button>
+      </div>
+    </header>
+
+    <!-- Introducción -->
+    <div class="mb-12 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-500 rounded-r-2xl">
+      <p class="text-xl text-gray-700 mb-4 leading-relaxed">
+        ¿Te has sentido perdido al redactar tu currículum? No estás solo. Crear un CV que realmente destaque, 
+        sea claro y capte la atención de los reclutadores en segundos es un reto… especialmente si no tienes 
+        experiencia escribiendo o diseñando.
+      </p>
+      <p class="text-xl text-gray-700 mb-4 leading-relaxed">
+        Pero hoy en día, la <strong>inteligencia artificial</strong> puede ayudarte a crear un currículum 
+        profesional en minutos, sin que necesites saber de diseño, redacción ni recursos humanos.
+      </p>
+      <p class="text-xl text-gray-700 leading-relaxed">
+        En esta guía te mostraremos paso a paso cómo lograrlo, usando herramientas gratuitas, prompts efectivos 
+        y ejemplos reales. Además, incluiremos una herramienta interactiva que te ayudará a mejorar tu perfil 
+        según el rol al que aspiras.
+      </p>
+    </div>
+
+    <!-- Por qué necesitas IA -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 pb-2 border-b-2 border-gray-100">
+        🟦 ¿Por qué tu currículum necesita inteligencia artificial?
+      </h2>
+      
+      <div class="grid md:grid-cols-2 gap-8 mb-8">
+        <div class="p-6 bg-red-50 border border-red-200 rounded-xl" [@slideInScale]>
+          <div class="text-center mb-4">
+            <div class="text-5xl mb-2">🚫</div>
+            <h3 class="text-xl font-bold text-red-700">El problema actual</h3>
+          </div>
+          <ul class="space-y-3 text-red-700">
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-1">•</span>
+              <span class="text-sm">Los reclutadores ven tu CV solo 6-10 segundos</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-1">•</span>
+              <span class="text-sm">Sistemas ATS descartan 75% de CVs automáticamente</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-1">•</span>
+              <span class="text-sm">CVs genéricos no destacan entre cientos</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-500 mt-1">•</span>
+              <span class="text-sm">Falta de palabras clave específicas del sector</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="p-6 bg-green-50 border border-green-200 rounded-xl" [@slideInScale]>
+          <div class="text-center mb-4">
+            <div class="text-5xl mb-2">🤖</div>
+            <h3 class="text-xl font-bold text-green-700">La solución con IA</h3>
+          </div>
+          <ul class="space-y-3 text-green-700">
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 mt-1">•</span>
+              <span class="text-sm">Estructura información con claridad profesional</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 mt-1">•</span>
+              <span class="text-sm">Optimiza logros con lenguaje impactante</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 mt-1">•</span>
+              <span class="text-sm">Sugiere mejoras según el tipo de puesto</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 mt-1">•</span>
+              <span class="text-sm">Ahorra tiempo y evita bloqueos creativos</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Herramientas -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">
+        🛠️ Herramientas que usaremos
+      </h2>
+      
+      <div class="grid md:grid-cols-2 gap-6" [@staggerIn]>
+        @for (tool of tools; track tool.name) {
+          <div class="group p-6 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-2">
+            <div class="flex items-start gap-4">
+              <div class="text-4xl group-hover:scale-110 transition-transform duration-300">{{ tool.icon }}</div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between mb-2">
+                  <h4 class="font-bold text-gray-900">{{ tool.name }}</h4>
+                  <span class="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">
+                    {{ tool.category }}
+                  </span>
+                </div>
+                <p class="text-gray-600 text-sm mb-3">{{ tool.description }}</p>
+                <div class="mb-4">
+                  <h5 class="text-xs font-semibold text-gray-700 mb-2">Características:</h5>
+                  <ul class="space-y-1">
+                    @for (feature of tool.features; track feature) {
+                      <li class="text-xs text-gray-600 flex items-center gap-1">
+                        <span class="text-green-500">✓</span>
+                        {{ feature }}
+                      </li>
+                    }
+                  </ul>
+                </div>
+                <a 
+                  [href]="tool.url" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 text-sm font-medium transition-colors duration-200"
+                >
+                  Probar gratis
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- Paso 1: Define tu perfil -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 pb-2 border-b-2 border-gray-100">
+        🟨 Paso 1: Define tu perfil con ayuda de IA
+      </h2>
+      
+      <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+        Uno de los errores más comunes es escribir un currículum genérico. Usa la IA para ayudarte a crear 
+        un resumen profesional potente y específico.
+      </p>
+
+      <div class="bg-gray-900 rounded-xl p-6 mb-6 text-white">
+        <div class="flex justify-between items-center mb-4">
+          <span class="text-sm text-gray-300 font-medium">Prompt para resumen profesional:</span>
+          <button 
+            (click)="copyPrompt(prompts.resumenProfesional)" 
+            class="flex items-center gap-1 px-3 py-1 bg-white/10 border border-white/20 rounded-md text-white text-xs hover:bg-white/20 transition-all duration-200"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            Copiar
+          </button>
+        </div>
+        <p class="italic leading-relaxed bg-white/5 p-4 rounded-lg border-l-4 border-yellow-500">
+          "{{ prompts.resumenProfesional }}"
+        </p>
+      </div>
+
+      <div class="p-6 bg-yellow-50 border border-yellow-200 rounded-xl">
+        <h4 class="font-semibold text-yellow-800 mb-3 flex items-center gap-2">
+          <span class="text-2xl">💡</span>
+          Ejemplo práctico
+        </h4>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-white p-4 rounded-lg border border-yellow-200">
+            <h5 class="font-semibold text-red-700 mb-2">❌ Genérico:</h5>
+            <p class="text-sm text-gray-700 italic">
+              "Profesional con experiencia en ventas buscando nuevas oportunidades."
+            </p>
+          </div>
+          <div class="bg-white p-4 rounded-lg border border-yellow-200">
+            <h5 class="font-semibold text-green-700 mb-2">✅ Con IA:</h5>
+            <p class="text-sm text-gray-700 italic">
+              "Especialista en ventas B2B con 3 años de experiencia, enfocado en tecnología SaaS. 
+              Experto en prospección digital y cierre consultivo, con historial de superar metas en 150%."
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Paso 2: Logros medibles -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 pb-2 border-b-2 border-gray-100">
+        🟧 Paso 2: Transforma tareas en logros medibles
+      </h2>
+      
+      <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+        Muchos CVs dicen cosas como "atendí clientes" o "trabajé en proyectos". Eso no dice mucho. 
+        La IA puede ayudarte a convertir eso en logros concretos y cuantificables.
+      </p>
+
+      <div class="bg-gray-900 rounded-xl p-6 mb-6 text-white">
+        <div class="flex justify-between items-center mb-4">
+          <span class="text-sm text-gray-300 font-medium">Prompt para logros medibles:</span>
+          <button 
+            (click)="copyPrompt(prompts.logrosMediables)" 
+            class="flex items-center gap-1 px-3 py-1 bg-white/10 border border-white/20 rounded-md text-white text-xs hover:bg-white/20 transition-all duration-200"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            Copiar
+          </button>
+        </div>
+        <p class="italic leading-relaxed bg-white/5 p-4 rounded-lg border-l-4 border-orange-500">
+          "{{ prompts.logrosMediables }}"
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-4 mb-6">
+        <div class="p-4 bg-orange-50 border border-orange-200 rounded-lg">
+          <h4 class="font-semibold text-orange-800 mb-2">Antes (genérico):</h4>
+          <p class="text-sm text-orange-700 italic">
+            "Me encargaba del soporte técnico a usuarios"
+          </p>
+        </div>
+        <div class="flex items-center justify-center">
+          <div class="text-3xl">→</div>
+        </div>
+        <div class="p-4 bg-green-50 border border-green-200 rounded-lg">
+          <h4 class="font-semibold text-green-800 mb-2">Después (con IA):</h4>
+          <p class="text-sm text-green-700 italic">
+            "Brindé soporte técnico a +300 usuarios mensuales, logrando 90% de satisfacción"
+          </p>
+        </div>
+      </div>
+
+      <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg">
+        <p class="text-blue-800">
+          <strong>✨ Fórmula mágica:</strong> Acción + Número + Resultado = Logro impactante
+        </p>
+      </div>
+    </section>
+
+    <!-- Paso 3: Secciones completas -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 pb-2 border-b-2 border-gray-100">
+        🟥 Paso 3: Genera secciones completas con IA
+      </h2>
+      
+      <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+        Si no sabes cómo empezar, simplemente pídele a ChatGPT que escriba tu CV entero a partir de tu experiencia.
+      </p>
+
+      <div class="bg-gray-900 rounded-xl p-6 mb-6 text-white">
+        <div class="flex justify-between items-center mb-4">
+          <span class="text-sm text-gray-300 font-medium">Prompt para CV completo:</span>
+          <button 
+            (click)="copyPrompt(prompts.cvCompleto)" 
+            class="flex items-center gap-1 px-3 py-1 bg-white/10 border border-white/20 rounded-md text-white text-xs hover:bg-white/20 transition-all duration-200"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            Copiar
+          </button>
+        </div>
+        <p class="italic leading-relaxed bg-white/5 p-4 rounded-lg border-l-4 border-red-500">
+          "{{ prompts.cvCompleto }}"
+        </p>
+      </div>
+
+      <div class="p-6 bg-red-50 border border-red-200 rounded-xl">
+        <h4 class="font-semibold text-red-800 mb-3 flex items-center gap-2">
+          <span class="text-2xl">🔄</span>
+          Proceso recomendado
+        </h4>
+        <ol class="space-y-2 text-red-700">
+          <li class="flex items-start gap-2">
+            <span class="font-bold">1.</span>
+            <span class="text-sm">Genera el contenido con ChatGPT</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="font-bold">2.</span>
+            <span class="text-sm">Copia cada sección a Resume.io o Canva</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="font-bold">3.</span>
+            <span class="text-sm">Personaliza el diseño visual</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="font-bold">4.</span>
+            <span class="text-sm">Exporta en PDF profesional</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Paso 4: Optimización ATS -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 pb-2 border-b-2 border-gray-100">
+        🟫 Paso 4: Optimiza para sistemas ATS
+      </h2>
+      
+      <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+        Los sistemas de reclutamiento automatizados (ATS) analizan currículums para filtrar los que no contienen 
+        ciertas palabras clave.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <div class="p-6 bg-purple-50 border border-purple-200 rounded-xl">
+          <h4 class="font-semibold text-purple-800 mb-3 flex items-center gap-2">
+            <span class="text-2xl">🎯</span>
+            Rezi AI te ayuda con:
+          </h4>
+          <ul class="space-y-2 text-purple-700">
+            <li class="flex items-start gap-2">
+              <span class="text-purple-500 mt-1">•</span>
+              <span class="text-sm">Análisis ATS en tiempo real</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-purple-500 mt-1">•</span>
+              <span class="text-sm">Sugerencias de palabras clave</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-purple-500 mt-1">•</span>
+              <span class="text-sm">Formato optimizado automáticamente</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-purple-500 mt-1">•</span>
+              <span class="text-sm">Score de compatibilidad</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="p-6 bg-blue-50 border border-blue-200 rounded-xl">
+          <h4 class="font-semibold text-blue-800 mb-3 flex items-center gap-2">
+            <span class="text-2xl">💡</span>
+            Consejo pro:
+          </h4>
+          <p class="text-blue-700 text-sm mb-3">
+            Copia la descripción del puesto al que aspiras y compárala con tu CV. 
+            Si no coinciden, ajusta con ayuda de la IA.
+          </p>
+          <div class="bg-white p-3 rounded-lg border border-blue-200">
+            <p class="text-xs text-blue-600 italic">
+              "{{ prompts.optimizacionATS }}"
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Simulador interactivo -->
+    <section id="cv-analyzer" class="mb-16 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-3xl p-8 border-2 border-blue-200">
+      <div class="text-center mb-8">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">
+          📄 Simulador: ¿Tu CV está listo para postular?
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          Analiza tu perfil profesional y recibe recomendaciones personalizadas para mejorar tu currículum 
+          según el rol y sector al que aspiras.
+        </p>
+      </div>
+
+      <div class="max-w-3xl mx-auto">
+        <!-- Input del simulador -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg border border-blue-200 mb-6">
+          <div class="mb-6">
+            <label class="block text-lg font-semibold text-gray-900 mb-3">
+              🎯 ¿A qué rol aspiras?
+            </label>
+            <input
+              [(ngModel)]="desiredRole"
+              placeholder="Ejemplo: Desarrollador Frontend, Diseñador UX, Gerente de Marketing..."
+              class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
+            />
+          </div>
+
+          <div class="mb-6">
+            <label class="block text-lg font-semibold text-gray-900 mb-3">
+              📈 ¿Cuál es tu nivel de experiencia?
+            </label>
+            <div class="grid grid-cols-3 gap-3">
+              @for (level of experienceLevels; track level.value) {
+                <button
+                  (click)="experienceLevel = level.value"
+                  [class]="'p-4 rounded-xl border-2 transition-all duration-200 ' + 
+                    (experienceLevel === level.value 
+                      ? 'border-blue-500 ' + level.color + ' scale-105' 
+                      : 'border-gray-200 bg-white hover:border-blue-300')"
+                >
+                  <div class="text-center">
+                    <div class="text-2xl mb-1">{{ level.label.split(' ')[0] }}</div>
+                    <div class="text-sm font-medium">{{ level.label.split(' ')[1] }}</div>
+                  </div>
+                </button>
+              }
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <label class="block text-lg font-semibold text-gray-900 mb-3">
+              🏢 ¿En qué sector trabajas?
+            </label>
+            <select
+              [(ngModel)]="selectedSector"
+              class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
+            >
+              @for (sector of sectors; track sector.value) {
+                <option [value]="sector.value">{{ sector.label }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="text-center">
+            <button
+              (click)="analyzeCv()"
+              [disabled]="isAnalyzing"
+              class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              @if (isAnalyzing) {
+                <div class="flex items-center gap-3">
+                  <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                  <span>Analizando tu perfil...</span>
+                </div>
+              } @else {
+                <span>🔍 Analizar mi CV</span>
+              }
+            </button>
+          </div>
+        </div>
+
+        <!-- Resultado del análisis -->
+        @if (cvAnalysis) {
+          <div class="bg-white rounded-2xl p-8 shadow-lg border border-green-200 animate-fade-in" [@bounceIn]>
+            <div class="text-center mb-6">
+              <div class="inline-flex items-center gap-3 mb-4">
+                <div class="text-4xl">📊</div>
+                <div>
+                  <h3 class="text-2xl font-bold text-gray-900">Análisis completado</h3>
+                  <div class="flex items-center gap-2">
+                    <span class="text-gray-600">Score de tu CV:</span>
+                    <span class="text-2xl font-bold" 
+                          [class]="cvAnalysis.score >= 80 ? 'text-green-600' : 
+                                   cvAnalysis.score >= 60 ? 'text-yellow-600' : 'text-red-600'">
+                      {{ cvAnalysis.score }}/100
+                    </span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Barra de progreso -->
+              <div class="w-full bg-gray-200 rounded-full h-3 mb-6">
+                <div 
+                  class="h-3 rounded-full transition-all duration-1000 ease-out"
+                  [class]="cvAnalysis.score >= 80 ? 'bg-green-500' : 
+                           cvAnalysis.score >= 60 ? 'bg-yellow-500' : 'bg-red-500'"
+                  [style.width.%]="cvAnalysis.score">
+                </div>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+              <!-- Fortalezas -->
+              <div class="p-6 bg-green-50 border border-green-200 rounded-xl">
+                <h4 class="font-semibold text-green-800 mb-4 flex items-center gap-2">
+                  <span class="text-2xl">💪</span>
+                  Tus fortalezas
+                </h4>
+                <ul class="space-y-2">
+                  @for (strength of cvAnalysis.strengths; track strength) {
+                    <li class="flex items-start gap-2">
+                      <span class="text-green-500 mt-1">✓</span>
+                      <span class="text-green-700 text-sm">{{ strength }}</span>
+                    </li>
+                  }
+                </ul>
+              </div>
+
+              <!-- Mejoras -->
+              <div class="p-6 bg-orange-50 border border-orange-200 rounded-xl">
+                <h4 class="font-semibold text-orange-800 mb-4 flex items-center gap-2">
+                  <span class="text-2xl">🎯</span>
+                  Áreas de mejora
+                </h4>
+                <ul class="space-y-2">
+                  @for (improvement of cvAnalysis.improvements; track improvement) {
+                    <li class="flex items-start gap-2">
+                      <span class="text-orange-500 mt-1">•</span>
+                      <span class="text-orange-700 text-sm">{{ improvement }}</span>
+                    </li>
+                  }
+                </ul>
+              </div>
+            </div>
+
+            <!-- Recomendaciones -->
+            <div class="p-6 bg-blue-50 border border-blue-200 rounded-xl mb-6">
+              <h4 class="font-semibold text-blue-800 mb-4 flex items-center gap-2">
+                <span class="text-2xl">🚀</span>
+                Recomendaciones personalizadas
+              </h4>
+              <ul class="space-y-2">
+                @for (recommendation of cvAnalysis.recommendations; track recommendation) {
+                  <li class="flex items-start gap-2">
+                    <span class="text-blue-500 mt-1">→</span>
+                    <span class="text-blue-700 text-sm">{{ recommendation }}</span>
+                  </li>
+                }
+              </ul>
+            </div>
+
+            <!-- Palabras clave -->
+            <div class="p-6 bg-purple-50 border border-purple-200 rounded-xl">
+              <h4 class="font-semibold text-purple-800 mb-4 flex items-center gap-2">
+                <span class="text-2xl">🔑</span>
+                Palabras clave para tu sector
+              </h4>
+              <div class="flex flex-wrap gap-2">
+                @for (keyword of cvAnalysis.keywords; track keyword) {
+                  <span class="px-3 py-1 bg-purple-100 text-purple-700 text-sm font-medium rounded-full">
+                    {{ keyword }}
+                  </span>
+                }
+              </div>
+            </div>
+
+            <div class="text-center mt-6">
+              <button
+                (click)="resetAnalyzer()"
+                class="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200"
+              >
+                🔄 Analizar otro perfil
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- Caso de éxito: Kevin -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 pb-2 border-b-2 border-gray-100">
+        ⭐ Caso real: Kevin cambió su CV con IA y consiguió trabajo en 10 días
+      </h2>
+      
+      <div class="bg-gradient-to-r from-green-50 to-blue-50 border border-green-200 rounded-2xl p-8">
+        <div class="flex items-start gap-6 mb-6">
+          <div class="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center text-white text-3xl font-bold flex-shrink-0">
+            K
+          </div>
+          <div>
+            <h3 class="font-bold text-gray-900 text-xl mb-2">Kevin, 26 años</h3>
+            <p class="text-gray-600 mb-4">Diseñador freelance sin experiencia en empresas</p>
+            <div class="bg-white p-4 rounded-lg border border-green-200">
+              <p class="text-green-700 italic">
+                "Mi CV era súper simple: solo listaba proyectos. No sabía cómo hacer que sonara profesional 
+                o cómo destacar entre tantos candidatos."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <h4 class="font-semibold text-gray-900 mb-3">🔴 Antes (CV básico):</h4>
+            <div class="bg-white p-4 rounded-lg border border-gray-200">
+              <ul class="space-y-2 text-gray-700 text-sm">
+                <li>• Realicé logos para clientes</li>
+                <li>• Trabajé en proyectos web</li>
+                <li>• Manejo Photoshop e Illustrator</li>
+                <li>• Estudié diseño gráfico</li>
+              </ul>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-semibold text-gray-900 mb-3">🟢 Después (con IA):</h4>
+            <div class="bg-white p-4 rounded-lg border border-green-200">
+              <ul class="space-y-2 text-green-700 text-sm">
+                <li>• Diseñé +15 identidades visuales con enfoque en conversión</li>
+                <li>• Desarrollé interfaces web que aumentaron engagement 40%</li>
+                <li>• Experto en Adobe Creative Suite y herramientas de prototipado</li>
+                <li>• Licenciado en Diseño Gráfico con especialización en UX</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-r from-blue-100 to-green-100 border border-blue-200 rounded-xl p-6">
+          <h4 class="font-semibold text-gray-900 mb-3">📈 Resultados en 10 días:</h4>
+          <div class="grid md:grid-cols-3 gap-4">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-blue-600">4</div>
+              <div class="text-sm text-gray-600">Postulaciones enviadas</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-green-600">2</div>
+              <div class="text-sm text-gray-600">Empresas lo contactaron</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-purple-600">1</div>
+              <div class="text-sm text-gray-600">Oferta de trabajo</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 p-4 bg-white rounded-lg border border-green-200">
+          <p class="text-green-700 font-medium text-center">
+            <strong>"Sentí que, por primera vez, mi CV decía algo real de mí. La IA fue como tener un mentor profesional."</strong>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conclusión -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 pb-2 border-b-2 border-gray-100">
+        🟪 Tu próximo trabajo está a un CV de distancia
+      </h2>
+      
+      <div class="bg-gradient-to-r from-blue-100 to-indigo-100 border border-blue-200 rounded-2xl p-8">
+        <p class="text-xl text-gray-700 mb-4 leading-relaxed">
+          No necesitas pagar a un experto o pasar días frente a Word. Con las herramientas adecuadas, 
+          puedes crear un CV potente, profesional y personalizado con ayuda de la inteligencia artificial.
+        </p>
+        <p class="text-xl text-gray-700 mb-4 leading-relaxed">
+          Desde redactar tu perfil, convertir tus logros en resultados medibles, hasta diseñarlo visualmente, 
+          <strong>la IA es tu mejor aliada</strong> en la búsqueda de empleo.
+        </p>
+        <p class="text-xl text-gray-700 leading-relaxed">
+          📌 Usa esta guía como punto de partida. Prueba los prompts. Mejora con el simulador. 
+          <strong>Tu próximo trabajo puede estar a solo una versión de currículum de distancia.</strong>
+        </p>
+      </div>
+    </section>
+
+
+    <!-- Navegación entre artículos -->
+    <nav class="border-t border-gray-200 pt-8 mt-12">
+      <a 
+        routerLink="/articulos" 
+        class="inline-flex items-center gap-2 text-blue-600 font-semibold mb-8 hover:text-blue-700 transition-colors duration-200"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+        Ver todos los artículos
+      </a>
+      <div class="grid md:grid-cols-2 gap-4">
+        <a 
+          routerLink="/articulos/rutina-inteligente-con-ia" 
+          class="p-4 border border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all duration-200 group"
+        >
+          <span class="block text-sm text-gray-500 mb-1">Anterior</span>
+          <span class="block font-semibold text-gray-900 group-hover:text-blue-600">Rutina inteligente con IA</span>
+        </a>
+        <div class="p-4 border border-gray-200 rounded-lg opacity-50 cursor-not-allowed">
+          <span class="block text-sm text-gray-500 mb-1">Siguiente</span>
+          <span class="block font-semibold text-gray-900">Próximamente más artículos</span>
+        </div>
+      </div>
+    </nav>
+  </article>
+</div>
+
+<style>
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out;
+}
+
+/* Animaciones personalizadas */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Efectos hover mejorados */
+.group:hover .group-hover\:scale-110 {
+  transform: scale(1.1);
+}
+
+/* Gradientes animados */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Barra de progreso animada */
+@keyframes progress-fill {
+  from { width: 0%; }
+  to { width: var(--progress-width); }
+}
+</style>

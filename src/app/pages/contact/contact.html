@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+
+<div class="article-container">
+  <app-breadcrumbs [items]="breadcrumbItems"></app-breadcrumbs>
+
+  <article class="article-content">
+    <header class="article-header">
+      <h1 class="article-title">Contacto</h1>
+      <p class="subtitle">¿Tienes preguntas, sugerencias o quieres colaborar?</p>
+    </header>
+
+    <div class="article-body">
+      <p class="lead">
+        Nos encantaría saber de ti. Utiliza el formulario a continuación para enviarnos un mensaje
+        o contáctanos directamente a través de la información proporcionada.
+      </p>
+
+      <section class="content-section">
+        <h2>Envíanos un Mensaje</h2>
+        <form class="contact-form" (ngSubmit)="submitForm()">
+          <div class="form-group">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" [(ngModel)]="name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" [(ngModel)]="email" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Mensaje:</label>
+            <textarea id="message" name="message" rows="5" [(ngModel)]="message" required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">
+            Enviar Mensaje
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 2L11 13M22 2l-7 20-4-9-20-7L22 2z"/>
+            </svg>
+          </button>
+          <div *ngIf="formSubmitted" class="success-message">
+            ¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.
+          </div>
+        </form>
+      </section>
+
+      <section class="content-section">
+        <h2>Información de Contacto Directo</h2>
+        <div class="contact-info-grid">
+          <div class="info-item">
+            <div class="info-icon">📧</div>
+            <h4>Correo Electrónico</h4>
+            <p><a href="mailto:yezid16&#64;gmail.com">yezid16&#64;gmail.com</a></p>
+          </div>     
+      
+        </div>
+      </section>
+    </div>
+  </article>
+</div>

@@ -1,0 +1,209 @@
+<app-navbar></app-navbar>
+
+<div class="article-container">
+  <app-breadcrumbs [items]="breadcrumbItems"></app-breadcrumbs>
+  
+  <!-- Botón de regreso flotante -->
+  <button class="back-button" (click)="goBack()" title="Regresar">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M19 12H5M12 19l-7-7 7-7"/>
+    </svg>
+    <span>Regresar</span>
+  </button>
+
+  <article class="article-content">
+    <!-- Encabezado del artículo mejorado -->
+    <header class="article-header">
+      <div class="article-meta">
+        <span class="category-tag chatgpt">ChatGPT</span>
+        <span class="read-time">5 min de lectura</span>
+        <span class="publish-date">Publicado el 11 de julio de 2025</span>
+      </div>
+      
+      <h1 class="article-title">
+        5 Ideas Sencillas Para Que Uses ChatGPT A Diario 
+        <span class="subtitle">(Sin Ser Un Crack De La Programación)</span>
+      </h1>
+      
+      <!-- Acciones del artículo -->
+      <div class="article-actions">
+        <button class="action-btn" (click)="toggleBookmark()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
+          </svg>
+          Guardar
+        </button>
+        <button class="action-btn" (click)="shareArticle()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="18" cy="5" r="3"/>
+            <circle cx="6" cy="12" r="3"/>
+            <circle cx="18" cy="19" r="3"/>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+          </svg>
+          Compartir
+        </button>
+      </div>
+    </header>
+
+    <!-- Contenido del artículo -->
+    <div class="article-body">
+      <p class="lead">
+        La onda de la inteligencia artificial ya no es solo cosa de genios de la ciencia o de la programación. 
+        Con herramientas como <strong>ChatGPT</strong> puedes hacer que muchas cosas se hagan solas, ser más 
+        productivo y ahorrar tiempo... y lo mejor es que no necesitas saber nada de códigos.
+      </p>
+      
+      <p>Aquí te doy <strong>5 ideas super fáciles</strong> para que uses ChatGPT en tu día a día.</p>
+
+      <section class="content-section">
+        <h2>1. 📅 Organiza tu semana como si tuvieras un asistente personal</h2>
+        <p>
+          ¿Te cuesta poner en orden tus tareas? Prueba a decirle a ChatGPT algo así:
+        </p>
+        <div class="prompt-example">
+          <div class="prompt-header">
+            <span class="prompt-label">Prompt de ejemplo:</span>
+            <button class="copy-btn" (click)="copyPrompt(prompt1)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              Copiar
+            </button>
+          </div>
+          <p class="prompt-text">
+            "A ver, ayúdame a organizar mi semana. Trabajo de lunes a viernes de 8 a.m. a 4 p.m., 
+            voy a yoga los martes y jueves a las 6 p.m. y quiero leer unas tres veces por semana."
+          </p>
+        </div>
+        <p>Y verás que te da un horario bien chévere y a tu medida.</p>
+      </section>
+
+      <section class="content-section">
+        <h2>2. ✍️ Escribe correos rápidos y que suenen profesionales</h2>
+        <p>A veces, escribir un buen correo toma su tiempo. Intenta esto:</p>
+        <div class="prompt-example">
+          <div class="prompt-header">
+            <span class="prompt-label">Prompt de ejemplo:</span>
+            <button class="copy-btn" (click)="copyPrompt(prompt2)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              Copiar
+            </button>
+          </div>
+          <p class="prompt-text">
+            "Escribe un correo formal para pedir una reunión con un proveedor el viernes a las 10 a.m."
+          </p>
+        </div>
+        <p>O si quieres: <em>"Hazlo más corto y que suene más cercano"</em></p>
+      </section>
+
+      <section class="content-section">
+        <h2>3. 🍝 Decide qué cocinar con lo que encuentres en tu refri</h2>
+        <p>Abres el refrigerador y solo ves tomates, arroz y huevos. Pregunta:</p>
+        <div class="prompt-example">
+          <div class="prompt-header">
+            <span class="prompt-label">Prompt de ejemplo:</span>
+            <button class="copy-btn" (click)="copyPrompt(prompt3)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              Copiar
+            </button>
+          </div>
+          <p class="prompt-text">
+            "¿Qué puedo cocinar con arroz, huevos y tomates?"
+          </p>
+        </div>
+        <p>Y ChatGPT te da una receta paso a paso.</p>
+      </section>
+
+      <section class="content-section">
+        <h2>4. 💡 Lanza ideas para regalos que sean únicos</h2>
+        <p>¿No sabes qué regalar? Dale esta idea:</p>
+        <div class="prompt-example">
+          <div class="prompt-header">
+            <span class="prompt-label">Prompt de ejemplo:</span>
+            <button class="copy-btn" (click)="copyPrompt(prompt4)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              Copiar
+            </button>
+          </div>
+          <p class="prompt-text">
+            "Sugiere regalos para una chica de 30 años que le encanta leer, viajar y tomar café"
+          </p>
+        </div>
+        <p>¡Te dará ideas geniales y personales!</p>
+      </section>
+
+      <section class="content-section">
+        <h2>5. 📚 Aprende algo nuevo rapidísimo</h2>
+        <p>En vez de buscar en mil páginas, usa ChatGPT como tu profe personal:</p>
+        <div class="prompt-example">
+          <div class="prompt-header">
+            <span class="prompt-label">Prompts de ejemplo:</span>
+            <button class="copy-btn" (click)="copyPrompt(prompt5)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              Copiar
+            </button>
+          </div>
+          <p class="prompt-text">
+            "Explícame qué es el impuesto a la renta en Colombia"
+          </p>
+          <p class="prompt-text">
+            "Hazme un resumen de Padre Rico, Padre Pobre"
+          </p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>Consejos para sacarle más provecho</h2>
+        <ul class="tips-list">
+          <li>Cuando preguntes, sé lo más claro que puedas.</li>
+          <li>Usa frases como "resume", "explica como si le hablaras a un niño de 10 años", "hazlo más cortito".</li>
+          <li>No te quedes con la duda, pide que lo repita o que lo haga mejor.</li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <h2>Conclusión</h2>
+        <p>
+          ChatGPT puede ser tu mejor aliado. Te ayuda a escribir, planear, aprender y resolver cosas 
+          sin que te compliques la vida. ¿Te animas a darle una oportunidad?
+        </p>
+      </section>
+    </div>
+
+  
+
+    <!-- Navegación entre artículos -->
+    <nav class="article-navigation">
+      <a routerLink="/articulos" class="nav-all-articles">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+        Ver todos los artículos
+      </a>
+      <div class="nav-adjacent">
+        <a class="nav-prev disabled">
+          <span class="nav-label">Anterior</span>
+          <span class="nav-title">No hay artículo anterior</span>
+        </a>
+        <a routerLink="/articulos/canva-ai-presentaciones" class="nav-next">
+          <span class="nav-label">Siguiente</span>
+          <span class="nav-title">Canva AI: Diseña presentaciones profesionales</span>
+        </a>
+      </div>
+    </nav>
+  </article>
+</div>

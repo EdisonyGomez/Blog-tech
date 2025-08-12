@@ -1,0 +1,712 @@
+<app-navbar></app-navbar>
+
+<div class="max-w-6xl mx-auto bg-white min-h-screen">
+  <app-breadcrumbs [items]="breadcrumbItems"></app-breadcrumbs>
+  
+  <!-- Botón de regreso flotante -->
+  <button 
+    (click)="goBack()" 
+    class="fixed top-20 left-5 z-50 flex items-center gap-2 px-4 py-3 bg-white border-2 border-gray-200 rounded-full font-medium text-gray-600 transition-all duration-200 shadow-lg hover:border-purple-500 hover:text-purple-500 hover:-translate-x-1"
+    title="Regresar"
+  >
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M19 12H5M12 19l-7-7 7-7"/>
+    </svg>
+    <span>Regresar</span>
+  </button>
+
+  <!-- CTA Flotante -->
+  <button 
+    (click)="scrollToSimulator()"
+    class="fixed bottom-8 right-8 z-50 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-pulse"
+  >
+    🧠 Crea tu rutina inteligente
+  </button>
+
+  <article class="px-8 py-8" [@fadeInUp]>
+    <!-- Encabezado del artículo -->
+    <header class="mb-12 pb-8 border-b border-gray-200">
+      <div class="flex flex-wrap gap-4 items-center mb-6">
+        <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-semibold uppercase rounded-full">
+          Productividad
+        </span>
+        <span class="text-sm text-gray-500">10 min de lectura</span>
+        <span class="text-sm text-gray-500">Publicado el 25 de julio de 2025</span>
+      </div>
+      
+      <h1 class="text-4xl md:text-6xl font-bold leading-tight text-gray-900 mb-4">
+        Transforma tu rutina diaria con 
+        <span class="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+          inteligencia artificial
+        </span>
+        <span class="block text-2xl md:text-3xl text-gray-600 font-normal mt-4">
+          Guía interactiva para principiantes
+        </span>
+      </h1>
+      
+      <!-- Acciones del artículo -->
+      <div class="flex gap-4 mt-6">
+        <button 
+          (click)="toggleBookmark()" 
+          class="flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg font-medium text-gray-600 transition-all duration-200 hover:bg-gray-100 hover:border-purple-500 hover:text-purple-500"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
+          </svg>
+          Guardar
+        </button>
+        <button 
+          (click)="shareArticle()" 
+          class="flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg font-medium text-gray-600 transition-all duration-200 hover:bg-gray-100 hover:border-purple-500 hover:text-purple-500"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="18" cy="5" r="3"/>
+            <circle cx="6" cy="12" r="3"/>
+            <circle cx="18" cy="19" r="3"/>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+          </svg>
+          Compartir
+        </button>
+      </div>
+    </header>
+
+    <!-- Introducción -->
+    <div class="mb-12 p-8 bg-gradient-to-r from-purple-50 to-pink-50 border-l-4 border-purple-500 rounded-r-2xl">
+      <p class="text-xl text-gray-700 mb-4 leading-relaxed">
+        ¿Te sientes abrumado por tu día a día? Entre emails sin responder, tareas que se acumulan y la sensación constante 
+        de que el tiempo no alcanza, es normal sentir que necesitas un <strong>asistente personal</strong>.
+      </p>
+      <p class="text-xl text-gray-700 mb-4 leading-relaxed">
+        La buena noticia es que ya puedes tenerlo: la <strong>inteligencia artificial</strong> puede actuar como tu 
+        "copiloto invisible", organizando, automatizando y optimizando tu rutina sin que necesites saber programar 
+        o usar aplicaciones complejas.
+      </p>
+      <p class="text-xl text-gray-700 leading-relaxed">
+        En esta guía interactiva descubrirás cómo transformar tu día a día con herramientas de IA simples pero poderosas. 
+        ¡Incluso podrás generar tu propia rutina personalizada al final del artículo!
+      </p>
+    </div>
+
+    <!-- Infografía animada: Día sin IA vs con IA -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">
+        🌀 Tu día: Sin IA vs Con IA
+      </h2>
+      
+      <div class="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- Día SIN IA -->
+        <div class="bg-red-50 border-2 border-red-200 rounded-2xl p-8" [@slideInFromLeft]>
+          <div class="text-center mb-6">
+            <div class="text-6xl mb-4 animate-bounce">😵‍💫</div>
+            <h3 class="text-2xl font-bold text-red-700 mb-2">Día SIN IA</h3>
+            <p class="text-red-600">Caótico y estresante</p>
+          </div>
+          
+          <div class="space-y-4">
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-red-200">
+              <div class="text-2xl">⏰</div>
+              <div>
+                <h4 class="font-semibold text-red-700">7:00 AM - Mañana caótica</h4>
+                <p class="text-sm text-red-600">Revisas 50 emails sin orden, te distraes con notificaciones</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-red-200">
+              <div class="text-2xl">📝</div>
+              <div>
+                <h4 class="font-semibold text-red-700">10:00 AM - Tareas dispersas</h4>
+                <p class="text-sm text-red-600">Saltas entre tareas sin priorizar, pierdes tiempo decidiendo qué hacer</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-red-200">
+              <div class="text-2xl">🔄</div>
+              <div>
+                <h4 class="font-semibold text-red-700">2:00 PM - Tareas repetitivas</h4>
+                <p class="text-sm text-red-600">Copias y pegas la misma respuesta 10 veces, organizas archivos manualmente</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-red-200">
+              <div class="text-2xl">😴</div>
+              <div>
+                <h4 class="font-semibold text-red-700">8:00 PM - Agotamiento</h4>
+                <p class="text-sm text-red-600">Terminas cansado, con tareas pendientes y sin tiempo para ti</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Día CON IA -->
+        <div class="bg-green-50 border-2 border-green-200 rounded-2xl p-8" [@slideInFromRight]>
+          <div class="text-center mb-6">
+            <div class="text-6xl mb-4 animate-pulse">🚀</div>
+            <h3 class="text-2xl font-bold text-green-700 mb-2">Día CON IA</h3>
+            <p class="text-green-600">Organizado y productivo</p>
+          </div>
+          
+          <div class="space-y-4">
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-green-200">
+              <div class="text-2xl">🎯</div>
+              <div>
+                <h4 class="font-semibold text-green-700">7:00 AM - Mañana enfocada</h4>
+                <p class="text-sm text-green-600">IA te muestra solo emails importantes, agenda optimizada automáticamente</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-green-200">
+              <div class="text-2xl">✅</div>
+              <div>
+                <h4 class="font-semibold text-green-700">10:00 AM - Tareas priorizadas</h4>
+                <p class="text-sm text-green-600">Lista inteligente te guía paso a paso, sabes exactamente qué hacer</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-green-200">
+              <div class="text-2xl">⚡</div>
+              <div>
+                <h4 class="font-semibold text-green-700">2:00 PM - Automatización</h4>
+                <p class="text-sm text-green-600">Respuestas automáticas, archivos organizados solos, recordatorios inteligentes</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-3 p-3 bg-white rounded-lg border border-green-200">
+              <div class="text-2xl">😊</div>
+              <div>
+                <h4 class="font-semibold text-green-700">8:00 PM - Tiempo libre</h4>
+                <p class="text-sm text-green-600">Terminas temprano, con energía y tiempo para lo que realmente importa</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-8">
+        <p class="text-lg text-gray-600">
+          <strong>La diferencia:</strong> La IA actúa como tu copiloto invisible, 
+          tomando decisiones rutinarias para que te enfoques en lo importante.
+        </p>
+      </div>
+    </section>
+
+    <!-- Paso 1: Organiza tu mañana -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 pb-2 border-b-2 border-gray-100">
+        🟦 Paso 1: Organiza tu mañana con asistentes de IA
+      </h2>
+      
+      <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+        La mañana marca el tono de todo tu día. En lugar de revisar emails al azar o preguntarte "¿qué hago primero?", 
+        puedes usar IA para crear un plan inteligente en segundos.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <div class="p-6 bg-blue-50 border border-blue-200 rounded-xl">
+          <h4 class="font-semibold text-blue-800 mb-3 flex items-center gap-2">
+            <span class="text-2xl">📝</span>
+            Notion AI + Google Calendar
+          </h4>
+          <p class="text-blue-700 text-sm mb-3">
+            Crea automáticamente tu agenda diaria basada en prioridades y tiempo disponible.
+          </p>
+          <div class="bg-white p-3 rounded-lg border border-blue-200">
+            <p class="text-xs text-blue-600 italic">
+              "Revisa mi calendario y sugiere el mejor momento para estas 3 tareas importantes..."
+            </p>
+          </div>
+        </div>
+
+        <div class="p-6 bg-purple-50 border border-purple-200 rounded-xl">
+          <h4 class="font-semibold text-purple-800 mb-3 flex items-center gap-2">
+            <span class="text-2xl">🤖</span>
+            ChatGPT como planificador
+          </h4>
+          <p class="text-purple-700 text-sm mb-3">
+            Tu asistente personal que organiza tareas según tu energía y objetivos del día.
+          </p>
+          <div class="bg-white p-3 rounded-lg border border-purple-200">
+            <p class="text-xs text-purple-600 italic">
+              "Tengo 4 horas libres y estas tareas pendientes. ¿Cómo las organizo?"
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gray-900 rounded-xl p-6 text-white">
+        <div class="flex justify-between items-center mb-4">
+          <span class="text-sm text-gray-300 font-medium">Prompt para planificación diaria:</span>
+          <button 
+            (click)="copyPrompt(prompts.planificador)" 
+            class="flex items-center gap-1 px-3 py-1 bg-white/10 border border-white/20 rounded-md text-white text-xs hover:bg-white/20 transition-all duration-200"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            Copiar
+          </button>
+        </div>
+        <p class="italic leading-relaxed bg-white/5 p-4 rounded-lg border-l-4 border-blue-500">
+          "{{ prompts.planificador }}"
+        </p>
+      </div>
+    </section>
+
+    <!-- Paso 2: Automatiza tareas repetitivas -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 pb-2 border-b-2 border-gray-100">
+        🟪 Paso 2: Automatiza tareas repetitivas
+      </h2>
+      
+      <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+        ¿Cuánto tiempo pierdes copiando información, organizando archivos o enviando el mismo tipo de respuestas? 
+        La automatización con IA puede eliminar estas tareas de tu día.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-4 mb-6" [@staggerIn]>
+        <div class="p-4 bg-yellow-50 border border-yellow-200 rounded-lg hover:shadow-md transition-all duration-300">
+          <div class="text-3xl mb-2">📧</div>
+          <h4 class="font-semibold text-yellow-800 mb-2">Emails inteligentes</h4>
+          <p class="text-sm text-yellow-700">Guardar automáticamente emails importantes en Notion o crear tareas.</p>
+        </div>
+        
+        <div class="p-4 bg-green-50 border border-green-200 rounded-lg hover:shadow-md transition-all duration-300">
+          <div class="text-3xl mb-2">📊</div>
+          <h4 class="font-semibold text-green-800 mb-2">Resúmenes automáticos</h4>
+          <p class="text-sm text-green-700">Generar resúmenes de reuniones, documentos largos o conversaciones.</p>
+        </div>
+        
+        <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg hover:shadow-md transition-all duration-300">
+          <div class="text-3xl mb-2">🔔</div>
+          <h4 class="font-semibold text-blue-800 mb-2">Recordatorios inteligentes</h4>
+          <p class="text-sm text-blue-700">Crear recordatorios contextuales basados en palabras clave o fechas.</p>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-r from-purple-100 to-pink-100 border border-purple-200 rounded-xl p-6">
+        <h4 class="font-semibold text-purple-800 mb-3 flex items-center gap-2">
+          <span class="text-2xl">⚡</span>
+          Ejemplo real de automatización
+        </h4>
+        <div class="bg-white p-4 rounded-lg border border-purple-200 mb-4">
+          <p class="text-purple-700 italic">
+            "{{ prompts.automatizacion }}"
+          </p>
+        </div>
+        <p class="text-purple-700 text-sm">
+          <strong>Resultado:</strong> Nunca más olvidas pagar una factura. El sistema trabaja por ti 24/7.
+        </p>
+      </div>
+    </section>
+
+    <!-- Paso 3: Mejorar hábitos con IA -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 pb-2 border-b-2 border-gray-100">
+        🟥 Paso 3: Mejora tus hábitos con IA
+      </h2>
+      
+      <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+        La IA no solo organiza tareas, también puede actuar como tu coach personal, ayudándote a mantener hábitos 
+        saludables y alcanzar tus objetivos a largo plazo.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <div class="p-6 bg-red-50 border border-red-200 rounded-xl">
+          <h4 class="font-semibold text-red-800 mb-3 flex items-center gap-2">
+            <span class="text-2xl">🏃‍♂️</span>
+            Coach virtual con ChatGPT
+          </h4>
+          <p class="text-red-700 text-sm mb-4">
+            Crea un entrenador personalizado que te motive y ajuste tus rutinas según tu progreso.
+          </p>
+          <div class="bg-white p-3 rounded-lg border border-red-200">
+            <p class="text-xs text-red-600 italic">
+              "Actúa como mi entrenador. Quiero hacer ejercicio 3 veces por semana pero siempre encuentro excusas..."
+            </p>
+          </div>
+        </div>
+
+        <div class="p-6 bg-green-50 border border-green-200 rounded-xl">
+          <h4 class="font-semibold text-green-800 mb-3 flex items-center gap-2">
+            <span class="text-2xl">📱</span>
+            Apps con IA para hábitos
+          </h4>
+          <p class="text-green-700 text-sm mb-4">
+            Herramientas como Finch o Habitify AI que gamifican tus hábitos y se adaptan a tu estilo de vida.
+          </p>
+          <div class="bg-white p-3 rounded-lg border border-green-200">
+            <p class="text-xs text-green-600">
+              <strong>Ejemplo:</strong> Tu mascota virtual crece cuando cumples tus hábitos diarios.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gray-900 rounded-xl p-6 text-white">
+        <div class="flex justify-between items-center mb-4">
+          <span class="text-sm text-gray-300 font-medium">Prompt para coach de productividad:</span>
+          <button 
+            (click)="copyPrompt(prompts.coach)" 
+            class="flex items-center gap-1 px-3 py-1 bg-white/10 border border-white/20 rounded-md text-white text-xs hover:bg-white/20 transition-all duration-200"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            Copiar
+          </button>
+        </div>
+        <p class="italic leading-relaxed bg-white/5 p-4 rounded-lg border-l-4 border-red-500">
+          "{{ prompts.coach }}"
+        </p>
+      </div>
+    </section>
+
+    <!-- Simulador interactivo -->
+    <section id="simulator" class="mb-16 bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 rounded-3xl p-8 border-2 border-purple-200">
+      <div class="text-center mb-8">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">
+          🧩 Simulador: Tu rutina inteligente personalizada
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          Descubre cómo la IA puede transformar tu día. Ingresa tus tareas principales y tu estado de ánimo 
+          para recibir una rutina optimizada al instante.
+        </p>
+      </div>
+
+      <div class="max-w-3xl mx-auto">
+        <!-- Input del simulador -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg border border-purple-200 mb-6">
+          <div class="mb-6">
+            <label class="block text-lg font-semibold text-gray-900 mb-3">
+              📝 ¿Cuáles son tus 3 tareas principales de hoy?
+            </label>
+            <textarea
+              [(ngModel)]="userTasks"
+              placeholder="Ejemplo: Terminar presentación, responder emails importantes, hacer ejercicio"
+              class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-200 resize-none"
+              rows="3"
+            ></textarea>
+          </div>
+
+          <div class="mb-6">
+            <label class="block text-lg font-semibold text-gray-900 mb-3">
+              😊 ¿Cómo te sientes hoy?
+            </label>
+            <div class="grid grid-cols-3 gap-3">
+              @for (mood of moods; track mood.value) {
+                <button
+                  (click)="selectedMood = mood.value"
+                  [class]="'p-4 rounded-xl border-2 transition-all duration-200 ' + 
+                    (selectedMood === mood.value 
+                      ? 'border-purple-500 ' + mood.color + ' scale-105' 
+                      : 'border-gray-200 bg-white hover:border-purple-300')"
+                >
+                  <div class="text-center">
+                    <div class="text-2xl mb-1">{{ mood.label.split(' ')[0] }}</div>
+                    <div class="text-sm font-medium">{{ mood.label.split(' ')[1] }}</div>
+                  </div>
+                </button>
+              }
+            </div>
+          </div>
+
+          <div class="text-center">
+            <button
+              (click)="generateSmartRoutine()"
+              [disabled]="isGenerating"
+              class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              @if (isGenerating) {
+                <div class="flex items-center gap-3">
+                  <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                  <span>Generando tu rutina inteligente...</span>
+                </div>
+              } @else {
+                <span>🚀 Generar mi rutina con IA</span>
+              }
+            </button>
+          </div>
+        </div>
+
+        <!-- Resultado del simulador -->
+        @if (simulatorResult) {
+          <div class="bg-white rounded-2xl p-8 shadow-lg border border-green-200 animate-fade-in">
+            <div class="text-center mb-6">
+              <h3 class="text-2xl font-bold text-green-700 mb-2">
+                ✨ Tu rutina inteligente está lista
+              </h3>
+              <p class="text-green-600">Optimizada según tu estado de ánimo y tareas</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+              <div class="p-6 bg-yellow-50 border border-yellow-200 rounded-xl">
+                <h4 class="font-semibold text-yellow-800 mb-3 flex items-center gap-2">
+                  <span class="text-2xl">🌅</span>
+                  Mañana
+                </h4>
+                <p class="text-yellow-700 text-sm">{{ simulatorResult.morning }}</p>
+              </div>
+
+              <div class="p-6 bg-blue-50 border border-blue-200 rounded-xl">
+                <h4 class="font-semibold text-blue-800 mb-3 flex items-center gap-2">
+                  <span class="text-2xl">☀️</span>
+                  Tarde
+                </h4>
+                <p class="text-blue-700 text-sm">{{ simulatorResult.afternoon }}</p>
+              </div>
+
+              <div class="p-6 bg-purple-50 border border-purple-200 rounded-xl">
+                <h4 class="font-semibold text-purple-800 mb-3 flex items-center gap-2">
+                  <span class="text-2xl">🌙</span>
+                  Noche
+                </h4>
+                <p class="text-purple-700 text-sm">{{ simulatorResult.evening }}</p>
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-green-50 to-blue-50 border border-green-200 rounded-xl p-6">
+              <h4 class="font-semibold text-green-800 mb-4 flex items-center gap-2">
+                <span class="text-2xl">🤖</span>
+                Tips de IA personalizados para ti
+              </h4>
+              <ul class="space-y-2">
+                @for (tip of simulatorResult.aiTips; track tip) {
+                  <li class="flex items-start gap-2">
+                    <span class="text-green-500 mt-1">•</span>
+                    <span class="text-green-700 text-sm">{{ tip }}</span>
+                  </li>
+                }
+              </ul>
+            </div>
+
+            <div class="text-center mt-6">
+              <button
+                (click)="resetSimulator()"
+                class="text-purple-600 hover:text-purple-700 font-medium transition-colors duration-200"
+              >
+                🔄 Probar con otras tareas
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- Herramientas destacadas -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">
+        🛠️ Herramientas esenciales para tu rutina inteligente
+      </h2>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" [@staggerIn]>
+        @for (tool of tools; track tool.name) {
+          <div class="group p-6 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-2">
+            <div class="text-center">
+              <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{{ tool.icon }}</div>
+              <h4 class="font-semibold text-gray-900 mb-2">{{ tool.name }}</h4>
+              <p class="text-sm text-gray-600 mb-3">{{ tool.description }}</p>
+              <span class="inline-block px-3 py-1 bg-purple-100 text-purple-700 text-xs font-medium rounded-full mb-4">
+                {{ tool.category }}
+              </span>
+              <a 
+                [href]="tool.url" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="block w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-2 px-4 rounded-lg font-medium hover:shadow-md transition-all duration-200"
+              >
+                Probar gratis
+              </a>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- Caso de éxito: Sandra -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 pb-2 border-b-2 border-gray-100">
+        🏆 Caso de éxito: Sandra, madre y freelance
+      </h2>
+      
+      <div class="bg-gradient-to-r from-green-50 to-blue-50 border border-green-200 rounded-2xl p-8">
+        <div class="flex items-start gap-6 mb-6">
+          <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center text-white text-3xl font-bold flex-shrink-0">
+            S
+          </div>
+          <div>
+            <h3 class="font-bold text-gray-900 text-xl mb-2">Sandra, 34 años</h3>
+            <p class="text-gray-600 mb-4">Madre de 2 hijos, diseñadora freelance</p>
+            <div class="bg-white p-4 rounded-lg border border-green-200">
+              <p class="text-green-700 italic">
+                "Entre cuidar a los niños, atender clientes y las tareas del hogar, sentía que me ahogaba. 
+                No tenía tiempo ni para respirar."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h4 class="font-semibold text-gray-900 mb-3">🔴 Antes (sin IA):</h4>
+            <ul class="space-y-2 text-gray-700">
+              <li class="flex items-start gap-2">
+                <span class="text-red-500 mt-1">•</span>
+                <span class="text-sm">Revisaba emails 20+ veces al día</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-red-500 mt-1">•</span>
+                <span class="text-sm">Olvidaba deadlines importantes</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-red-500 mt-1">•</span>
+                <span class="text-sm">Trabajaba hasta las 11 PM</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-red-500 mt-1">•</span>
+                <span class="text-sm">Estrés constante y agotamiento</span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-semibold text-gray-900 mb-3">🟢 Después (con IA):</h4>
+            <ul class="space-y-2 text-gray-700">
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">•</span>
+                <span class="text-sm">IA filtra emails importantes automáticamente</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">•</span>
+                <span class="text-sm">Recordatorios inteligentes para deadlines</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">•</span>
+                <span class="text-sm">Termina trabajo a las 6 PM</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-1">•</span>
+                <span class="text-sm">2 horas extra diarias para familia</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-6 p-4 bg-white rounded-lg border border-green-200">
+          <p class="text-green-700 font-medium text-center">
+            <strong>Resultado:</strong> Sandra recuperó 2 horas diarias y redujo su estrés en un 70%. 
+            "Ahora tengo tiempo para ser madre Y profesional exitosa."
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conclusión -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 pb-2 border-b-2 border-gray-100">
+        🟩 Tu nueva rutina inteligente te espera
+      </h2>
+      
+      <div class="bg-gradient-to-r from-purple-100 to-pink-100 border border-purple-200 rounded-2xl p-8">
+        <p class="text-xl text-gray-700 mb-4 leading-relaxed">
+          La inteligencia artificial no es solo para empresas tecnológicas o expertos en programación. 
+          <strong>Es para ti</strong>, para tu día a día, para recuperar tu tiempo y reducir el estrés.
+        </p>
+        <p class="text-xl text-gray-700 mb-4 leading-relaxed">
+          Empieza hoy mismo: elige una herramienta, prueba un prompt, automatiza una tarea pequeña. 
+          En una semana notarás la diferencia.
+        </p>
+        <p class="text-xl text-gray-700 leading-relaxed">
+          <strong>Tu rutina inteligente te está esperando.</strong> Solo necesitas dar el primer paso.
+        </p>
+      </div>
+    </section>
+
+    
+
+    <!-- Navegación entre artículos -->
+    <nav class="border-t border-gray-200 pt-8 mt-12">
+      <a 
+        routerLink="/articulos" 
+        class="inline-flex items-center gap-2 text-purple-600 font-semibold mb-8 hover:text-purple-700 transition-colors duration-200"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+        Ver todos los artículos
+      </a>
+      <div class="grid md:grid-cols-2 gap-4">
+        <a 
+          routerLink="/articulos/planear-viaje-con-ia" 
+          class="p-4 border border-gray-200 rounded-lg hover:border-purple-500 hover:bg-purple-50 transition-all duration-200 group"
+        >
+          <span class="block text-sm text-gray-500 mb-1">Anterior</span>
+          <span class="block font-semibold text-gray-900 group-hover:text-purple-600">Planear viaje con IA</span>
+        </a>
+        <div class="p-4 border border-gray-200 rounded-lg opacity-50 cursor-not-allowed">
+          <span class="block text-sm text-gray-500 mb-1">Siguiente</span>
+          <span class="block font-semibold text-gray-900">Próximamente más artículos</span>
+        </div>
+      </div>
+    </nav>
+  </article>
+</div>
+
+<style>
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out;
+}
+
+/* Animaciones personalizadas para la infografía */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Efectos hover mejorados */
+.group:hover .group-hover\:scale-110 {
+  transform: scale(1.1);
+}
+
+/* Gradientes animados */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.pulse-animation {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+</style>

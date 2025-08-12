@@ -1,0 +1,112 @@
+<app-navbar></app-navbar>
+
+<main class="articulos-page">
+  <!-- Encabezado de la página de artículos -->
+  <header class="articles-header">
+    <h1 class="articles-title">Guías y artículos sobre IA para no técnicos</h1>
+    <p class="articles-subtitle">
+      Explora nuestra biblioteca de contenido práctico para dominar la Inteligencia Artificial en tu día a día.
+    </p>
+  </header>
+
+  <!-- Barra de búsqueda y filtros -->
+  <section class="search-filter-section">
+    <div class="search-box">
+      <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/>
+        <path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input 
+        type="text" 
+        placeholder="Buscar artículos sobre IA, ChatGPT, herramientas..."
+        [(ngModel)]="searchTerm"
+        (input)="filterArticles()"
+        aria-label="Buscar artículos"
+      >
+    </div>
+    <div class="filter-tags">
+      <button 
+        class="tag-filter" 
+        [class.active]="selectedTag === 'todos'"
+        (click)="filterByTag('todos')"
+        aria-pressed="selectedTag === 'todos'"
+      >
+        Todos
+      </button>
+      <button 
+        class="tag-filter" 
+        [class.active]="selectedTag === 'chatgpt'"
+        (click)="filterByTag('chatgpt')"
+        aria-pressed="selectedTag === 'chatgpt'"
+      >
+        ChatGPT
+      </button>
+      <button 
+        class="tag-filter" 
+        [class.active]="selectedTag === 'herramientas'"
+        (click)="filterByTag('herramientas')"
+        aria-pressed="selectedTag === 'herramientas'"
+      >
+        Herramientas
+      </button>
+      <button 
+        class="tag-filter" 
+        [class.active]="selectedTag === 'productividad'"
+        (click)="filterByTag('productividad')"
+        aria-pressed="selectedTag === 'productividad'"
+      >
+        Productividad
+      </button>
+    </div>
+  </section>
+
+  <!-- Grid de artículos -->
+  <section class="articles-grid-section">
+    <div class="articles-grid">
+      <a 
+        *ngFor="let articulo of filteredArticles" 
+        [routerLink]="'/articulos/' + articulo.slug" 
+        class="article-card"
+        [attr.aria-label]="'Leer artículo completo: ' + articulo.titulo"
+      >
+        <div class="card-header">
+          <div class="article-meta">
+            <span class="category-tag" [ngClass]="articulo.categoria">
+              {{ articulo.categoria }}
+            </span>
+            <span class="read-time">{{ articulo.tiempoLectura }} min de lectura</span>
+          </div>
+        </div>
+        <div class="card-content">
+          <h2 class="article-title">{{ articulo.titulo }}</h2>
+          <p class="article-excerpt">{{ articulo.resumen }}</p>
+        </div>
+        <div class="card-footer">
+          <span class="publish-date">Publicado el {{ articulo.fecha }}</span>
+          <button class="btn-read-full">
+            Leer completo
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M17 7H7M17 7V17"/>
+            </svg>
+          </button>
+        </div>
+      </a>
+    </div>
+
+    <!-- Mensaje si no hay artículos -->
+    <div *ngIf="filteredArticles.length === 0" class="no-articles-message">
+      <p>No se encontraron artículos que coincidan con tu búsqueda o filtros.</p>
+      <button class="btn-clear-filters" (click)="searchTerm = ''; selectedTag = 'todos'; filterArticles()">
+        Limpiar filtros
+      </button>
+    </div>
+
+    <!-- Botón cargar más (opcional, si hay más artículos) -->
+    <div class="load-more-section" *ngIf="hasMoreArticles">
+      <button class="btn-load-more" (click)="loadMoreArticles()" [disabled]="loadingMore">
+        <span>{{ loadingMore ? 'Cargando...' : 'Cargar más artículos' }}</span>
+        <div class="loading-spinner" *ngIf="loadingMore"></div>
+      </button>
+    </div>
+  </section>
+</main>

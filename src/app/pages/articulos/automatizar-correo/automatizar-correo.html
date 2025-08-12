@@ -1,0 +1,521 @@
+<app-navbar></app-navbar>
+
+<div class="article-container">
+  <app-breadcrumbs [items]="breadcrumbItems"></app-breadcrumbs>
+  
+  <button class="back-button" (click)="goBack()" title="Regresar">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M19 12H5M12 19l-7-7 7-7"/>
+    </svg>
+    <span>Regresar</span>
+  </button>
+
+  <article class="article-content">
+    <header class="article-header">
+      <div class="article-meta">
+        <span class="category-tag productividad">Productividad</span>
+        <span class="read-time">8 min de lectura</span>
+        <span class="publish-date">Publicado el 6 de julio de 2025</span>
+      </div>
+      
+      <h1 class="article-title">
+        Automatiza tu correo electrónico con IA en 3 pasos
+        <span class="subtitle">Ahorra 2-3 horas semanales sin perder el toque personal</span>
+      </h1>
+      
+      <div class="article-actions">
+        <button class="action-btn" (click)="toggleBookmark()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
+          </svg>
+          Guardar
+        </button>
+        <button class="action-btn" (click)="shareArticle()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="18" cy="5" r="3"/>
+            <circle cx="6" cy="12" r="3"/>
+            <circle cx="18" cy="19" r="3"/>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+          </svg>
+          Compartir
+        </button>
+      </div>
+    </header>
+
+    <div class="article-body">
+      <p class="lead">
+        ¿Pasas más tiempo respondiendo emails que trabajando en lo importante? ¿Tu bandeja de entrada 
+        parece un monstruo que nunca para de crecer? <strong>La automatización inteligente</strong> 
+        puede ser tu salvación. Te enseño cómo usar IA para que tu correo trabaje para ti, no al revés.
+      </p>
+      
+      <div class="stats-box">
+        <h4>📊 Lo que vas a lograr:</h4>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">2-3h</div>
+            <div class="stat-label">Ahorro semanal</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">80%</div>
+            <div class="stat-label">Emails clasificados automáticamente</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">5min</div>
+            <div class="stat-label">Tiempo de configuración por automatización</div>
+          </div>
+        </div>
+      </div>
+
+      <section class="content-section">
+        <h2>🎯 Paso 1: Clasificación inteligente con ChatGPT</h2>
+        <p>
+          El primer paso es enseñarle a la IA a clasificar tus emails por prioridad. Esto te ayuda a 
+          enfocarte en lo importante primero.
+        </p>
+        
+        <div class="method-box">
+          <h4>🔧 Método: Email + ChatGPT</h4>
+          <p>Copia cualquier email y úsalo con este prompt:</p>
+        </div>
+        
+        <div class="prompt-example">
+          <div class="prompt-header">
+            <span class="prompt-label">Prompt para clasificación:</span>
+            <button class="copy-btn" (click)="copyPrompt(prompt1)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              Copiar
+            </button>
+          </div>
+          <p class="prompt-text">
+            {{ prompt1 }}
+          </p>
+        </div>
+
+        <div class="classification-guide">
+          <h4>📋 Sistema de clasificación:</h4>
+          <div class="classification-grid">
+            <div class="class-item urgent">
+              <div class="class-icon">🔴</div>
+              <div class="class-content">
+                <h5>URGENTE</h5>
+                <p>Respuesta inmediata (clientes molestos, deadlines hoy)</p>
+              </div>
+            </div>
+            <div class="class-item important">
+              <div class="class-icon">🟡</div>
+              <div class="class-content">
+                <h5>IMPORTANTE</h5>
+                <p>Respuesta en 24h (oportunidades, proyectos)</p>
+              </div>
+            </div>
+            <div class="class-item info">
+              <div class="class-icon">🔵</div>
+              <div class="class-content">
+                <h5>INFORMATIVO</h5>
+                <p>Solo leer (newsletters, actualizaciones)</p>
+              </div>
+            </div>
+            <div class="class-item spam">
+              <div class="class-icon">⚫</div>
+              <div class="class-content">
+                <h5>SPAM</h5>
+                <p>Eliminar o ignorar</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pro-tip">
+          <h4>💡 Tip Pro:</h4>
+          <p>Después de una semana usando este sistema, tendrás patrones claros. Podrás crear reglas automáticas en tu cliente de email.</p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>✍️ Paso 2: Respuestas automáticas inteligentes</h2>
+        <p>
+          No se trata de respuestas robóticas. La IA puede generar respuestas personalizadas que suenan humanas y profesionales.
+        </p>
+        
+        <div class="prompt-example">
+          <div class="prompt-header">
+            <span class="prompt-label">Prompt para respuestas automáticas:</span>
+            <button class="copy-btn" (click)="copyPrompt(prompt2)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              Copiar
+            </button>
+          </div>
+          <p class="prompt-text">
+            {{ prompt2 }}
+          </p>
+        </div>
+
+        <div class="response-types">
+          <h4>📝 Tipos de respuestas que puedes automatizar:</h4>
+          <div class="response-grid">
+            <div class="response-card">
+              <h5>💰 Consultas de precios</h5>
+              <p>Solicita detalles específicos y ofrece una llamada</p>
+            </div>
+            <div class="response-card">
+              <h5>📅 Solicitudes de reunión</h5>
+              <p>Propone horarios y envía link de calendario</p>
+            </div>
+            <div class="response-card">
+              <h5>❓ Preguntas frecuentes</h5>
+              <p>Respuesta completa + recursos adicionales</p>
+            </div>
+            <div class="response-card">
+              <h5>📋 Seguimiento de proyectos</h5>
+              <p>Estado actual + próximos pasos</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="automation-workflow">
+          <h4>⚙️ Flujo de automatización:</h4>
+          <div class="workflow-steps">
+            <div class="workflow-step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h5>Recibir email</h5>
+                <p>Llega a tu bandeja</p>
+              </div>
+            </div>
+            <div class="workflow-arrow">→</div>
+            <div class="workflow-step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h5>Clasificar con IA</h5>
+                <p>ChatGPT analiza el contenido</p>
+              </div>
+            </div>
+            <div class="workflow-arrow">→</div>
+            <div class="workflow-step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h5>Generar respuesta</h5>
+                <p>IA crea respuesta personalizada</p>
+              </div>
+            </div>
+            <div class="workflow-arrow">→</div>
+            <div class="workflow-step">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <h5>Revisar y enviar</h5>
+                <p>Tú das el visto bueno</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>🔗 Paso 3: Integración con Zapier para automatización total</h2>
+        <p>
+          Aquí es donde la magia realmente sucede. Zapier conecta tu email con ChatGPT y otras herramientas 
+          para crear un sistema completamente automatizado.
+        </p>
+
+        <div class="zapier-setup">
+          <h4>🛠️ Configuración de Zapier:</h4>
+          <div class="setup-steps">
+            <div class="setup-step">
+              <div class="step-icon">📧</div>
+              <div class="step-details">
+                <h5>Trigger: Nuevo email</h5>
+                <p>Gmail/Outlook detecta email entrante</p>
+              </div>
+            </div>
+            <div class="setup-step">
+              <div class="step-icon">🤖</div>
+              <div class="step-details">
+                <h5>Acción 1: Analizar con ChatGPT</h5>
+                <p>Clasifica y genera respuesta sugerida</p>
+              </div>
+            </div>
+            <div class="setup-step">
+              <div class="step-icon">📊</div>
+              <div class="step-details">
+                <h5>Acción 2: Guardar en base de datos</h5>
+                <p>Registra en Google Sheets o Notion</p>
+              </div>
+            </div>
+            <div class="setup-step">
+              <div class="step-icon">🔔</div>
+              <div class="step-details">
+                <h5>Acción 3: Notificar</h5>
+                <p>Slack/WhatsApp para emails urgentes</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="integration-examples">
+          <h4>🔌 Integraciones poderosas:</h4>
+          <div class="integration-grid">
+            <div class="integration-item">
+              <div class="integration-icon">📅</div>
+              <h5>Calendario automático</h5>
+              <p>Detecta solicitudes de reunión y propone horarios disponibles</p>
+            </div>
+            <div class="integration-item">
+              <div class="integration-icon">💾</div>
+              <h5>CRM inteligente</h5>
+              <p>Actualiza contactos y oportunidades automáticamente</p>
+            </div>
+            <div class="integration-item">
+              <div class="integration-icon">📋</div>
+              <h5>Gestión de tareas</h5>
+              <p>Crea tareas en Trello/Asana desde emails importantes</p>
+            </div>
+            <div class="integration-item">
+              <div class="integration-icon">📊</div>
+              <h5>Reportes automáticos</h5>
+              <p>Resumen diario de emails importantes y acciones pendientes</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>📊 Bonus: Resúmenes diarios inteligentes</h2>
+        <p>
+          Al final del día, recibe un resumen ejecutivo de todo lo importante que pasó en tu email.
+        </p>
+        
+        <div class="prompt-example">
+          <div class="prompt-header">
+            <span class="prompt-label">Prompt para resumen diario:</span>
+            <button class="copy-btn" (click)="copyPrompt(prompt3)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              Copiar
+            </button>
+          </div>
+          <p class="prompt-text">
+            {{ prompt3 }}
+          </p>
+        </div>
+
+        <div class="summary-example">
+          <h4>📋 Ejemplo de resumen diario:</h4>
+          <div class="summary-content">
+            <div class="summary-section">
+              <h5>🔴 Acciones urgentes (2)</h5>
+              <ul>
+                <li>Responder propuesta cliente ABC - Deadline: mañana</li>
+                <li>Confirmar reunión con proveedor - Hoy 4pm</li>
+              </ul>
+            </div>
+            <div class="summary-section">
+              <h5>💰 Oportunidades (1)</h5>
+              <ul>
+                <li>Nuevo lead interesado en servicio premium - $15K potencial</li>
+              </ul>
+            </div>
+            <div class="summary-section">
+              <h5>📅 Próximos eventos (3)</h5>
+              <ul>
+                <li>Presentación proyecto XYZ - Viernes 10am</li>
+                <li>Review mensual equipo - Lunes 2pm</li>
+                <li>Demo producto nuevo - Miércoles 11am</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>🎯 Casos de uso específicos por industria</h2>
+        <p>
+          Cada industria tiene patrones de email únicos. Aquí tienes automatizaciones específicas:
+        </p>
+
+        <div class="industry-cases">
+          <div class="industry-card">
+            <h4>🏢 Consultores/Freelancers</h4>
+            <ul>
+              <li>Auto-respuesta a consultas con tarifas base</li>
+              <li>Seguimiento automático de propuestas enviadas</li>
+              <li>Recordatorios de pagos pendientes</li>
+            </ul>
+          </div>
+          <div class="industry-card">
+            <h4>🛒 E-commerce</h4>
+            <ul>
+              <li>Clasificación de quejas vs consultas</li>
+              <li>Respuestas automáticas sobre envíos</li>
+              <li>Escalación de problemas complejos</li>
+            </ul>
+          </div>
+          <div class="industry-card">
+            <h4>🏥 Servicios profesionales</h4>
+            <ul>
+              <li>Confirmación automática de citas</li>
+              <li>Recordatorios de documentos pendientes</li>
+              <li>Seguimiento post-servicio</li>
+            </ul>
+          </div>
+          <div class="industry-card">
+            <h4>📚 Educación/Coaching</h4>
+            <ul>
+              <li>Respuestas a preguntas frecuentes de cursos</li>
+              <li>Programación automática de sesiones</li>
+              <li>Seguimiento de progreso de estudiantes</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>⚠️ Errores comunes que debes evitar</h2>
+        <div class="mistakes-grid">
+          <div class="mistake-item">
+            <div class="mistake-icon">❌</div>
+            <div class="mistake-content">
+              <h5>Automatizar todo desde el día 1</h5>
+              <p>Empieza con 1-2 tipos de email, luego expande gradualmente</p>
+            </div>
+          </div>
+          <div class="mistake-item">
+            <div class="mistake-icon">❌</div>
+            <div class="mistake-content">
+              <h5>No revisar las respuestas automáticas</h5>
+              <p>Siempre revisa antes de enviar, especialmente al inicio</p>
+            </div>
+          </div>
+          <div class="mistake-item">
+            <div class="mistake-icon">❌</div>
+            <div class="mistake-content">
+              <h5>Usar el mismo tono para todos los clientes</h5>
+              <p>Personaliza el tono según el tipo de cliente y situación</p>
+            </div>
+          </div>
+          <div class="mistake-item">
+            <div class="mistake-icon">❌</div>
+            <div class="mistake-content">
+              <h5>No medir los resultados</h5>
+              <p>Trackea tiempo ahorrado y satisfacción del cliente</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>📈 Métricas para medir el éxito</h2>
+        <p>
+          Después de implementar la automatización, mide estos indicadores:
+        </p>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-icon">⏱️</div>
+            <h5>Tiempo de respuesta promedio</h5>
+            <p>Objetivo: Reducir de 4+ horas a menos de 1 hora</p>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon">📊</div>
+            <h5>Emails procesados automáticamente</h5>
+            <p>Objetivo: 70-80% de emails clasificados sin intervención</p>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon">😊</div>
+            <h5>Satisfacción del cliente</h5>
+            <p>Objetivo: Mantener o mejorar la calidad de respuestas</p>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon">🎯</div>
+            <h5>Emails perdidos/sin respuesta</h5>
+            <p>Objetivo: Reducir a menos del 5%</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>🚀 Plan de implementación de 30 días</h2>
+        <div class="implementation-plan">
+          <div class="week-plan">
+            <h4>Semana 1: Fundamentos</h4>
+            <ul>
+              <li>Configura ChatGPT y prueba clasificación manual</li>
+              <li>Identifica tus 3 tipos de email más frecuentes</li>
+              <li>Crea templates de respuesta básicos</li>
+            </ul>
+          </div>
+          <div class="week-plan">
+            <h4>Semana 2: Automatización básica</h4>
+            <ul>
+              <li>Configura cuenta de Zapier</li>
+              <li>Crea tu primera automatización simple</li>
+              <li>Prueba con emails de baja prioridad</li>
+            </ul>
+          </div>
+          <div class="week-plan">
+            <h4>Semana 3: Expansión</h4>
+            <ul>
+              <li>Añade más tipos de automatización</li>
+              <li>Integra con calendario y CRM</li>
+              <li>Configura resúmenes diarios</li>
+            </ul>
+          </div>
+          <div class="week-plan">
+            <h4>Semana 4: Optimización</h4>
+            <ul>
+              <li>Analiza métricas y ajusta prompts</li>
+              <li>Refina clasificaciones automáticas</li>
+              <li>Documenta tu sistema para el equipo</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>Conclusión</h2>
+        <p>
+          La automatización inteligente del email no es ciencia ficción - es una realidad que puedes 
+          implementar hoy mismo. <strong>El secreto está en empezar pequeño y escalar gradualmente.</strong>
+        </p>
+        <p>
+          No se trata de reemplazar el toque humano, sino de liberarte para que puedas enfocarte en 
+          las conversaciones que realmente importan. Tu futuro yo te agradecerá esas 2-3 horas extra 
+          cada semana.
+        </p>
+        <div class="final-cta-box">
+          <h4>🎯 Tu próximo paso:</h4>
+          <p>Elige UN tipo de email que recibes frecuentemente y automatízalo esta semana. Una vez que funcione, expande el sistema.</p>
+        </div>
+      </section>
+    </div>
+
+
+    <nav class="article-navigation">
+      <a routerLink="/articulos" class="nav-all-articles">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+        Ver todos los artículos
+      </a>
+      <div class="nav-adjacent">
+        <a routerLink="/articulos/canva-ai-presentaciones" class="nav-prev">
+          <span class="nav-label">Anterior</span>
+          <span class="nav-title">Canva AI: Diseña presentaciones profesionales</span>
+        </a>
+        <a class="nav-next disabled">
+          <span class="nav-label">Siguiente</span>
+          <span class="nav-title">Próximamente más artículos</span>
+        </a>
+      </div>
+    </nav>
+  </article>
+</div>

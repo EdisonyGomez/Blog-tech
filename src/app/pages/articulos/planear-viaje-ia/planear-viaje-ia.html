@@ -1,0 +1,466 @@
+<app-navbar></app-navbar>
+
+<div class="max-w-4xl mx-auto bg-white min-h-screen">
+  <app-breadcrumbs [items]="breadcrumbItems"></app-breadcrumbs>
+
+  <!-- Botón de regreso flotante -->
+  <button (click)="goBack()"
+    class="fixed top-20 left-5 z-50 flex items-center gap-2 px-4 py-3 bg-white border-2 border-gray-200 rounded-full font-medium text-gray-600 transition-all duration-200 shadow-lg hover:border-blue-500 hover:text-blue-500 hover:-translate-x-1"
+    title="Regresar">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M19 12H5M12 19l-7-7 7-7" />
+    </svg>
+    <span>Regresar</span>
+  </button>
+
+  <article class="px-8 py-8" [@fadeInUp]>
+    <!-- Encabezado del artículo -->
+    <header class="mb-12 pb-8 border-b border-gray-200">
+      <div class="flex flex-wrap gap-4 items-center mb-6">
+        <span class="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-semibold uppercase rounded-full">
+          Herramientas
+        </span>
+        <span class="text-sm text-gray-500">8 min de lectura</span>
+        <span class="text-sm text-gray-500">Publicado el 20 de julio de 2025</span>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-bold leading-tight text-gray-900 mb-4">
+        Cómo usar inteligencia artificial para planear un viaje completo
+        <span class="block text-3xl md:text-4xl text-gray-600 font-normal mt-2">
+          (sin ser experto en tecnología)
+        </span>
+      </h1>
+
+      <!-- Acciones del artículo -->
+      <div class="flex gap-4 mt-6">
+        <button (click)="toggleBookmark()"
+          class="flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg font-medium text-gray-600 transition-all duration-200 hover:bg-gray-100 hover:border-blue-500 hover:text-blue-500">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" />
+          </svg>
+          Guardar
+        </button>
+        <button (click)="shareArticle()"
+          class="flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg font-medium text-gray-600 transition-all duration-200 hover:bg-gray-100 hover:border-blue-500 hover:text-blue-500">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="18" cy="5" r="3" />
+            <circle cx="6" cy="12" r="3" />
+            <circle cx="18" cy="19" r="3" />
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+          </svg>
+          Compartir
+        </button>
+      </div>
+    </header>
+
+    <!-- Contenido del artículo -->
+    <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+      <!-- Introducción -->
+      <div class="mb-8 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg">
+        <p class="text-lg text-gray-600 mb-4">
+          Planear un viaje puede ser una maravilla... o un lío total. Decidir a dónde ir, pillar vuelos baratos, dar con
+          un sitio genial para dormir y organizar qué hacer requiere tiempo, buscar mucho y, a veces, saber cosas que no
+          todo el mundo sabe.
+
+        </p>
+        <p class="text-lg text-gray-600 mb-4">
+          Hoy en día, la <strong>inteligencia artificial (IA)</strong> te echa una mano enorme. No hace falta ser un
+          cerebrito tecnológico; hay herramientas que te ayudan a planificar tu viaje al detalle, ¡rapidísimo, a tu
+          gusto y muchas veces gratis!
+        </p>
+        <p class="text-lg text-gray-600">
+          ¿Planeando una escapada? Este artículo te cuenta cómo la IA puede ser tu mejor aliada desde la elección del
+          destino hasta el presupuesto. Y para que veas que sí funciona, te presentamos la historia de
+          <strong>Marco</strong>, un viajero novato que se lanzó a su primera aventura internacional gracias a la
+          inteligencia artificial.
+        </p>
+      </div>
+
+      <!-- Herramientas principales -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 pb-2 border-b-2 border-gray-100">
+          🛠️ Lo que vas a necesitar
+        </h2>
+        <div class="grid md:grid-cols-2 gap-4" [@staggerIn]>
+          @for (tool of tools; track tool.name) {
+          <div
+            class="p-6 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
+            <div class="flex items-start gap-4">
+              <div class="text-3xl">{{ tool.icon }}</div>
+              <div class="flex-1">
+                <h4 class="font-semibold text-gray-900 mb-2">{{ tool.name }}</h4>
+                <p class="text-gray-600 text-sm mb-3">{{ tool.description }}</p>
+                <a [href]="tool.url" target="_blank" rel="noopener noreferrer"
+                  class="text-blue-600 hover:text-blue-700 text-sm font-medium transition-colors duration-200">
+                  Visitar sitio →
+                </a>
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+      </section>
+
+      <!-- Paso 1 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 pb-2 border-b-2 border-gray-100">
+          🟦 Paso 1: Encuentra el lugar perfecto para irte de viaje con ChatGPT o Google Bard.
+        </h2>
+        <p class="mb-4">
+          Primero, decide adónde quieres ir. Si no estás seguro, pídele a una IA que te dé ideas según lo que te gusta, cuánto quieres gastar o la temporada del año.
+        </p>
+
+        <div class="bg-gray-900 rounded-xl p-6 mb-6 text-white">
+          <div class="flex justify-between items-center mb-4">
+            <span class="text-sm text-gray-300 font-medium">Ejemplo de prompt:</span>
+            <button (click)="copyPrompt(prompts.destino)"
+              class="flex items-center gap-1 px-3 py-1 bg-white/10 border border-white/20 rounded-md text-white text-xs hover:bg-white/20 transition-all duration-200">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              Copiar
+            </button>
+          </div>
+          <p class="italic leading-relaxed bg-white/5 p-4 rounded-lg border-l-4 border-blue-500">
+            "{{ prompts.destino }}"
+          </p>
+        </div>
+
+        <p class="mb-4">
+         ChatGPT y Bard (de Google) te darán listas de lugares, explicando por qué y dando sugerencias.
+        </p>
+
+        <figure>
+          <img src="assets/images/planear-viaje-ia/destino-chatgpt.png" alt="Sugerencia de destino con ChatGPT"
+            class="w-full rounded-lg shadow-md mb-6">
+          <figcaption class="text-sm text-gray-500">Sugerencia de destino con ChatGPT</figcaption>
+        </figure>
+
+        <p class="mb-4">Puedes mejorar la respuesta con más detalles, por ejemplo:</p>
+
+
+
+        <div class="bg-gray-900 rounded-xl p-6 mb-6 text-white">
+          <div class="flex justify-between items-center mb-4">
+            <span class="text-sm text-gray-300 font-medium">Refinando la búsqueda:</span>
+            <button (click)="copyPrompt(prompts.presupuesto)"
+              class="flex items-center gap-1 px-3 py-1 bg-white/10 border border-white/20 rounded-md text-white text-xs hover:bg-white/20 transition-all duration-200">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              Copiar
+            </button>
+          </div>
+          <p class="italic leading-relaxed bg-white/5 p-4 rounded-lg border-l-4 border-orange-500">
+            "{{ prompts.presupuesto }}"
+          </p>
+        </div>
+
+
+        <figure>
+          <img src="assets/images/planear-viaje-ia/destino-chatgpt-refinado.png"
+            alt="Refinamiento de destino con ChatGPT" class="w-full rounded-lg shadow-md mb-6">
+          <figcaption class="text-sm text-gray-500">Refinamiento de destino con ChatGPT</figcaption>
+        </figure>
+
+        <p class="mb-4">
+          Estas herramientas no solo te dan ideas, sino que las ajustan justo a lo que buscas. Son perfectas si estás empezando o aún no sabes bien a dónde quieres llegar.
+        </p>
+      </section>
+
+      <!-- Paso 2 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 pb-2 border-b-2 border-gray-100">
+          🟨 Paso 2: Genera un itinerario completo con IA
+        </h2>
+        <p class="mb-4">
+          Con el destino en mente, toca planificar las actividades. Para ello, existen herramientas muy útiles como:
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-4 mb-6">
+
+          <div class="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <h4 class="font-semibold text-yellow-800 mb-2">Roam Around</h4>
+            <p class="text-sm text-yellow-700">Escribes "3 días en Buenos Aires" y te da un itinerario detallado.</p>
+          </div>
+          <div class="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <h4 class="font-semibold text-yellow-800 mb-2">GuideGeek</h4>
+            <p class="text-sm text-yellow-700">Puedes hablarle como a un amigo viajero por WhatsApp.</p>
+          </div>
+        </div>
+        <span class="text-sm text-back-300 font-medium">Ejemplo de uso con Roam Around:</span>
+
+
+
+        <div class="p-6 bg-green-50 border border-green-200 rounded-lg">
+          <h4 class="font-semibold text-green-800 mb-3">✅ Obtendrás:</h4>
+          <ul class="space-y-2 text-green-700">
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 mt-1">•</span>
+              Un plan dividido por días
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 mt-1">•</span>
+              Visitas sugeridas con horarios estimados
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 mt-1">•</span>
+              Recomendaciones locales
+            </li>
+          </ul>
+          <p class="mt-4 text-green-700">
+            Incluso puedes modificar el orden, eliminar lugares o pedir alternativas.
+          </p>
+        </div>
+
+        <figure>
+          <img src="assets/images/planear-viaje-ia/itinerario.png" alt="Itinerario generado por Roam Around"
+            class="w-full rounded-lg shadow-md mt-6">
+          <figcaption class="text-sm text-gray-500">Itinerario generado por Roam Around</figcaption>
+        </figure>
+      </section>
+
+      <!-- Paso 3 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 pb-2 border-b-2 border-gray-100">
+          🟧 Paso 3: Encuentra vuelos con ayuda de Kayak AI
+        </h2>
+        <p class="mb-4">
+         Encontrar vuelos puede ser un rollo,pero con <strong>Kayak AI</strong> (una interfaz
+          conversacional
+          en https://kayak.ai/) para encontrar rápidamente vuelos que se ajusten a tu presupuesto y fechas.
+        </p>
+
+        <div class="bg-gray-900 rounded-xl p-6 mb-6 text-white">
+          <div class="flex justify-between items-center mb-4">
+            <span class="text-sm text-gray-300 font-medium">Ejemplo de pregunta:</span>
+            <button (click)="copyPrompt(prompts.vuelos)"
+              class="flex items-center gap-1 px-3 py-1 bg-white/10 border border-white/20 rounded-md text-white text-xs hover:bg-white/20 transition-all duration-200">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              Copiar
+            </button>
+          </div>
+          <p class="italic leading-relaxed bg-white/5 p-4 rounded-lg border-l-4 border-orange-500">
+            "{{ prompts.vuelos }}"
+          </p>
+        </div>
+
+        <figure>
+          <img src="assets/images/planear-viaje-ia/vuelos.png" alt="Búsqueda de vuelos en Kayak AI"
+            class="w-full rounded-lg shadow-md mt-6">
+          <figcaption class="text-sm text-gray-500">Búsqueda de vuelos en Kayak AI</figcaption>
+        </figure>
+
+        <p class="mb-4">
+          También puedes usar <strong>Google Flights</strong> junto con ChatGPT para comparar opciones y decidir cuándo
+          reservar.
+        </p>
+
+        <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg">
+          <p class="text-blue-800">
+            <strong>💡 Tip:</strong> Usa el historial de búsqueda para ver tendencias de precios y evitar comprar en el
+            peor momento.
+          </p>
+        </div>
+      </section>
+
+      <!-- Paso 4 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 pb-2 border-b-2 border-gray-100">
+          🟥 Paso 4: Hospedaje sin complicaciones
+        </h2>
+        <p class="mb-4">
+          Para alojamiento, puedes usar IA para filtrar entre miles de opciones. Simplemente pregúntale a ChatGPT:
+        </p>
+
+        <div class="bg-gray-900 rounded-xl p-6 mb-6 text-white">
+          <div class="flex justify-between items-center mb-4">
+            <span class="text-sm text-gray-300 font-medium">Ejemplo para hospedaje:</span>
+            <button (click)="copyPrompt(prompts.hospedaje)"
+              class="flex items-center gap-1 px-3 py-1 bg-white/10 border border-white/20 rounded-md text-white text-xs hover:bg-white/20 transition-all duration-200">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              Copiar
+            </button>
+          </div>
+          <p class="italic leading-relaxed bg-white/5 p-4 rounded-lg border-l-4 border-red-500">
+            "{{ prompts.hospedaje }}"
+          </p>
+        </div>
+
+        <figure>
+          <img src="assets/images/planear-viaje-ia/hospedaje-chatgpt.png" alt="Sugerencia de hospedaje con ChatGPT"
+            class="w-full rounded-lg shadow-md mb-6">
+          <figcaption class="text-sm text-gray-500">Sugerencia de hospedaje con ChatGPT</figcaption>
+        </figure>
+
+        <p class="mb-4">
+          Puedes luego revisar esos mismos hoteles en plataformas como <strong>Airbnb</strong>, <strong>Booking</strong>
+          o <strong>Google Maps</strong> para validar opiniones reales.
+        </p>
+
+        <div class="p-4 bg-purple-50 border-l-4 border-purple-500 rounded-r-lg">
+          <p class="text-purple-800">
+            <strong>💡 También puedes pedirle recomendaciones por tipo de experiencia:</strong> "hostales para jóvenes",
+            "lugares pet friendly", "hoteles boutique con desayuno incluido", etc.
+          </p>
+        </div>
+      </section>
+
+      <!-- Paso 5 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 pb-2 border-b-2 border-gray-100">
+          🟫 Paso 5: Crea un presupuesto con ayuda inteligente
+        </h2>
+        <p class="mb-4">
+          Planear un presupuesto es clave para evitar sorpresas. Puedes pedirle a la IA que te calcule un estimado,
+          como en este ejemplo:
+        </p>
+
+        <div class="bg-gray-900 rounded-xl p-6 mb-6 text-white">
+          <div class="flex justify-between items-center mb-4">
+            <span class="text-sm text-gray-300 font-medium">Ejemplo para presupuesto:</span>
+            <button (click)="copyPrompt(prompts.presupuestoDetallado)"
+              class="flex items-center gap-1 px-3 py-1 bg-white/10 border border-white/20 rounded-md text-white text-xs hover:bg-white/20 transition-all duration-200">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              Copiar
+            </button>
+          </div>
+          <p class="italic leading-relaxed bg-white/5 p-4 rounded-lg border-l-4 border-amber-500">
+            "{{ prompts.presupuestoDetallado }}"
+          </p>
+        </div>
+
+        <figure>
+          <img src="assets/images/planear-viaje-ia/presupuesto-chatgpt.png" alt="Presupuesto generado por ChatGPT"
+            class="w-full rounded-lg shadow-md mb-6">
+          <figcaption class="text-sm text-gray-500">Presupuesto generado por ChatGPT</figcaption>
+        </figure>
+        <p class="mb-4">
+          La respuesta te dará un costo aproximado por día, total y por categoría.
+        </p>
+
+        <p class="mb-4">Además, puedes pedir tips para ahorrar:</p>
+
+        <div class="p-4 bg-amber-50 border border-amber-200 rounded-lg">
+          <p class="text-amber-800 italic">
+            "¿Cómo puedo gastar menos en transporte en París?"
+          </p>
+        </div>
+      </section>
+
+      <!-- Caso de éxito -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 pb-2 border-b-2 border-gray-100">
+          ⭐ Caso real: Marco, su primer viaje internacional con IA
+        </h2>
+
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-8 mb-6">
+          <div class="flex items-start gap-4 mb-6">
+            <div
+              class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-white text-2xl font-bold">
+              M
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 text-lg">Marco, diseñador gráfico de 29 años</h3>
+              <p class="text-gray-600">Nunca había salido de su país</p>
+            </div>
+          </div>
+
+          <p class="text-gray-700 mb-4">
+            Marco quería viajar a <strong>Santiago de Chile</strong> pero no sabía por dónde empezar.
+            Probó usar ChatGPT con preguntas simples: "¿Qué hacer 3 días en Santiago?", "¿Cuánto cuesta comer allí?",
+            "¿Dónde dormir barato y seguro?".
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-6 mb-6">
+            <div class="space-y-3">
+              <h4 class="font-semibold text-gray-900">Con ayuda de Tripnotes y Kayak AI, Marco logró:</h4>
+              <ul class="space-y-2">
+                <li class="flex items-start gap-2">
+                  <span class="text-green-500 mt-1">✅</span>
+                  <span class="text-gray-700">Armar un itinerario completo en 1 tarde</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-green-500 mt-1">✅</span>
+                  <span class="text-gray-700">Reservar vuelos con descuento</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-green-500 mt-1">✅</span>
+                  <span class="text-gray-700">Conseguir un hostal con reseñas positivas</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-green-500 mt-1">✅</span>
+                  <span class="text-gray-700">Calcular y reducir su presupuesto original en un
+                    <strong>28%</strong></span>
+                </li>
+              </ul>
+            </div>
+            <div class="bg-white p-6 rounded-lg border border-blue-200">
+              <blockquote class="text-gray-700 italic">
+                "Fue como tener un agente de viajes en el celular. No soy experto en tecnología,
+                pero la IA me dio seguridad para viajar por primera vez"
+              </blockquote>
+              <cite class="block mt-3 text-sm text-gray-500">- Marco</cite>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Conclusión -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 pb-2 border-b-2 border-gray-100">
+          🟪 Conclusión
+        </h2>
+        <p class="mb-4">
+          Hoy, cualquier persona puede planear un viaje completo con ayuda de la inteligencia artificial.
+          No necesitas saber programar ni descargar apps complejas.
+        </p>
+        <p class="mb-4">
+          Herramientas como <strong>ChatGPT</strong>, <strong>Tripnotes</strong> y <strong>Kayak AI</strong>
+          están cambiando la forma de viajar: te ahorran tiempo, estrés y dinero.
+        </p>
+        <p class="mb-4">
+          La próxima vez que quieras conocer un lugar nuevo, deja que la IA te acompañe como un asistente confiable y
+          accesible.
+        </p>
+        <p class="text-xl font-semibold text-blue-600">
+          ¡El mundo está más cerca de lo que crees!
+        </p>
+      </section>
+    </div>
+
+    <!-- Navegación entre artículos -->
+    <nav class="border-t border-gray-200 pt-8 mt-12">
+      <a routerLink="/articulos"
+        class="inline-flex items-center gap-2 text-blue-600 font-semibold mb-8 hover:text-blue-700 transition-colors duration-200">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+        Ver todos los artículos
+      </a>
+      <div class="grid md:grid-cols-2 gap-4">
+        <a routerLink="/articulos/organiza-tareas-ia"
+          class="p-4 border border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all duration-200 group">
+          <span class="block text-sm text-gray-500 mb-1">Anterior</span>
+          <span class="block font-semibold text-gray-900 group-hover:text-blue-600">Organiza tus tareas con IA</span>
+        </a>
+        <div class="p-4 border border-gray-200 rounded-lg opacity-50 cursor-not-allowed">
+          <span class="block text-sm text-gray-500 mb-1">Siguiente</span>
+          <span class="block font-semibold text-gray-900">Próximamente más artículos</span>
+        </div>
+      </div>
+    </nav>
+  </article>
+</div>
