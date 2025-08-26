@@ -8,6 +8,8 @@ import { FormsModule } from "@angular/forms"
 import  { Location } from "@angular/common"
 import { trigger, style, animate, transition, stagger, query } from "@angular/animations"
 
+import { SeoService } from './../../../services/seo.service';
+
 @Component({
   selector: "app-planear-viaje-ia",
   imports: [CommonModule, RouterModule, FormsModule, Navbar, Breadcrumbs],
@@ -86,10 +88,35 @@ export class PlanearViajeIa implements OnInit {
     private router: Router,
     private location: Location,
     private scrollService: ScrollService,
+    private seo: SeoService
   ) {}
 
-  ngOnInit() {
-    this.scrollService.scrollToTop()
+ ngOnInit() {
+    this.scrollService.scrollToTop();
+
+    const canonical = this.seo.absoluteUrl('/articulos/planear-viaje-con-ia');
+    const ogImage = this.seo.absoluteUrl('/assets/og/planear-viaje.png');
+
+    this.seo.setSEO({
+      title: 'Cómo usar IA para planear un viaje completo (sin ser experto)',
+      description: 'Destinos, itinerarios, vuelos, hospedaje y presupuesto con ChatGPT, Roam Around y Kayak AI.',
+      url: canonical,
+      image: ogImage,
+      type: 'article',
+      publishedTime: '2025-07-20',
+      siteName: 'Blog Tech',
+      twitterSite: '@tucuenta',
+      locale: 'es_ES'
+    });
+
+    this.seo.setJsonLdArticle({
+      headline: 'Cómo usar inteligencia artificial para planear un viaje completo',
+      description: 'Guía paso a paso para elegir destino, armar itinerario y calcular presupuesto con IA.',
+      authorName: 'Blog Tech',
+      datePublished: '2025-07-20',
+      image: ogImage,
+      url: canonical
+    });
   }
 
   goBack(): void {

@@ -2,10 +2,10 @@
 
 <div class="article-container">
   <app-breadcrumbs [items]="breadcrumbItems"></app-breadcrumbs>
-  
+
   <button class="back-button" (click)="goBack()" title="Regresar">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M19 12H5M12 19l-7-7 7-7"/>
+      <path d="M19 12H5M12 19l-7-7 7-7" />
     </svg>
     <span>Regresar</span>
   </button>
@@ -16,22 +16,59 @@
         <span class="category-tag productividad">Productividad</span>
         <span class="read-time">6 min de lectura</span>
         <span class="publish-date">Publicado el 14 de julio de 2025</span>
+
+        <!-- Agregando foto del autor y estilizando el enlace -->
+        <div
+          class="article-author-section flex items-center gap-3 mt-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-100 hover:shadow-md transition-all duration-300">
+          <div class="author-avatar relative">
+            <img src="/assets/images/me/me.png" alt="Foto de perfil de Edinson Gomez"
+              class="w-12 h-12 rounded-full object-cover ring-2 ring-blue-200 hover:ring-blue-400 transition-all duration-300" />
+            <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
+          </div>
+
+          <div class="author-info flex-1">
+            <p class="text-sm text-gray-600 mb-1">Escrito por</p>
+            <a href="/about-me"
+              class="author-link inline-flex items-center gap-2 font-semibold text-gray-900 hover:text-blue-600 transition-colors duration-200 group">
+              <span class="text-lg">Edinson Gomez</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                class="opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-200">
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </a>
+            <p class="text-xs text-gray-500 mt-1">
+              Actualizado el <time datetime="2025-08-10" class="font-medium">10 de agosto de 2025</time>
+            </p>
+          </div>
+
+          <div class="author-badge">
+            <span
+              class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                class="mr-1">
+                <path d="M9 12l2 2 4-4" />
+                <circle cx="12" cy="12" r="9" />
+              </svg>
+              Autor verificado
+            </span>
+          </div>
+        </div>
       </div>
-      
+
       <h1 class="article-title">
         Dale un respiro a tu cabeza: organiza tus tareas con la ayuda de la IA
         <span class="subtitle">Guía paso a paso + caso de éxito</span>
       </h1>
-      
+
       <div class="article-actions">
 
-        <button class="action-btn" (click)="shareArticle()">
+        <button class="action-btn" (click)="shareArticle()" aria-label="Compartir artículo en redes o copiar enlace">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="18" cy="5" r="3"/>
-            <circle cx="6" cy="12" r="3"/>
-            <circle cx="18" cy="19" r="3"/>
-            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
-            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            <circle cx="18" cy="5" r="3" />
+            <circle cx="6" cy="12" r="3" />
+            <circle cx="18" cy="19" r="3" />
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
           </svg>
           Compartir
         </button>
@@ -40,11 +77,14 @@
 
     <div class="article-body">
       <p class="lead">
-      ¿Te sientes abrumado por la cantidad de cosas que tienes que hacer? ¡No te preocupes más! Deja que la inteligencia artificial te eche una mano para poner orden en tu vida, establecer prioridades y hacer más en menos tiempo. Lo mejor de todo es que no necesitas ser un genio de la informática para lograrlo.
+        ¿Te sientes abrumado por la cantidad de cosas que tienes que hacer? ¡No te preocupes más! Deja que la
+        inteligencia artificial te eche una mano para poner orden en tu vida, establecer prioridades y hacer más en
+        menos tiempo. Lo mejor de todo es que no necesitas ser un genio de la informática para lograrlo.
       </p>
-      
+
       <p>
-       ¿Quieres saber cómo usar un asistente de IA para hacer tus listas de tareas más fácil y automático? Aquí te muestro un ejemplo sencillo y cómo le ha ido bien a alguien usándolo.
+        ¿Quieres saber cómo usar un asistente de IA para hacer tus listas de tareas más fácil y automático? Aquí te
+        muestro un ejemplo sencillo y cómo le ha ido bien a alguien usándolo.
       </p>
 
       <section class="content-section">
@@ -60,6 +100,26 @@
           <li>Profesionales que manejan múltiples proyectos</li>
         </ul>
       </section>
+      <p>
+        Si es tu primera vez con IA aplicada a la vida diaria, te recomiendo leer antes
+        <a routerLink="/articulos/rutina-inteligente-con-ia" class="text-blue-600 hover:text-blue-700 font-medium">esta
+          guía de rutina inteligente con IA</a>.
+      </p>
+
+      <p>
+        ¿Gestionas mucho correo? Complementa esta organización con
+        <a routerLink="/articulos/automatizar-correo-ia"
+          class="text-blue-600 hover:text-blue-700 font-medium">automatización de email con IA en 3 pasos</a>.
+      </p>
+
+
+      <p class="text-xs text-gray-500 mt-2 border-l-4 border-blue-200 pl-3">
+        <strong>Transparencia:</strong> las recomendaciones aquí descritas son orientativas y pueden variar según tu
+        contexto.
+        Notion AI, ClickUp AI y Motion son herramientas de terceros; este artículo no garantiza resultados ni reemplaza
+        un asesoramiento profesional.
+      </p>
+
 
       <section class="content-section">
         <h2>🔧 Paso 1: Crear tu cuenta</h2>
@@ -68,7 +128,8 @@
         </p>
         <div class="step-box">
           <ul class="checklist">
-            <li>Visita <a href="https://www.notion.so" target="_blank" rel="noopener noreferrer" class="external-link">https://www.notion.so</a></li>
+            <li>Visita <a href="https://www.notion.so" target="_blank" rel="nofollow noopener noreferrer"
+                class="external-link">https://www.notion.so</a></li>
             <li>Regístrate con tu correo o cuenta de Google</li>
             <li>Una vez dentro, activa Notion AI desde los ajustes o usa la opción “Try Notion AI”</li>
           </ul>
@@ -78,15 +139,16 @@
       <section class="content-section">
         <h2>🧠 Paso 2: Escribe tu objetivo</h2>
         <p>
-           Para que la IA te eche una mano, tienes que ser muy claro con lo que quieres. Podrías empezar escribiendo algo así:
+          Para que la IA te eche una mano, tienes que ser muy claro con lo que quieres. Podrías empezar escribiendo algo
+          así:
         </p>
         <div class="prompt-example">
           <div class="prompt-header">
             <span class="prompt-label">Prompt de ejemplo:</span>
             <button class="copy-btn" (click)="copyPrompt(prompt1)">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
               </svg>
               Copiar
             </button>
@@ -101,8 +163,8 @@
             <span class="prompt-label">Prompt de ejemplo:</span>
             <button class="copy-btn" (click)="copyPrompt(prompt2)">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
               </svg>
               Copiar
             </button>
@@ -112,8 +174,7 @@
           </p>
         </div>
         <div class="image-placeholder">
-          <img [src]="images.PROMPT" alt="Captura de Notion con el prompt escrito" 
-                loading="lazy"/>
+          <img [src]="images.PROMPT" alt="Captura de Notion con el prompt escrito" loading="lazy" />
           <p class="image-caption">Captura de Notion con el prompt escrito</p>
         </div>
       </section>
@@ -121,7 +182,8 @@
       <section class="content-section">
         <h2>🤖 Paso 3: Dale chance a la IA de armar tu plan.</h2>
         <p>
-        En un abrir y cerrar de ojos, Notion AI te da un plan bien hecho. La verdad es que se le da muy bien organizar tareas y darte ideas de qué hacer después.
+          En un abrir y cerrar de ojos, Notion AI te da un plan bien hecho. La verdad es que se le da muy bien organizar
+          tareas y darte ideas de qué hacer después.
         </p>
         <div class="ai-plan-features">
           <div class="feature-item">
@@ -147,8 +209,7 @@
           <li>Genere alternativas si algo no se ajusta a ti</li>
         </ul>
         <div class="image-placeholder">
-          <img [src]="images.LISTA_TAREAS" alt="Lista de tareas generada por Notion AI"
-               loading="lazy"/>
+          <img [src]="images.LISTA_TAREAS" alt="Lista de tareas generada por Notion AI" loading="lazy" />
           <p class="image-caption">Lista de tareas generada por Notion AI</p>
         </div>
       </section>
@@ -173,37 +234,46 @@
           </div>
         </div>
         <p>
-          Notion es como tu centro de operaciones personal. Puedes organizarlo todo ahí, desde tus proyectos del trabajo hasta la lista del súper.
+          Notion es como tu centro de operaciones personal. Puedes organizarlo todo ahí, desde tus proyectos del trabajo
+          hasta la lista del súper.
         </p>
       </section>
 
       <section class="content-section">
         <h2>💡 ¿Y si quiero algo más visual?</h2>
         <p>
-         Si te va más lo visual, con calendarios y bloques de tiempo bien definidos, hay otras herramientas geniales que usan IA.
+          Si te va más lo visual, con calendarios y bloques de tiempo bien definidos, hay otras herramientas geniales
+          que usan IA.
           Aquí te dejo algunas opciones:
         </p>
         <ul class="visual-tools-list">
-          <li><a href="https://clickup.com/ai" target="_blank" rel="noopener noreferrer" class="external-link">ClickUp AI</a>: Para gestión de proyectos y equipos.</li>
-          <li><a href="https://www.usemotion.com" target="_blank" rel="noopener noreferrer" class="external-link">Motion</a>: Un asistente de calendario que optimiza tu día.</li>
+          <li><a href="https://clickup.com/ai" target="_blank" rel="nofollow noopener noreferrer"
+              class="external-link">ClickUp
+              AI</a>: Para gestión de proyectos y equipos.</li>
+          <li><a href="https://www.usemotion.com" target="_blank" rel="nofollow noopener noreferrer"
+              class="external-link">Motion</a>: Un asistente de calendario que optimiza tu día.</li>
         </ul>
       </section>
 
       <section class="content-section">
         <h2>🏆 Caso de éxito: “Laura, emprendedora creativa, logró organizar su caos diario”</h2>
         <p>
-         Laura es diseñadora gráfica y trabaja por su cuenta. Con tanto lío de reuniones, proyectos y redes sociales, su día a día era un desastre. Probó agendas de papel, recordatorios en WhatsApp y hasta post-its, ¡pero nada le servía!
+          Laura es diseñadora gráfica y trabaja por su cuenta. Con tanto lío de reuniones, proyectos y redes sociales,
+          su día a día era un desastre. Probó agendas de papel, recordatorios en WhatsApp y hasta post-its, ¡pero nada
+          le servía!
         </p>
         <p>
           Un día, usó Notion AI con este mensaje:
         </p>
         <div class="quote-box">
           <p>
-            “Organiza mi semana incluyendo 4 entregas, 1 reunión por Zoom, 1 hora al día para redes, y descansar los domingos”
+            “Organiza mi semana incluyendo 4 entregas, 1 reunión por Zoom, 1 hora al día para redes, y descansar los
+            domingos”
           </p>
         </div>
         <p>
-          La IA creó un plan por días, horarios y prioridad. Laura empezó a usarlo como base cada lunes, y en una semana ya:
+          La IA creó un plan por días, horarios y prioridad. Laura empezó a usarlo como base cada lunes, y en una semana
+          ya:
         </p>
         <ul class="laura-success-list">
           <li>Reducía su estrés</li>
@@ -215,23 +285,217 @@
           <p class="image-caption">Calendario semanal con tareas organizadas</p>
         </div>
       </section>
+      <section class="content-section">
+        <h2>Errores comunes al organizar tareas con IA</h2>
+        <p>
+          Aunque las herramientas de inteligencia artificial pueden ayudarte a ganar tiempo y claridad,
+          es fácil caer en hábitos que reducen su efectividad. Uno de los más comunes es depender
+          exclusivamente de la IA para priorizar, sin considerar factores humanos como imprevistos o
+          cambios de último minuto. Otro error frecuente es crear listas demasiado extensas que generan
+          sensación de sobrecarga. Por último, no revisar y ajustar tus tareas al menos una vez al día
+          puede hacer que el plan pierda relevancia. La clave es usar la IA como un apoyo flexible, no
+          como una agenda rígida.
+        </p>
+      </section>
+
+      <section class="content-section">
+        <h2>Plantillas rápidas para organizar tu semana</h2>
+        <ul>
+          <li><strong>Semana de estudio:</strong> "Organiza mi semana para repasar [temas] con 3 horas diarias y
+            descansos cada 90 minutos".</li>
+          <li><strong>Freelance con múltiples clientes:</strong> "Crea un plan para atender a [n clientes] en paralelo,
+            con entregas escalonadas y bloques de concentración".</li>
+          <li><strong>Mudanza:</strong> "Desarrolla un plan de 7 días para empacar, limpiar, trasladar y desempacar de
+            forma ordenada".</li>
+          <li><strong>Preparación de examen:</strong> "Genera un calendario de estudio para aprobar [tema] en 14 días,
+            con sesiones de repaso y simulacros".</li>
+        </ul>
+        <p>
+          Estas plantillas pueden adaptarse fácilmente a tus necesidades, cambiando las variables entre corchetes
+          y ajustando tiempos según tu disponibilidad.
+        </p>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Comparativa rápida: Notion AI vs ClickUp AI vs Motion</h2>
+
+        <div class="grid gap-6 md:grid-cols-3">
+          <!-- Notion AI -->
+          <article
+            class="group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-all">
+            <header class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div class="h-10 w-10 rounded-xl bg-indigo-100 flex items-center justify-center text-xl">🧠</div>
+                <h3 class="text-lg font-semibold text-gray-900">Notion AI</h3>
+              </div>
+              <span class="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700">Todo-en-uno</span>
+            </header>
+
+            <p class="text-sm text-gray-600 mb-4">
+              Espacio flexible para notas, bases de datos y tareas. Ideal para crear sistemas personalizados.
+            </p>
+
+            <ul class="mb-4 space-y-2">
+              <li class="flex items-start gap-2 text-sm">
+                <span class="mt-1">✅</span><span>Plantillas y bases de datos personalizables</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm">
+                <span class="mt-1">✅</span><span>IA útil para estructurar y resumir</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm">
+                <span class="mt-1">⚠️</span><span>Curva de aprendizaje si construyes sistemas complejos</span>
+              </li>
+            </ul>
+
+            <div class="mb-4">
+              <h4 class="text-xs font-semibold text-gray-700 uppercase tracking-wide mb-1">Mejor para</h4>
+              <p class="text-sm text-gray-700">Profesionales individuales y pequeños equipos que quieren flexibilidad.
+              </p>
+            </div>
+
+            <a href="https://www.notion.so/product/ai" target="_blank" rel="nofollow noopener noreferrer"
+              class="inline-flex items-center gap-2 text-indigo-700 font-medium hover:text-indigo-800">
+              Probar Notion AI
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M17 7H7M17 7V17" />
+              </svg>
+            </a>
+          </article>
+
+          <!-- ClickUp AI -->
+          <article
+            class="group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-all">
+            <header class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div class="h-10 w-10 rounded-xl bg-pink-100 flex items-center justify-center text-xl">📊</div>
+                <h3 class="text-lg font-semibold text-gray-900">ClickUp AI</h3>
+              </div>
+              <span class="rounded-full bg-pink-50 px-3 py-1 text-xs font-medium text-pink-700">Equipos</span>
+            </header>
+
+            <p class="text-sm text-gray-600 mb-4">
+              Gestión de proyectos con vistas avanzadas, docs y automatizaciones; IA orientada a productividad del
+              equipo.
+            </p>
+
+            <ul class="mb-4 space-y-2">
+              <li class="flex items-start gap-2 text-sm">
+                <span class="mt-1">✅</span><span>OKRs, dependencias, plantillas para squads</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm">
+                <span class="mt-1">✅</span><span>IA para resúmenes, briefings y acciones siguientes</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm">
+                <span class="mt-1">⚠️</span><span>Puede sentirse “pesado” si lo usas solo</span>
+              </li>
+            </ul>
+
+            <div class="mb-4">
+              <h4 class="text-xs font-semibold text-gray-700 uppercase tracking-wide mb-1">Mejor para</h4>
+              <p class="text-sm text-gray-700">Equipos que requieren gobierno, reportes y colaboración.</p>
+            </div>
+
+            <a href="https://clickup.com/ai" target="_blank" rel="nofollow noopener noreferrer"
+              class="inline-flex items-center gap-2 text-pink-700 font-medium hover:text-pink-800">
+              Probar ClickUp AI
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M17 7H7M17 7V17" />
+              </svg>
+            </a>
+          </article>
+
+          <!-- Motion -->
+          <article
+            class="group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-all">
+            <header class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div class="h-10 w-10 rounded-xl bg-emerald-100 flex items-center justify-center text-xl">⏱️</div>
+                <h3 class="text-lg font-semibold text-gray-900">Motion</h3>
+              </div>
+              <span
+                class="rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700">Auto-calendario</span>
+            </header>
+
+            <p class="text-sm text-gray-600 mb-4">
+              Programación automática del día con reordenamiento inteligente según interrupciones y prioridades.
+            </p>
+
+            <ul class="mb-4 space-y-2">
+              <li class="flex items-start gap-2 text-sm">
+                <span class="mt-1">✅</span><span>Bloques de tiempo dinámicos, replanificación automática</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm">
+                <span class="mt-1">✅</span><span>Excelente para evitar la parálisis por listas largas</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm">
+                <span class="mt-1">⚠️</span><span>Menos flexible para documentación o bases de conocimiento</span>
+              </li>
+            </ul>
+
+            <div class="mb-4">
+              <h4 class="text-xs font-semibold text-gray-700 uppercase tracking-wide mb-1">Mejor para</h4>
+              <p class="text-sm text-gray-700">Quienes necesitan calendarizar y cumplir sí o sí.</p>
+            </div>
+
+            <a href="https://www.usemotion.com" target="_blank" rel="nofollow noopener noreferrer"
+              class="inline-flex items-center gap-2 text-emerald-700 font-medium hover:text-emerald-800">
+              Probar Motion
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M17 7H7M17 7V17" />
+              </svg>
+            </a>
+          </article>
+        </div>
+
+        <!-- Nota de transparencia -->
+        <p class="mt-4 text-xs text-gray-500 border-l-4 border-gray-200 pl-3">
+          Transparencia: enlaces informativos, sin afiliación. Elige la herramienta según tu flujo de trabajo.
+        </p>
+      </section>
+
+
+
+      <section class="content-section">
+        <h2>Preguntas frecuentes</h2>
+        <details class="faq">
+          <summary>¿Notion AI reemplaza por completo la planificación manual?</summary>
+          <p>No. Es un apoyo que acelera borradores y priorización inicial. Revisa y ajusta a tu realidad cada día.</p>
+        </details>
+        <details class="faq">
+          <summary>¿Qué pasa si mi semana cambia de golpe?</summary>
+          <p>Usa bloques de tiempo flexibles y replanifica con la IA a partir de los imprevistos; evita listas rígidas.
+          </p>
+        </details>
+        <details class="faq">
+          <summary>¿ClickUp AI o Motion para equipos?</summary>
+          <p>ClickUp AI destaca en colaboración y seguimiento; Motion sobresale en reprogramación automática del
+            calendario.</p>
+        </details>
+      </section>
+
+
 
       <section class="content-section">
         <h2>📣 Conclusión</h2>
         <p>
-         Ya no necesitas un asistente personal ni aprender programas complicados. Hoy, con la inteligencia artificial, puedes organizar tu semana, tus proyectos, ¡hasta tu vida entera en minutos!
+          Ya no necesitas un asistente personal ni aprender programas complicados. Hoy, con la inteligencia artificial,
+          puedes organizar tu semana, tus proyectos, ¡hasta tu vida entera en minutos!
         </p>
         <p>
-         Prueba Notion AI o ClickUp AI, ¡verás que tu productividad se va para arriba!
+          Prueba Notion AI o ClickUp AI, ¡verás que tu productividad se va para arriba!
         </p>
       </section>
 
       <section class="content-section">
         <h2>📂 Recursos útiles</h2>
         <ul class="resources-list">
-          <li><a href="https://www.notion.so/product/ai" target="_blank" rel="noopener noreferrer" class="external-link">Notion AI</a></li>
-          <li><a href="https://clickup.com/ai" target="_blank" rel="noopener noreferrer" class="external-link">ClickUp AI</a></li>
-          <li><a href="https://www.usemotion.com" target="_blank" rel="noopener noreferrer" class="external-link">Motion</a></li>
+          <li><a href="https://www.notion.so/product/ai" target="_blank" rel="nofollow noopener noreferrer"
+              class="external-link">Notion AI</a></li>
+          <li><a href="https://clickup.com/ai" target="_blank" rel="nofollow noopener noreferrer"
+              class="external-link">ClickUp
+              AI</a></li>
+          <li><a href="https://www.usemotion.com" target="_blank" rel="nofollow noopener noreferrer"
+              class="external-link">Motion</a></li>
         </ul>
       </section>
     </div>
@@ -241,7 +505,7 @@
     <nav class="article-navigation">
       <a routerLink="/articulos" class="nav-all-articles">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M15 18l-6-6 6-6"/>
+          <path d="M15 18l-6-6 6-6" />
         </svg>
         Ver todos los artículos
       </a>

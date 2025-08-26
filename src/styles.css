@@ -1,2 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+
+/* Modo lectura */
+.reading-mode .article-container {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.reading-mode .article-container, 
+.reading-mode .prose {
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.4s ease-out forwards;
+}

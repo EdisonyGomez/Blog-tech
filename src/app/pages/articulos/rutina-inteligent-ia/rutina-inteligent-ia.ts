@@ -8,6 +8,9 @@ import { FormsModule } from "@angular/forms"
 import { Location } from "@angular/common"
 import { trigger, style, animate, transition, stagger, query, keyframes } from "@angular/animations"
 
+import { SeoService } from './../../../services/seo.service';
+
+
 interface SimulatorResult {
   morning: string
   afternoon: string
@@ -120,10 +123,35 @@ export class RutinaInteligentIa implements OnInit {
     private router: Router,
     private location: Location,
     private scrollService: ScrollService,
+    private seo: SeoService
   ) {}
 
   ngOnInit() {
-    this.scrollService.scrollToTop()
+    this.scrollService.scrollToTop();
+
+    const canonical = this.seo.absoluteUrl('/articulos/rutina-inteligent-ia');
+    const ogImage = this.seo.absoluteUrl('/assets/og/rutina-ia.png'); // crea esta imagen o quita la línea
+
+    this.seo.setSEO({
+      title: 'Transforma tu rutina diaria con IA | Guía interactiva para principiantes',
+      description: 'Aprende a organizar tu día, automatizar tareas y crear una rutina inteligente con IA. Guía paso a paso para principiantes.',
+      url: canonical,
+      image: ogImage,
+      type: 'article',
+      publishedTime: '2025-07-25',
+      siteName: 'Blog Tech',
+      twitterSite: '@tucuenta',
+      locale: 'es_ES'
+    });
+
+    this.seo.setJsonLdArticle({
+      headline: 'Transforma tu rutina diaria con inteligencia artificial',
+      description: 'Guía interactiva para principiantes: organiza, automatiza y optimiza tu día a día con IA.',
+      authorName: 'Blog Tech',
+      datePublished: '2025-07-25',
+      image: ogImage,
+      url: canonical
+    });
   }
 
   goBack(): void {

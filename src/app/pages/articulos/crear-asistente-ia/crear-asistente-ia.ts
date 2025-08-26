@@ -12,6 +12,7 @@ import { ScrollService } from '../../../services/scroll.service';
           CommonModule, RouterModule, FormsModule,
            Navbar, Breadcrumbs],
   templateUrl: './crear-asistente-ia.html',
+  standalone: true,
   styleUrls: ['./crear-asistente-ia.css']
 })
 export class CrearAsistenteIa  implements OnInit {

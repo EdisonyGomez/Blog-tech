@@ -15,15 +15,18 @@
         sin necesidad de conocimientos técnicos.
       </p>
       <div class="hero-actions">
-        <button class="btn-primary" (click)="scrollToArticles()">
+        <button 
+          class="btn-primary" 
+          (click)="scrollToArticles()"
+          aria-label="Ir a la sección de artículos">
           <span>Explorar artículos</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <path d="M7 13l3 3 7-7"/>
           </svg>
         </button>
       </div>
     </div>
-    <div class="hero-visual">
+    <div class="hero-visual" aria-hidden="true">
       <div class="floating-cards">
         <div class="card-float card-1">💡</div>
         <div class="card-float card-2">🚀</div>
@@ -31,7 +34,10 @@
       </div>
     </div>
     <!-- Indicador de scroll animado -->
-    <div class="scroll-indicator" (click)="scrollToArticles()">
+    <button 
+      class="scroll-indicator" 
+      (click)="scrollToArticles()"
+      aria-label="Desplazarse a los artículos">
       <svg 
         class="scroll-arrow" 
         width="24" 
@@ -40,177 +46,259 @@
         fill="none" 
         stroke="currentColor" 
         stroke-width="2"
-      >
+        aria-hidden="true">
         <path d="M7 13l5 5 5-5"/>
         <path d="M7 6l5 5 5-5"/>
       </svg>
       <span class="scroll-text">Scroll para ver artículos</span>
-    </div>
+    </button>
   </header>
 
-  <!-- 📢 Anuncio grande debajo del Hero -->
-  <div id="ezoic-pub-ad-placeholder-109"></div>
 
   <!-- Barra de búsqueda y filtros -->
-  <section class="search-section" [@fadeInUp]>
+  <section class="search-section" [@fadeInUp] role="search" aria-label="Buscar y filtrar artículos">
     <div class="search-container">
+      <!-- Barra de búsqueda mejorada -->
       <div class="search-box">
-        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <label for="search-input" class="sr-only">Buscar artículos</label>
+        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <circle cx="11" cy="11" r="8"/>
           <path d="m21 21-4.35-4.35"/>
         </svg>
         <input 
+          id="search-input"
           type="text" 
           placeholder="Buscar artículos sobre IA, ChatGPT, herramientas..."
           [(ngModel)]="searchTerm"
-          (input)="filterArticles()"
-        >
+          (input)="onSearchInput()"
+          [class.searching]="isSearching"
+          autocomplete="off"
+          role="searchbox"
+          aria-describedby="search-help">
+        
+        @if (searchTerm) {
+          <button 
+            class="clear-search" 
+            (click)="clearSearch()"
+            aria-label="Limpiar búsqueda"
+            type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        }
+
+        @if (isSearching) {
+          <div class="search-spinner" aria-hidden="true">
+            <div class="spinner"></div>
+          </div>
+        }
       </div>
-      <div class="filter-tags">
-        <button 
-          class="tag-filter" 
-          [class.active]="selectedTag === 'todos'"
-          (click)="filterByTag('todos')"
-        >
-          Todos
-        </button>
-        <button 
-          class="tag-filter" 
-          [class.active]="selectedTag === 'chatgpt'"
-          (click)="filterByTag('chatgpt')"
-        >
-          ChatGPT
-        </button>
-        <button 
-          class="tag-filter" 
-          [class.active]="selectedTag === 'herramientas'"
-          (click)="filterByTag('herramientas')"
-        >
-          Herramientas
-        </button>
-        <button 
-          class="tag-filter" 
-          [class.active]="selectedTag === 'productividad'"
-          (click)="filterByTag('productividad')"
-        >
-          Productividad
-        </button>
+
+      <div id="search-help" class="sr-only">
+        Escribe para buscar artículos por título, descripción o categoría
       </div>
+
+      <!-- Filtros por categoría -->
+      <div class="filter-section">
+        <div class="filter-header">
+          <h3 id="filter-heading">Filtrar por categoría</h3>
+          @if (hasActiveFilters) {
+            <button 
+              class="clear-filters-btn" 
+              (click)="clearAllFilters()"
+              aria-label="Limpiar todos los filtros">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+              <span>Limpiar filtros</span>
+            </button>
+          }
+        </div>
+
+        <div 
+          class="filter-tags" 
+          role="tablist" 
+          aria-labelledby="filter-heading"
+          [@filterAnimation]>
+          @for (category of categories; track category.id) {
+            <button 
+              class="tag-filter" 
+              [class.active]="selectedTag === category.id"
+              (click)="filterByTag(category.id)"
+              role="tab"
+              [attr.aria-selected]="selectedTag === category.id"
+              [attr.aria-controls]="'articles-panel'"
+              [attr.id]="'tab-' + category.id">
+              <span class="tag-icon" aria-hidden="true">{{ category.icon }}</span>
+              <span>{{ category.label }}</span>
+              <span class="tag-count" title="{{ category.count }} artículos">{{ category.count }}</span>
+            </button>
+          }
+        </div>
+      </div>
+
+      <!-- Información de resultados -->
+      @if (searchTerm || selectedTag !== 'todos') {
+        <div class="search-results-info" role="status" aria-live="polite">
+          <p>
+            <span class="results-count" [class.no-results]="totalResults === 0">
+              {{ getResultsText() }}
+            </span>
+            <span class="search-context">{{ getSearchContextText() }}</span>
+          </p>
+        </div>
+      }
     </div>
   </section>
 
   <!-- Grid de artículos moderno -->
-  <section class="articles-section" id="articles" [@fadeInUp]>
+  <section 
+    class="articles-section" 
+    id="articles" 
+    [@fadeInUp]
+    role="tabpanel"
+    [attr.aria-labelledby]="'tab-' + selectedTag">
     <div class="section-header">
       <h2>Artículos recientes</h2>
       <p>Descubre las últimas guías y consejos sobre IA</p>
     </div>
 
-    <!-- 📢 Anuncio debajo del título de sección -->
-    <div id="ezoic-pub-ad-placeholder-112"></div>
-
-    <div class="articles-grid">
-      @for (articulo of displayedArticles; track articulo.id; let i = $index) {
-        <article 
-          class="article-card" 
-          [@slideInUp]
-          [style.animation-delay]="i * 100 + 'ms'">
-          
-          <div class="card-header">
-            <div class="article-meta">
-              <span class="category-tag" [ngClass]="articulo.categoria">
-                {{ articulo.categoria }}
-              </span>
-              <span class="read-time">{{ articulo.tiempoLectura }} min</span>
-            </div>
-            <button class="bookmark-btn" (click)="toggleBookmark(articulo)">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
-              </svg>
-            </button>
-          </div>
-
-          <div class="card-content">
-            <h3 class="article-title">{{ articulo.titulo }}</h3>
-            <p class="article-excerpt">{{ articulo.resumen }}</p>
+     @if (displayedArticles.length > 0) {
+      <div class="articles-grid" role="list">
+        @for (articulo of displayedArticles; track articulo.id; let i = $index) {
+          <article 
+            class="article-card" 
+            [@slideInUp]
+            [style.animation-delay]="i * 100 + 'ms'"
+            role="listitem">
             
-            @if (articulo.expanded) {
-              <div class="article-preview" @expandCollapse>
-                <div class="preview-content" [innerHTML]="articulo.contenidoPreview"></div>
+            <div class="card-header">
+              <div class="article-meta">
+                <span 
+                  class="category-tag" 
+                  [ngClass]="articulo.categoria"
+                  [title]="'Categoría: ' + getCategoryLabel(articulo.categoria)">
+                  <span class="category-icon" aria-hidden="true">{{ getCategoryIcon(articulo.categoria) }}</span>
+                  <span>{{ getCategoryLabel(articulo.categoria) }}</span>
+                </span>
+                <span class="read-time" [title]="getReadingTimeText(articulo.tiempoLectura)">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12,6 12,12 16,14"/>
+                  </svg>
+                  {{ articulo.tiempoLectura }} min
+                </span>
               </div>
-            }
-          </div>
-
-          <div class="card-footer">
-            <div class="article-stats">
-              <span class="stat">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                  <circle cx="12" cy="12" r="3"/>
-                </svg>
-                {{ articulo.vistas }}
-              </span>
-              <span class="stat">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M7 10v12l5-3 5 3V10"/>
-                  <path d="M5 6h14l-1 4H6z"/>
-                </svg>
-                {{ articulo.likes }}
-              </span>
-              <span class="date">{{ articulo.fecha }}</span>
-            </div>
-            
-            <div class="card-actions">
               <button 
-                class="btn-expand" 
-                (click)="toggleArticleExpansion(articulo)">
-                {{ articulo.expanded ? 'Contraer' : 'Vista previa' }}
-                <svg 
-                  width="14" 
-                  height="14" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  stroke-width="2"
-                  [class.rotated]="articulo.expanded">
-                  <path d="M6 9l6 6 6-6"/>
-                </svg>
-              </button>
-              <button 
-                class="btn-read-full" 
-                [routerLink]="'/articulos/' + articulo.slug">
-                Leer completo
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                class="bookmark-btn" 
+                [class.bookmarked]="articulo.bookmarked"
+                (click)="toggleBookmark(articulo, $event)"
+                [attr.aria-label]="articulo.bookmarked ? 'Quitar de favoritos: ' + articulo.titulo : 'Agregar a favoritos: ' + articulo.titulo"
+                [attr.aria-pressed]="articulo.bookmarked">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
                 </svg>
               </button>
             </div>
-          </div>
-        </article>
 
-        <!-- 📢 Anuncio intercalado después del tercer artículo -->
-        @if (i === 2) {
-          <div id="ezoic-pub-ad-placeholder-115"></div>
+            <div class="card-content">
+              <h3 class="article-title">
+                <a [routerLink]="'/articulos/' + articulo.slug" [attr.aria-label]="'Leer artículo: ' + articulo.titulo">
+                  {{ articulo.titulo }}
+                </a>
+              </h3>
+              <p class="article-excerpt">{{ articulo.resumen }}</p>
+            </div>
+
+            <div class="card-footer">
+              <div class="article-stats">
+                <span class="stat" [title]="articulo.vistas + ' visualizaciones'">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                  <span class="sr-only">Visualizaciones:</span>
+                  {{ formatViews(articulo.vistas) }}
+                </span>
+                <span class="stat" [title]="articulo.likes + ' me gusta'">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M7 10v12l5-3 5 3V10"/>
+                    <path d="M5 6h14l-1 4H6z"/>
+                  </svg>
+                  <span class="sr-only">Me gusta:</span>
+                  {{ articulo.likes }}
+                </span>
+                <time class="date" [dateTime]="articulo.fecha" [title]="'Publicado el ' + formatDate(articulo.fecha)">
+                  {{ formatDate(articulo.fecha) }}
+                </time>
+              </div>
+              
+              <div class="card-actions">
+                <a 
+                  class="btn-read-full" 
+                  [routerLink]="'/articulos/' + articulo.slug"
+                  [attr.aria-label]="'Leer artículo completo: ' + articulo.titulo">
+                  <span>Leer artículo</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
         }
-      } @empty {
-        <div class="no-articles-message">
-          <p>No se encontraron artículos que coincidan con tu búsqueda o filtros.</p>
-          <button class="btn-clear-filters" (click)="searchTerm = ''; selectedTag = 'todos'; filterArticles()">
-            Limpiar filtros
+      </div>
+
+      @if (hasMoreArticles) {
+        <div class="load-more-section">
+          <button 
+            class="btn-load-more" 
+            (click)="loadMoreArticles()" 
+            [disabled]="loadingMore"
+            [attr.aria-label]="'Cargar ' + (filteredArticles.length - displayLimit) + ' artículos más'">
+            <span>{{ loadingMore ? 'Cargando...' : 'Cargar más artículos' }}</span>
+            @if (!loadingMore && hasMoreArticles) {
+              <span class="remaining-count">({{ filteredArticles.length - displayLimit }} restantes)</span>
+            }
+            @if (loadingMore) {
+              <div class="loading-spinner" aria-hidden="true"></div>
+            }
           </button>
         </div>
       }
-    </div>
-
-    @if (hasMoreArticles) {
-      <div class="load-more-section">
-        <button class="btn-load-more" (click)="loadMoreArticles()" [disabled]="loadingMore">
-          <span>{{ loadingMore ? 'Cargando...' : 'Cargar más artículos' }}</span>
-          @if (loadingMore) {
-            <div class="loading-spinner"></div>
+    } @else {
+      <div class="empty-state" role="status">
+        <div class="empty-icon" aria-hidden="true">🔍</div>
+        <h3>No se encontraron artículos</h3>
+        <p>
+          @if (hasActiveFilters) {
+            No hay artículos que coincidan con tu búsqueda o filtros actuales.
+          } @else {
+            Parece que no hay artículos disponibles en este momento.
           }
-        </button>
+        </p>
+        @if (hasActiveFilters) {
+          <button 
+            class="btn-clear-filters" 
+            (click)="clearAllFilters()"
+            aria-label="Limpiar todos los filtros y mostrar todos los artículos">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+            <span>Limpiar filtros</span>
+          </button>
+        }
       </div>
     }
   </section>
+
+ 
 </main>
+
+<!-- Elemento para anuncios de accesibilidad -->
+<div aria-live="polite" aria-atomic="true" class="sr-only" id="accessibility-announcer"></div>

@@ -1,12 +1,16 @@
 import { Breadcrumbs } from './../../../shared/breadcrumbs/breadcrumbs';
 import { Navbar } from './../../../shared/navbar/navbar';
 import { ScrollService } from './../../../services/scroll.service';
-import { Component,  OnInit } from "@angular/core"
+import { Component, OnInit } from "@angular/core"
 import { CommonModule } from "@angular/common"
-import { RouterModule,  Router } from "@angular/router"
+import { RouterModule, Router } from "@angular/router"
 import { FormsModule } from "@angular/forms"
-import  { Location } from "@angular/common"
+import { Location } from "@angular/common"
 import { trigger, style, animate, transition, stagger, query, keyframes } from "@angular/animations"
+
+import { SeoService } from './../../../services/seo.service';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, PLATFORM_ID } from '@angular/core';
 
 interface CVAnalysis {
   score: number
@@ -146,12 +150,43 @@ export class CrearCurriculumIa implements OnInit {
     private router: Router,
     private location: Location,
     private scrollService: ScrollService,
-  ) {}
+    private seo: SeoService,
+    @Inject(PLATFORM_ID) private platformId: Object
+
+
+  ) { }
 
   ngOnInit() {
-    this.scrollService.scrollToTop()
-  }
+    if (isPlatformBrowser(this.platformId)) {
+      this.scrollService.scrollToTop();
+    }
 
+    const canonical = this.seo.absoluteUrl('/articulos/crear-curriculum-ia');
+    const ogImage = this.seo.absoluteUrl('/assets/og/crear-cv-ia.png');
+
+    this.seo.setSEO({
+      title: 'Cómo crear tu currículum con inteligencia artificial (y destacar frente a cientos de candidatos)',
+      description: 'Aprende a crear un CV profesional, optimizado para reclutadores, usando herramientas de IA. Incluye prompts, plantillas y consejos prácticos.',
+      url: canonical,
+      image: ogImage,
+      type: 'article',
+      siteName: 'Blog Tech',
+      twitterSite: '@tucuenta',
+      locale: 'es_ES',
+      publishedTime: '2025-07-30'
+    });
+
+    // Añade autor como Persona y dateModified si lo tienes
+    this.seo.setJsonLdArticle({
+      headline: 'Cómo crear tu currículum con inteligencia artificial',
+      description: 'De 0 a CV competitivo: ATS, keywords y logros medibles.',
+      authorName: 'Edinson Gómez', // mejor autor real, no “Blog Tech”
+      datePublished: '2025-07-30',
+      dateModified: '2025-08-10',   // ya aparece en la vista
+      image: ogImage,
+      url: canonical
+    });
+  }
   goBack(): void {
     this.location.back()
   }
@@ -160,24 +195,41 @@ export class CrearCurriculumIa implements OnInit {
     console.log("Bookmark toggled")
   }
 
-  shareArticle(): void {
-    if (navigator.share) {
-      navigator.share({
-        title: "Cómo crear tu currículum con inteligencia artificial",
-        text: "Aprende a crear un CV profesional y optimizado usando herramientas de IA",
-        url: window.location.href,
-      })
-    } else {
-      navigator.clipboard.writeText(window.location.href)
-      alert("URL copiada al portapapeles")
-    }
-  }
+shareArticle(): void {
+  if (!isPlatformBrowser(this.platformId)) return;
 
-  copyPrompt(prompt: string): void {
-    navigator.clipboard.writeText(prompt).then(() => {
-      console.log("Prompt copiado")
-    })
+  const url = typeof window !== 'undefined' ? window.location.href : '';
+  const data = {
+    title: 'Cómo crear tu currículum con inteligencia artificial',
+    text: 'Aprende a crear un CV profesional y optimizado usando herramientas de IA',
+    url
+  };
+
+  if (typeof navigator !== 'undefined' && (navigator as any).share) {
+    (navigator as any).share(data).catch(() => {
+      navigator.clipboard?.writeText(url);
+      alert('URL copiada al portapapeles');
+    });
+  } else {
+    navigator.clipboard?.writeText(url);
+    alert('URL copiada al portapapeles');
   }
+}
+
+copyPrompt(prompt: string): void {
+  if (!isPlatformBrowser(this.platformId)) return;
+  navigator.clipboard?.writeText(prompt).then(() => {
+    console.log('Prompt copiado');
+  }).catch(() => {
+    // Fallback simple
+    alert('Copia manual: ' + prompt);
+  });
+}
+
+scrollToAnalyzer(): void {
+  if (!isPlatformBrowser(this.platformId)) return;
+  document.getElementById('cv-analyzer')?.scrollIntoView({ behavior: 'smooth' });
+}
 
   subscribeNewsletter(): void {
     if (this.emailSubscription) {
@@ -306,9 +358,5 @@ export class CrearCurriculumIa implements OnInit {
     this.cvAnalysis = null
   }
 
-  scrollToAnalyzer(): void {
-    document.getElementById("cv-analyzer")?.scrollIntoView({
-      behavior: "smooth",
-    })
-  }
+
 }

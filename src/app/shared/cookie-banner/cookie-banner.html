@@ -1,0 +1,19 @@
+@if(showBanner){
+<div
+  class="fixed bottom-0 left-0 w-full bg-gray-900 text-white px-5 py-4 shadow-lg z-50 animate-slide-up"
+>
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+    <p class="text-sm leading-relaxed">
+      Usamos cookies para mejorar tu experiencia y mostrar anuncios personalizados.
+      Consulta nuestra
+      <a routerLink="/politica-cookies" class="underline hover:text-gray-300">Política de Cookies</a>.
+    </p>
+    <button
+      (click)="acceptCookies()"
+      class="bg-indigo-500 hover:bg-indigo-600 text-white font-medium px-4 py-2 rounded transition-colors duration-200"
+    >
+      Aceptar
+    </button>
+  </div>
+</div>
+}

@@ -1,72 +1,344 @@
 <app-navbar></app-navbar>
 
-<div class="article-container">
+<div class="max-w-6xl mx-auto min-h-screen bg-white">
   <app-breadcrumbs [items]="breadcrumbItems"></app-breadcrumbs>
 
-  <article class="article-content">
-    <header class="article-header">
-      <h1 class="article-title">Sobre IA Blog</h1>
-      <p class="subtitle">Nuestra misión: hacer la IA accesible para todos</p>
-    </header>
+  <!-- Hero Section -->
+  <header #heroSection class="px-6 md:px-10 pt-10 pb-12 bg-gradient-to-br from-indigo-50 via-blue-50 to-emerald-50 border-b border-slate-200 relative overflow-hidden" [@fadeInUp]>
+    <!-- Elementos decorativos animados -->
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+      <div class="absolute top-10 left-10 w-20 h-20 bg-gradient-to-r from-indigo-200 to-blue-200 rounded-full opacity-20 animate-pulse"></div>
+      <div class="absolute top-32 right-20 w-16 h-16 bg-gradient-to-r from-emerald-200 to-blue-200 rounded-full opacity-30 animate-bounce" style="animation-delay: 1s;"></div>
+      <div class="absolute bottom-20 left-1/4 w-12 h-12 bg-gradient-to-r from-blue-200 to-indigo-200 rounded-full opacity-25 animate-pulse" style="animation-delay: 2s;"></div>
+    </div>
 
-    <div class="article-body">
-      <p class="lead">
-        En <strong>IA Blog</strong>, creemos que la inteligencia artificial no debe ser un tema exclusivo para expertos.
-        Nuestro propósito es desmitificar la IA, ofreciendo guías prácticas, herramientas sencillas y consejos útiles
-        para que cualquier persona pueda integrar el poder de la inteligencia artificial en su vida diaria, sin necesidad
-        de conocimientos técnicos avanzados.
+    <div class="text-center max-w-4xl mx-auto relative z-10">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm border border-indigo-200 rounded-full text-sm font-medium text-indigo-700 mb-6" [@scaleIn]>
+        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+        Actualizamos contenido semanalmente
+      </div>
+
+      <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-6" [@fadeInUp]>
+        Sobre <span class="bg-gradient-to-r from-indigo-600 via-blue-600 to-emerald-600 bg-clip-text text-transparent animate-gradient">IA Blog</span>
+      </h1>
+      
+      <p class="text-xl md:text-2xl text-slate-700 mb-8 leading-relaxed" [@fadeInUp]>
+        Nuestra misión: <span class="font-semibold bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">hacer la IA útil, clara y práctica</span> para todos—sin tecnicismos innecesarios.
       </p>
 
-      <section class="content-section">
-        <h2>Nuestra Misión</h2>
-        <p>
-          Nuestra misión es empoderar a individuos y pequeñas empresas con el conocimiento y las herramientas necesarias
-          para aprovechar al máximo la inteligencia artificial. Queremos ser tu fuente de confianza para entender cómo la IA
-          puede simplificar tareas, aumentar la productividad y abrir nuevas oportunidades, todo explicado de forma clara y concisa.
+      <!-- Estadísticas Hero -->
+      <div #statsSection class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8" [@staggerCards]>
+        <div *ngFor="let stat of stats" class="stagger-item bg-white/90 backdrop-blur-sm border border-slate-200 rounded-2xl py-4 px-6 text-center hover:shadow-lg hover:scale-105 transition-all duration-300">
+          <div class="text-2xl md:text-3xl font-bold text-slate-800 mb-1">{{ stat.value }}</div>
+          <div class="text-sm text-slate-600">{{ stat.label }}</div>
+        </div>
+      </div>
+
+      <!-- Social Proof -->
+      <div class="flex flex-wrap justify-center items-center gap-6 mt-8 text-sm text-slate-600" [@fadeInUp]>
+        <div class="flex items-center gap-2">
+          <div class="flex -space-x-2">
+            <div class="w-8 h-8 bg-gradient-to-r from-indigo-400 to-blue-400 rounded-full border-2 border-white"></div>
+            <div class="w-8 h-8 bg-gradient-to-r from-emerald-400 to-blue-400 rounded-full border-2 border-white"></div>
+            <div class="w-8 h-8 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full border-2 border-white"></div>
+          </div>
+          <span>+2,500 lectores activos</span>
+        </div>
+        <div class="flex items-center gap-1">
+          <span class="text-yellow-500">★★★★★</span>
+          <span>4.9/5 en valoraciones</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <article class="px-6 md:px-10 py-12 space-y-16">
+
+    <!-- Nuestra Misión -->
+    <section [@fadeInUp]>
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Nuestra misión</h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-blue-500 mx-auto rounded-full"></div>
+      </div>
+      
+      <div class="max-w-4xl mx-auto">
+        <p class="text-lg md:text-xl text-slate-700 leading-relaxed text-center mb-12">
+          En <strong>IA Blog</strong> convertimos conceptos complejos de inteligencia artificial en ideas que puedes
+          aplicar hoy: <em>organizar tu día, mejorar tu trabajo, crear mejor contenido</em> y automatizar tareas.
+          Creamos guías claras, sin jerga innecesaria, con ejemplos reales—y todo gratis.
         </p>
-        <div class="mission-points">
-          <div class="point-item">
-            <div class="point-icon">💡</div>
-            <h4>Simplificar</h4>
-            <p>Transformamos conceptos complejos de IA en guías fáciles de entender.</p>
+
+        <div class="grid md:grid-cols-3 gap-8" [@staggerCards]>
+          <div class="stagger-item group bg-gradient-to-br from-indigo-50 to-blue-50 border border-indigo-100 rounded-2xl p-8 text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+            <div class="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">💡</div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Simplificar</h3>
+            <p class="text-slate-600 leading-relaxed">Explicamos IA sin tecnicismos y con pasos concretos que puedes seguir inmediatamente.</p>
           </div>
-          <div class="point-item">
-            <div class="point-icon">🛠️</div>
-            <h4>Empoderar</h4>
-            <p>Te damos las herramientas y el conocimiento para aplicar la IA en tu día a día.</p>
+          <div class="stagger-item group bg-gradient-to-br from-emerald-50 to-blue-50 border border-emerald-100 rounded-2xl p-8 text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+            <div class="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🛠️</div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Empoderar</h3>
+            <p class="text-slate-600 leading-relaxed">Plantillas, prompts y flujos que puedes copiar, adaptar y usar en tu contexto específico.</p>
           </div>
-          <div class="point-item">
-            <div class="point-icon">🚀</div>
-            <h4>Inspirar</h4>
-            <p>Mostramos el potencial ilimitado de la IA para mejorar tu vida y trabajo.</p>
+          <div class="stagger-item group bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 rounded-2xl p-8 text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+            <div class="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🚀</div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Inspirar</h3>
+            <p class="text-slate-600 leading-relaxed">Casos reales y ejemplos con resultados medibles de personas como tú.</p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
- 
-      <section class="content-section">
-        <h2>Qué Encontrarás Aquí</h2>
-        <ul class="content-list">
-          <li>
-            <strong>Guías Prácticas:</strong> Tutoriales paso a paso sobre cómo usar herramientas de IA como ChatGPT,
-            Canva AI, y muchas más.
-          </li>
-          <li>
-            <strong>Consejos de Productividad:</strong> Estrategias para automatizar tareas, optimizar flujos de trabajo
-            y ahorrar tiempo con la ayuda de la IA.
-          </li>
-          <li>
-            <strong>Análisis de Herramientas:</strong> Reseñas honestas y comparativas de las últimas herramientas de IA
-            disponibles en el mercado.
-          </li>
-          <li>
-            <strong>Noticias y Tendencias:</strong> Mantente informado sobre los avances más importantes y las tendencias
-            futuras en el campo de la inteligencia artificial.
-          </li>
-        </ul>
-      </section>
-
+    <!-- Qué encontrarás -->
+    <section [@fadeInUp]>
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Qué encontrarás aquí</h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-emerald-500 to-blue-500 mx-auto rounded-full"></div>
+      </div>
       
-    </div>
+      <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div class="group bg-gradient-to-r from-indigo-50 to-indigo-100 border border-indigo-200 rounded-2xl p-6 hover:shadow-lg hover:scale-105 transition-all duration-300" [@slideInLeft]>
+          <div class="flex items-start gap-4">
+            <div class="text-3xl group-hover:scale-110 transition-transform duration-300">📚</div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">Guías prácticas paso a paso</h3>
+              <p class="text-slate-700">Tutoriales detallados de ChatGPT, Notion AI, Canva AI y más herramientas, con ejemplos reales y capturas de pantalla.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="group bg-gradient-to-r from-emerald-50 to-emerald-100 border border-emerald-200 rounded-2xl p-6 hover:shadow-lg hover:scale-105 transition-all duration-300" [@slideInLeft]>
+          <div class="flex items-start gap-4">
+            <div class="text-3xl group-hover:scale-110 transition-transform duration-300">⚡</div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">Productividad con IA</h3>
+              <p class="text-slate-700">Automatiza correo, organiza tareas, gestiona tu agenda y optimiza tu flujo de trabajo diario.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="group bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 rounded-2xl p-6 hover:shadow-lg hover:scale-105 transition-all duration-300" [@slideInLeft]>
+          <div class="flex items-start gap-4">
+            <div class="text-3xl group-hover:scale-110 transition-transform duration-300">📋</div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">Prompts listos para usar</h3>
+              <p class="text-slate-700">Plantillas copiables y personalizables para acelerar tu trabajo con IA desde el primer día.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="group bg-gradient-to-r from-amber-50 to-amber-100 border border-amber-200 rounded-2xl p-6 hover:shadow-lg hover:scale-105 transition-all duration-300" [@slideInLeft]>
+          <div class="flex items-start gap-4">
+            <div class="text-3xl group-hover:scale-110 transition-transform duration-300">🔍</div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">Análisis honestos</h3>
+              <p class="text-slate-700">Comparativas reales de herramientas, elegidas por utilidad práctica, no por tendencias o marketing.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section [@fadeInUp]>
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Lo que dicen nuestros lectores</h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-emerald-500 mx-auto rounded-full"></div>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div *ngFor="let testimonial of testimonials" class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300" [@staggerCards]>
+          <div class="flex items-center gap-4 mb-4">
+            <div class="text-3xl">{{ testimonial.avatar }}</div>
+            <div>
+              <h4 class="font-semibold text-slate-900">{{ testimonial.name }}</h4>
+              <p class="text-sm text-slate-600">{{ testimonial.role }} • {{ testimonial.company }}</p>
+            </div>
+          </div>
+          <p class="text-slate-700 italic leading-relaxed">"{{ testimonial.content }}"</p>
+          <div class="flex text-yellow-500 mt-3">
+            <span>★★★★★</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sobre el autor -->
+    <section class="bg-gradient-to-r from-slate-50 to-slate-100 rounded-3xl p-8 md:p-12" [@fadeInUp]>
+      <div class="grid md:grid-cols-[200px,1fr] gap-8 items-center max-w-5xl mx-auto">
+        <div class="relative mx-auto md:mx-0">
+          <div class="w-48 h-48 rounded-full bg-gradient-to-tr from-indigo-400 via-blue-400 to-emerald-400 p-1">
+            <div class="w-full h-full rounded-full bg-gradient-to-tr from-indigo-300 to-blue-400 flex items-center justify-center text-6xl">
+              👨‍💻
+            </div>
+          </div>
+          <div class="absolute -bottom-2 -right-2 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+            IA
+          </div>
+        </div>
+        
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Sobre el equipo</h2>
+          <p class="text-lg text-slate-700 leading-relaxed mb-6">
+            Somos <strong>IA Blog</strong>, un equipo apasionado por democratizar el acceso a la inteligencia artificial. 
+            Probamos herramientas de IA cada semana y convertimos lo que funciona en guías simples y accionables. 
+            Hemos ayudado a más de 2,500 profesionales y pymes a <em>ahorrar tiempo</em>, <em>mejorar sus procesos</em> 
+            y <em>comunicar mejor</em> con IA.
+          </p>
+          
+          <div class="flex flex-wrap gap-4 mb-6">
+            <div class="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-full text-sm">
+              <span class="text-green-500">✓</span>
+              <span>+500 horas de testing</span>
+            </div>
+            <div class="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-full text-sm">
+              <span class="text-green-500">✓</span>
+              <span>25+ herramientas analizadas</span>
+            </div>
+            <div class="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-full text-sm">
+              <span class="text-green-500">✓</span>
+              <span>Actualizaciones semanales</span>
+            </div>
+          </div>
+          
+          <div class="flex flex-wrap gap-3">
+            <a routerLink="/contact" class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors">
+              ✉️ Contacto
+            </a>
+            <a routerLink="/articulos" class="inline-flex items-center gap-2 px-4 py-2 border border-slate-300 text-slate-700 rounded-lg font-medium hover:border-indigo-400 hover:text-indigo-700 transition-colors">
+              📚 Ver artículos
+            </a>
+            <button (click)="shareOnTwitter()" class="inline-flex items-center gap-2 px-4 py-2 border border-slate-300 text-slate-700 rounded-lg font-medium hover:border-blue-400 hover:text-blue-600 transition-colors">
+              🐦 Síguenos
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Metodología editorial -->
+    <section [@fadeInUp]>
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Cómo creamos el contenido</h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-emerald-500 mx-auto rounded-full"></div>
+        <p class="text-lg text-slate-600 mt-4 max-w-3xl mx-auto">
+          Seguimos un proceso riguroso para asegurar que cada guía sea práctica, actualizada y realmente útil.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="text-center group" [@staggerCards]>
+          <div class="w-16 h-16 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">1</div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3">Probamos primero</h3>
+          <p class="text-slate-600 leading-relaxed">Antes de escribir, usamos cada herramienta durante semanas, documentamos resultados y identificamos casos de uso reales.</p>
+        </div>
+        
+        <div class="text-center group" [@staggerCards]>
+          <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">2</div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3">Medimos impacto</h3>
+          <p class="text-slate-600 leading-relaxed">Incluimos métricas reales, tiempos de ahorro, ejemplos con antes/después y casos de éxito verificables.</p>
+        </div>
+        
+        <div class="text-center group" [@staggerCards]>
+          <div class="w-16 h-16 bg-gradient-to-r from-emerald-500 to-indigo-500 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">3</div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3">Actualizamos</h3>
+          <p class="text-slate-600 leading-relaxed">Revisiones mensuales, feedback de lectores y actualizaciones cuando las herramientas cambian.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section [@fadeInUp]>
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Preguntas frecuentes</h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto rounded-full"></div>
+      </div>
+      
+      <div class="max-w-4xl mx-auto space-y-4">
+        <div *ngFor="let faq of faqItems; let i = index" class="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-sm transition-all duration-300">
+          <button 
+            (click)="toggleFaq(i)"
+            class="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-slate-50 transition-colors"
+          >
+            <span class="font-semibold text-slate-900 pr-4">{{ faq.question }}</span>
+            <div class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
+              <svg 
+                class="w-4 h-4 text-slate-400 transition-transform duration-300"
+                [class.rotate-180]="faq.isOpen"
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </div>
+          </button>
+          <div 
+            class="overflow-hidden transition-all duration-300"
+            [style.max-height]="faq.isOpen ? '200px' : '0'"
+          >
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed">
+              {{ faq.answer }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- Compartir -->
+    <section class="text-center" [@fadeInUp]>
+      <h3 class="text-xl font-semibold text-slate-900 mb-4">¿Te gusta lo que hacemos?</h3>
+      <p class="text-slate-600 mb-6">Comparte IA Blog con tus colegas y amigos</p>
+      
+      <div class="flex justify-center gap-4">
+        <button 
+          (click)="shareOnTwitter()"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-xl font-medium hover:bg-blue-600 hover:scale-105 transition-all duration-300"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+          </svg>
+          Twitter
+        </button>
+        
+        <button 
+          (click)="shareOnLinkedIn()"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-blue-700 text-white rounded-xl font-medium hover:bg-blue-800 hover:scale-105 transition-all duration-300"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          LinkedIn
+        </button>
+        
+        <button 
+          (click)="copyLink()"
+          class="inline-flex items-center gap-2 px-6 py-3 border border-slate-300 text-slate-700 rounded-xl font-medium hover:border-indigo-400 hover:text-indigo-700 hover:scale-105 transition-all duration-300"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+          </svg>
+          Copiar enlace
+        </button>
+      </div>
+    </section>
+
+    <!-- Enlaces legales -->
+    <section class="border-t border-slate-200 pt-8 text-center" [@fadeInUp]>
+      <h3 class="text-lg font-semibold text-slate-900 mb-4">Transparencia & Legal</h3>
+      <div class="flex flex-wrap justify-center gap-6 text-sm mb-4">
+        <a class="text-slate-600 hover:text-indigo-600 underline transition-colors" routerLink="/aviso-legal">Aviso legal</a>
+        <a class="text-slate-600 hover:text-indigo-600 underline transition-colors" routerLink="/privacy-policy">Política de privacidad</a>
+        <a class="text-slate-600 hover:text-indigo-600 underline transition-colors" routerLink="/politica-cookies">Política de cookies</a>
+        <a class="text-slate-600 hover:text-indigo-600 underline transition-colors" routerLink="/contact">Contacto</a>
+      </div>
+      <p class="text-xs text-slate-500 max-w-2xl mx-auto leading-relaxed">
+        Este sitio puede utilizar cookies con fines de analítica y mejora de experiencia. 
+        Respetamos tu privacidad y seguimos las mejores prácticas de protección de datos. 
+        Todo nuestro contenido es original y se actualiza regularmente.
+      </p>
+    </section>
+
   </article>
 </div>

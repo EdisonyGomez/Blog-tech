@@ -12,6 +12,10 @@ import { Contact } from './pages/contact/contact';
 import { OrganizaTareas } from './pages/articulos/organiza-tareas/organiza-tareas';
 import { CrearAsistenteIa } from './pages/articulos/crear-asistente-ia/crear-asistente-ia';
 import { PlanearViajeIa } from './pages/articulos/planear-viaje-ia/planear-viaje-ia';
+import { PoliticaCookies } from './pages/politica-cookies/politica-cookies';
+import { AvisoLegal } from './pages/aviso-legal/aviso-legal';
+import { AboutMe } from './pages/about-me/about-me';
+import { UsarIaProductividad } from './pages/articulos/usar-ia-productividad/usar-ia-productividad';
 
 export const routes: Routes = [
     { path: '', component: Inicio},
@@ -25,10 +29,17 @@ export const routes: Routes = [
     { path: "articulos/planear-viaje-con-ia", component: PlanearViajeIa },
     { path: "articulos/rutina-inteligente-con-ia", component: RutinaInteligentIa },
     { path: "articulos/crear-curriculum-con-ia", component: CrearCurriculumIa },
+    { path: "articulos/productividad-con-ia", component: UsarIaProductividad },
 
+
+
+
+    { path: "politica-cookies", component: PoliticaCookies },
+    { path: "aviso-legal", component: AvisoLegal },
     { path: 'about', component: About },
     { path: 'privacy-policy', component: PrivacyPolicy },
     { path: 'contact', component: Contact },
+    { path: 'about-me', component: AboutMe },
     { path: '**', redirectTo: '' },
 
 
