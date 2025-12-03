@@ -16,6 +16,8 @@ import { PoliticaCookies } from './pages/politica-cookies/politica-cookies';
 import { AvisoLegal } from './pages/aviso-legal/aviso-legal';
 import { AboutMe } from './pages/about-me/about-me';
 import { UsarIaProductividad } from './pages/articulos/usar-ia-productividad/usar-ia-productividad';
+import { MemoriaPersonal } from './pages/articulos/memoria-personal/memoria-personal';
+import { ArticuloNanoBanana } from './pages/articulos/articulo-nano-banana/articulo-nano-banana';
 
 export const routes: Routes = [
     { path: '', component: Inicio},
@@ -30,7 +32,8 @@ export const routes: Routes = [
     { path: "articulos/rutina-inteligente-con-ia", component: RutinaInteligentIa },
     { path: "articulos/crear-curriculum-con-ia", component: CrearCurriculumIa },
     { path: "articulos/productividad-con-ia", component: UsarIaProductividad },
-
+    { path: "articulos/memoria-personal-con-ia", component: MemoriaPersonal},
+    { path: "articulos/nano-banana", component: ArticuloNanoBanana},
 
 
 

@@ -6,6 +6,7 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    
     "redirects": [
       {
         "source": "/ads.txt",
@@ -13,12 +14,14 @@
         "type": 301
       }
     ],
+
     "rewrites": [
       {
         "source": "**",
         "destination": "/index.html"
       }
     ],
+
     "headers": [
       {
         "source": "/sitemap.xml",

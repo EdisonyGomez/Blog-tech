@@ -231,8 +231,8 @@
                   <span class="sr-only">Me gusta:</span>
                   {{ articulo.likes }}
                 </span>
-                <time class="date" [dateTime]="articulo.fecha" [title]="'Publicado el ' + formatDate(articulo.fecha)">
-                  {{ formatDate(articulo.fecha) }}
+                <time class="date" [dateTime]="articulo.fecha" [title]="'Publicado el ' + articulo.fecha">
+                  {{ articulo.fecha }}
                 </time>
               </div>
               

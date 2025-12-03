@@ -73,6 +73,21 @@ export class UsarChatgpt implements OnInit, AfterViewInit {
     @Inject(DOCUMENT) private doc: Document,
   ) { }
 
+    articleMeta = {
+    categoria: "Productividad",
+    tiempoLectura: 12,
+    fechaPublicacion: "22 de agosto de 2025",
+    fechaActualizacion: "10 de agosto de 2025",
+    autorNombre: "Edinson Gomez",
+    autorFoto: "/assets/images/me/me.png",
+    autorPerfil: "/about-me",
+  };
+
+   get fechaISO(): string {
+    return "2025-08-22";
+  }
+
+
   emailSubscription = "";
   isBookmarked = false;
   readingProgress = 0;

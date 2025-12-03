@@ -6,13 +6,14 @@ import { ScrollService } from "../../../services/scroll.service"
 import { SeoService } from "../../../services/seo.service"
 import { Navbar } from "../../../shared/navbar/navbar";
 import { Breadcrumbs } from "../../../shared/breadcrumbs/breadcrumbs";
+import { AdsenseBlock } from "../../anuncios/adsense-block/adsense-block";
 
 @Component({
   selector: "app-automatizar-correo",
   templateUrl: "./automatizar-correo.html",
   styleUrls: ['./automatizar-correo.css'],   // ✅
   standalone: true,
-  imports: [Navbar, Breadcrumbs],
+  imports: [Navbar, Breadcrumbs, AdsenseBlock],
 })
 export class AutomatizarCorreo implements OnInit, OnDestroy {
   isBookmarked = false
@@ -135,6 +136,24 @@ export class AutomatizarCorreo implements OnInit, OnDestroy {
     })
 
   }
+
+
+
+    articleMeta = {
+    categoria: "Productividad",
+    tiempoLectura: 12,
+    fechaPublicacion: "22 de agosto de 2025",
+    fechaActualizacion: "10 de agosto de 2025",
+    autorNombre: "Edinson Gomez",
+    autorFoto: "/assets/images/me/me.png",
+    autorPerfil: "/about-me",
+  };
+
+   get fechaISO(): string {
+    return "2025-08-22";
+  }
+
+
 
   goBack(): void {
     this.location.back()

@@ -1,0 +1,1536 @@
+<!-- Navbar con mejor integración -->
+<app-navbar></app-navbar>
+
+<!-- Barra de progreso mejorada con animaciones y colores dinámicos -->
+<div class="fixed inset-x-0 top-0 z-50 h-1 bg-gray-200/70 backdrop-blur-sm">
+  <div id="readingProgress" class="h-1 w-0 transition-all duration-300 ease-out" [class]="progressColor()"></div>
+</div>
+
+<!-- Toast notification system -->
+@if (showToast()) {
+<div class="fixed top-20 right-4 z-50 animate-in slide-in-from-right-full duration-300">
+  <div class="rounded-lg bg-white border border-gray-200 shadow-lg px-4 py-3 max-w-sm">
+    <p class="text-sm text-gray-800">{{ toastMessage() }}</p>
+  </div>
+</div>
+}
+
+<!-- Botón back to top flotante -->
+@if (showBackToTop()) {
+<button (click)="scrollToTop()"
+  class="fixed bottom-20 right-4 z-40 p-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 hover:scale-110 transition-all duration-200 group"
+  title="Volver al inicio">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="group-hover:-translate-y-0.5 transition-transform">
+    <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" />
+  </svg>
+</button>
+}
+
+<div class="article-container mx-auto max-w-4xl px-4 lg:max-w-5xl">
+  <!-- Breadcrumbs mejorados -->
+  <app-breadcrumbs [items]="breadcrumbItems" class="mb-6"></app-breadcrumbs>
+
+  <!-- Botón volver con mejor diseño -->
+  <button data-back-button
+    class="group mb-6 inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-all duration-200 hover:gap-3"
+    (click)="goBack()" title="Regresar">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="transition-transform group-hover:-translate-x-1">
+      <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" />
+    </svg>
+    <span class="font-medium">Regresar</span>
+  </button>
+
+
+  <!-- Header del artículo con diseño más atractivo -->
+  <header
+    class="relative mb-10 rounded-3xl border border-gray-200 bg-gradient-to-br from-white to-gray-50/50 p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
+    <!-- Tags mejorados con iconos -->
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+      <div class="flex items-center gap-3">
+        <span
+          class="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1.5 text-xs font-semibold text-blue-700 border border-blue-200">
+          🤖 Inteligencia Artificial
+        </span>
+        <span class="text-xs text-gray-400">•</span>
+        <span class="inline-flex items-center gap-1 text-xs text-gray-600 font-medium">
+          📚 Guía práctica
+        </span>
+        <span class="text-xs text-gray-400">•</span>
+        <span class="inline-flex items-center gap-1 text-xs text-gray-600 font-medium">
+          🎨 UI/UX + SEO
+        </span>
+      </div>
+
+      <!-- Autor -->
+      <div
+        class="article-author-section flex items-center gap-3 mt-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-100 hover:shadow-md transition-all duration-300">
+        <div class="author-avatar relative">
+          <img [src]="articleMeta.autorFoto" [alt]="'Foto de ' + articleMeta.autorNombre"
+            class="w-12 h-12 rounded-full object-cover ring-2 ring-blue-200 hover:ring-blue-400 transition-all duration-300" />
+          <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
+        </div>
+
+        <div class="author-info flex-1">
+          <p class="text-sm text-gray-600 mb-1">Escrito por</p>
+          <a [href]="articleMeta.autorPerfil"
+            class="inline-flex items-center gap-2 font-semibold text-gray-900 hover:text-blue-600 transition-colors duration-200 group">
+            <span class="text-lg">{{ articleMeta.autorNombre }}</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              class="opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-200">
+              <path d="m9 18 6-6-6-6"></path>
+            </svg>
+          </a>
+          <p class="text-xs text-gray-500 mt-1">
+            Actualizado el <time class="font-medium">{{ articleMeta.fechaActualizacion }}</time>
+          </p>
+          <p class="text-xs text-gray-400 mt-2 italic">
+            ✨ Contenido redactado y editado por {{ articleMeta.autorNombre }} con apoyo de herramientas de IA.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Título principal mejorado -->
+    <h1
+      class="text-3xl font-bold leading-tight text-gray-900 md:text-4xl lg:text-5xl mb-6 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text">
+      Cómo usar "Nano Banana" de Google (Gemini 2.5 Flash Image) para crear y editar imágenes con IA
+    </h1>
+
+    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+      Guía completa para principiantes: desde la configuración inicial hasta la integración avanzada
+    </p>
+
+
+
+    <!-- Cards de valor mejoradas -->
+    <div class="mt-8 grid gap-4 md:grid-cols-3">
+      <div
+        class="group rounded-2xl border border-gray-200 p-6 hover:border-blue-200 hover:bg-blue-50/30 transition-all duration-300">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-2xl">🎯</span>
+          <p class="text-sm font-bold text-gray-900">Qué aprenderás</p>
+        </div>
+        <ul class="space-y-1 text-sm text-gray-600">
+          <li class="flex items-start gap-2">
+            <span class="text-green-500 mt-0.5">✓</span>
+            <span>Instalar y configurar el entorno</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-500 mt-0.5">✓</span>
+            <span>Generar imágenes sin código</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-500 mt-0.5">✓</span>
+            <span>Integrar con JS/Python vía API</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-green-500 mt-0.5">✓</span>
+            <span>Editar y fusionar imágenes por texto</span>
+          </li>
+        </ul>
+      </div>
+
+      <div
+        class="group rounded-2xl border border-gray-200 p-6 hover:border-purple-200 hover:bg-purple-50/30 transition-all duration-300">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-2xl">👥</span>
+          <p class="text-sm font-bold text-gray-900">Para quién</p>
+        </div>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          Personas sin experiencia que deseen crear recursos visuales de forma rápida, diseñadores que quieran acelerar
+          su flujo y desarrolladores que busquen integrar IA en productos reales.
+        </p>
+      </div>
+
+      <div
+        class="group rounded-2xl border border-gray-200 p-6 hover:border-orange-200 hover:bg-orange-50/30 transition-all duration-300">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-2xl">⚙️</span>
+          <p class="text-sm font-bold text-gray-900">Requisitos</p>
+        </div>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          Cuenta en Google AI Studio, clave de API, nociones básicas de archivos/imágenes y, opcional, Node.js o Python
+          para la integración con código.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- CTA flotante mejorado -->
+  <a href="#cta-final" class="fixed bottom-6 right-6 z-40 group">
+    <div
+      class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-blue-700 px-5 py-3 text-sm font-semibold text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+        class="group-hover:rotate-90 transition-transform duration-300">
+        <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" />
+      </svg>
+      <span>Recursos del artículo</span>
+    </div>
+  </a>
+
+  <!-- Índice navegable mejorado -->
+  <nav aria-label="Índice" class="mb-10 rounded-3xl border border-gray-200 bg-white p-8 shadow-sm">
+    <div class="flex items-center gap-2 mb-6">
+      <span class="text-2xl">📋</span>
+      <p class="text-lg font-bold text-gray-900">Índice del contenido</p>
+      <div class="ml-auto text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">
+        {{ progressPercentage() }}% completado
+      </div>
+    </div>
+    <ol class="grid gap-3 md:grid-cols-2 text-sm">
+      <li>
+        <button type="button"
+          class="flex items-center gap-2 text-blue-700 hover:text-blue-900 hover:underline transition-colors p-2 rounded-lg hover:bg-blue-50"
+          [class.bg-blue-100]="activeSection() === 'introduccion'" (click)="scrollTo('introduccion')">
+          <span class="text-base">🚀</span> 1. Introducción
+        </button>
+      </li>
+
+      <li>
+        <button type="button"
+          class="flex items-center gap-2 text-blue-700 hover:text-blue-900 hover:underline transition-colors p-2 rounded-lg hover:bg-blue-50"
+          [class.bg-blue-100]="activeSection() === 'que-es'" (click)="scrollTo('que-es')">
+          <span class="text-base">🤔</span> 2. ¿Qué es "Nano Banana"?
+        </button>
+      </li>
+      <li>
+        <button type="button"
+          class="flex items-center gap-2 text-blue-700 hover:text-blue-900 hover:underline transition-colors p-2 rounded-lg hover:bg-blue-50"
+          [class.bg-blue-100]="activeSection() === 'requisitos'" (click)="scrollTo('requisitos')">
+          <span class="text-base">⚙️</span> 3. Requisitos y configuración
+        </button>
+      </li>
+      <li>
+        <button type="button"
+          class="flex items-center gap-2 text-blue-700 hover:text-blue-900 hover:underline transition-colors p-2 rounded-lg hover:bg-blue-50"
+          [class.bg-blue-100]="activeSection() === 'generacion-sin-codigo'" (click)="scrollTo('generacion-sin-codigo')">
+          <span class="text-base">🎨</span> 4. Generación sin código
+        </button>
+      </li>
+      <li>
+        <button type="button"
+          class="flex items-center gap-2 text-blue-700 hover:text-blue-900 hover:underline transition-colors p-2 rounded-lg hover:bg-blue-50"
+          [class.bg-blue-100]="activeSection() === 'js'" (click)="scrollTo('js')">
+          <span class="text-base">💻</span> 5. Integración con JavaScript
+        </button>
+      </li>
+      <li>
+        <button type="button"
+          class="flex items-center gap-2 text-blue-700 hover:text-blue-900 hover:underline transition-colors p-2 rounded-lg hover:bg-blue-50"
+          [class.bg-blue-100]="activeSection() === 'python'" (click)="scrollTo('python')">
+          <span class="text-base">🐍</span> 6. Integración con Python
+        </button>
+      </li>
+      <li>
+        <button type="button"
+          class="flex items-center gap-2 text-blue-700 hover:text-blue-900 hover:underline transition-colors p-2 rounded-lg hover:bg-blue-50"
+          [class.bg-blue-100]="activeSection() === 'api'" (click)="scrollTo('api')">
+          <span class="text-base">🔌</span> 6.5. Uso de la API REST
+        </button>
+      </li>
+      <li>
+        <button type="button"
+          class="flex items-center gap-2 text-blue-700 hover:text-blue-900 hover:underline transition-colors p-2 rounded-lg hover:bg-blue-50"
+          [class.bg-blue-100]="activeSection() === 'edicion'" (click)="scrollTo('edicion')">
+          <span class="text-base">✂️</span> 7. Edición de imágenes por texto
+        </button>
+      </li>
+      <li>
+        <button type="button"
+          class="flex items-center gap-2 text-blue-700 hover:text-blue-900 hover:underline transition-colors p-2 rounded-lg hover:bg-blue-50"
+          [class.bg-blue-100]="activeSection() === 'fusion'" (click)="scrollTo('fusion')">
+          <span class="text-base">🔀</span> 8. Fusión de imágenes
+        </button>
+      <li>
+        <button type="button"
+          class="flex items-center gap-2 text-blue-700 hover:text-blue-900 hover:underline transition-colors p-2 rounded-lg hover:bg-blue-50"
+          [class.bg-blue-100]="activeSection() === 'prompts'" (click)="scrollTo('prompts')">
+          <span class="text-base">💡</span> 9. Prompts recomendados
+        </button>
+      </li>
+      <li>
+        <button type="button"
+          class="flex items-center gap-2 text-blue-700 hover:text-blue-900 hover:underline transition-colors p-2 rounded-lg hover:bg-blue-50"
+          [class.bg-blue-100]="activeSection() === 'ejemplos-practicos'" (click)="scrollTo('ejemplos-practicos')">
+          <span class="text-base">🎬</span> 10. Ejemplos prácticos
+        </button>
+      </li>
+      <li>
+        <button type="button"
+          class="flex items-center gap-2 text-blue-700 hover:text-blue-900 hover:underline transition-colors p-2 rounded-lg hover:bg-blue-50"
+          [class.bg-blue-100]="activeSection() === 'buenas-practicas'" (click)="scrollTo('buenas-practicas')">
+          <span class="text-base">⭐</span> 11. Buenas prácticas
+        </button>
+      </li>
+      <li>
+        <button type="button"
+          class="flex items-center gap-2 text-blue-700 hover:text-blue-900 hover:underline transition-colors p-2 rounded-lg hover:bg-blue-50"
+          [class.bg-blue-100]="activeSection() === 'faq'" (click)="scrollTo('faq')">
+          <span class="text-base">❓</span> 12. Preguntas frecuentes
+        </button>
+      </li>
+      <li>
+        <button type="button"
+          class="flex items-center gap-2 text-blue-700 hover:text-blue-900 hover:underline transition-colors p-2 rounded-lg hover:bg-blue-50"
+          [class.bg-blue-100]="activeSection() === 'cta-final'" (click)="scrollTo('cta-final')">
+          <span class="text-base">🎁</span> 13. Recursos y enlaces útiles
+        </button>
+      </li>
+    </ol>
+  </nav>
+
+  <article class="article-content prose prose-lg prose-gray max-w-none">
+    <!-- 1) Introducción -->
+    <section id="introduccion" class="scroll-mt-24">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-4xl">🚀</span>
+        <h2 class="text-3xl font-bold text-gray-900 m-0">Introducción</h2>
+      </div>
+
+      <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100 mb-6">
+        <p class="text-lg leading-relaxed text-gray-800 m-0">
+          "Nano Banana" es el apodo con el que se conoce, de manera informal, a la generación nativa de imágenes del
+          modelo <strong class="text-blue-700">Gemini 2.5 Flash Image</strong> de Google. Más allá del nombre curioso,
+          el aporte real es que puedes <strong>crear</strong> o <strong>editar</strong> imágenes describiendo con
+          palabras lo que quieres lograr.
+        </p>
+      </div>
+
+      <p class="text-gray-700 leading-relaxed">
+        Desde un retrato con fondo desenfocado hasta un póster con estética retro o una composición de producto sobre un
+        escenario específico. La gran ventaja para personas sin experiencia es que no hay que partir de herramientas
+        complejas: puedes comenzar desde el navegador, en Google AI Studio, y en minutos tener resultados aprovechables.
+      </p>
+
+      <p class="text-gray-700 leading-relaxed">
+        Si ya programas, la API te permite integrar flujos de generación y edición en aplicaciones web, paneles internos
+        o pipelines creativos. Este artículo explica las dos rutas: <strong class="text-green-600">sin código</strong>
+        para validar ideas de inmediato, y <strong class="text-purple-600">con código</strong> para llevarlo a
+        producción con JavaScript o Python.
+      </p>
+    </section>
+
+
+    <!-- Bloque AdSense manual -->
+    <app-adsense-block adSlot="5928675878"></app-adsense-block>
+
+
+    <!-- 2) ¿Qué es? -->
+    <section id="que-es" class="scroll-mt-24 mt-12">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-4xl">🤔</span>
+        <h2 class="text-3xl font-bold text-gray-900 m-0">¿Qué es "Nano Banana" y por qué es útil?</h2>
+      </div>
+
+      <p class="text-gray-700 leading-relaxed">
+        Cuando hablamos de "Nano Banana" nos referimos a la capacidad del modelo de Google para <strong
+          class="text-blue-600">generar</strong> y <strong class="text-green-600">editar</strong> imágenes a partir de
+        instrucciones en lenguaje natural. Mientras que otras herramientas requieren múltiples pasos en editores como
+        Photoshop, aquí describes el resultado deseado y el modelo se encarga del resto.
+      </p>
+
+      <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200 my-6">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🎯</span>
+          Es especialmente útil para quienes necesitan:
+        </h3>
+        <ul class="space-y-3 text-gray-700">
+          <li class="flex items-start gap-3">
+            <span class="text-blue-500 mt-1">🔸</span>
+            <span><strong>Prototipar</strong> ideas visuales para redes, blogs y landing pages.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-green-500 mt-1">🔸</span>
+            <span>Preparar <strong>bocetos</strong> de branding o estilos fotográficos antes de una sesión real.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-purple-500 mt-1">🔸</span>
+            <span>Hacer <strong>retoques rápidos</strong> en imágenes existentes (eliminar objetos, corregir color,
+              desenfoque selectivo).</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-orange-500 mt-1">🔸</span>
+            <span>Construir <strong>catálogos de producto</strong> con variantes de iluminación, fondo y
+              encuadre.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 3) Requisitos -->
+    <section id="requisitos" class="scroll-mt-24">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-4xl">⚙️</span>
+        <h2 class="text-3xl font-bold text-gray-900 m-0">Requisitos y configuración inicial</h2>
+      </div>
+
+      <div class="grid gap-4 md:grid-cols-2 mb-6">
+        <div class="bg-blue-50 rounded-xl p-5 border border-blue-200">
+          <h3 class="font-semibold text-blue-900 mb-3 flex items-center gap-2">
+            <span>🔑</span> Cuenta y clave
+          </h3>
+          <p class="text-blue-800 text-sm">Crea tu API key en Google AI Studio y guárdala como variable de entorno <code
+              class="bg-blue-100 px-2 py-1 rounded">GEMINI_API_KEY</code></p>
+        </div>
+
+        <div class="bg-green-50 rounded-xl p-5 border border-green-200">
+          <h3 class="font-semibold text-green-900 mb-3 flex items-center gap-2">
+            <span>🛤️</span> Elección de ruta
+          </h3>
+          <p class="text-green-800 text-sm">Comienza con el flujo <em>sin código</em> (AI Studio) para validar, luego
+            pasa a integración <em>con código</em></p>
+        </div>
+
+        <div class="bg-purple-50 rounded-xl p-5 border border-purple-200">
+          <h3 class="font-semibold text-purple-900 mb-3 flex items-center gap-2">
+            <span>🎯</span> Modelo correcto
+          </h3>
+          <p class="text-purple-800 text-sm">Usa el identificador <code
+              class="bg-purple-100 px-2 py-1 rounded">gemini-2.5-flash-image</code> en tus solicitudes</p>
+        </div>
+
+        <div class="bg-orange-50 rounded-xl p-5 border border-orange-200">
+          <h3 class="font-semibold text-orange-900 mb-3 flex items-center gap-2">
+            <span>⚖️</span> Licencias y políticas
+          </h3>
+          <p class="text-orange-800 text-sm">Respeta usos permitidos, privacidad y marcas de agua invisibles (SynthID)
+            aplicadas en contenido generado</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4) No-code -->
+    <section id="generacion-sin-codigo" class="scroll-mt-24">
+      <header class="mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight">🎨 Generación sin código en Google AI Studio</h2>
+        <p class="mt-2 text-slate-600">
+          Empieza a crear imágenes con <strong>Gemini 2.5 Flash Image</strong> directamente desde el navegador, sin
+          instalar SDKs.
+          Sigue estos pasos con capturas y notas claras para principiantes.
+        </p>
+      </header>
+
+      <!-- Paso a paso -->
+      <ol class="space-y-6">
+        <!-- Paso 1 -->
+        <li class="bg-white/70 backdrop-blur rounded-2xl p-5 shadow-sm ring-1 ring-slate-200">
+          <div class="flex items-start gap-4">
+            <span
+              class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white font-semibold">1</span>
+            <div class="grow">
+              <h3 class="text-lg md:text-xl font-semibold">Accede y crea tu cuenta</h3>
+              <p class="mt-2 text-slate-700">
+                Entra a <a href="https://aistudio.google.com/" target="_blank" rel="noopener"
+                  class="text-blue-600 hover:underline">Google AI Studio</a> con tu cuenta de Google.
+                En la pantalla inicial, haz clic en <span class="font-medium">“Use Google AI Studio/ Try Gemini”</span>
+              </p>
+              <figure class="mt-3 rounded-xl border border-slate-200 p-3 bg-slate-50">
+                <!-- Reemplaza el src por tu captura -->
+                <img src="/assets/images/nano-banana/inicio.png"
+                  alt="Pantalla de creación de proyecto en Google AI Studio" class="rounded-lg w-full object-cover">
+                <figcaption class="mt-2 text-sm text-slate-500"> botón “Try Gemini”.
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </li>
+
+        <!-- Paso 2 -->
+        <li class="bg-white/70 backdrop-blur rounded-2xl p-5 shadow-sm ring-1 ring-slate-200">
+          <div class="flex items-start gap-4">
+            <span
+              class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white font-semibold">2</span>
+            <div class="grow">
+              <h3 class="text-lg md:text-xl font-semibold">Acepta los terminos y condiciones</h3>
+              <figure class="mt-3 rounded-xl border border-slate-200 p-3 bg-slate-50">
+                <!-- Reemplaza el src por tu captura -->
+                <img src="/assets/images/nano-banana/terminos.png"
+                  alt="Pantalla de creación de proyecto en Google AI Studio" class="rounded-lg w-full object-cover">
+                <figcaption class="mt-2 text-sm text-slate-500"> Terminos y condiciones.
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </li>
+
+        <!-- Paso 3 -->
+        <li class="bg-white/70 backdrop-blur rounded-2xl p-5 shadow-sm ring-1 ring-slate-200">
+          <div class="flex items-start gap-4">
+            <span
+              class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white font-semibold">3</span>
+            <div class="grow">
+              <h3 class="text-lg md:text-xl font-semibold">Selecciona el modelo correcto</h3>
+              <p class="mt-2 text-slate-700">
+                Abre el selector de modelos y elige <code
+                  class="px-2 py-0.5 rounded bg-slate-100 text-slate-800">gemini-2.5-flash-image-preview</code>.
+                Evita confundirlo con <code>gemini-pro</code> (texto) o <code>gemini-1.5</code> (multimodal).
+              </p>
+              <div class="mt-3 grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
+                  <p class="text-sm font-semibold text-emerald-800">✔ Generación de imágenes</p>
+                  <p class="text-sm text-emerald-700">gemini-2.5-flash-image-preview</p>
+                </div>
+                <div class="rounded-xl border border-slate-200 p-4">
+                  <p class="text-sm font-semibold text-slate-700">Texto</p>
+                  <p class="text-sm text-slate-600">gemini-pro</p>
+                </div>
+                <div class="rounded-xl border border-slate-200 p-4">
+                  <p class="text-sm font-semibold text-slate-700">Multimodal</p>
+                  <p class="text-sm text-slate-600">gemini-1.5</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="grow">
+            <figure class="mt-3 rounded-xl border border-slate-200 p-3 bg-slate-50">
+              <!-- Reemplaza el src por tu captura -->
+              <img src="/assets/images/nano-banana/seleccion-modelo.png"
+                alt="Pantalla de selección de modelos de generación" class="rounded-lg w-full object-cover">
+              <figcaption class="mt-2 text-sm text-slate-500"> Modelos de generación
+              </figcaption>
+            </figure>
+          </div>
+        </li>
+
+        <!-- Paso 4 escribir prompt -->
+        <li class="bg-white/70 backdrop-blur rounded-2xl p-5 shadow-sm ring-1 ring-slate-200">
+          <div class="flex items-start gap-4">
+            <span
+              class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white font-semibold">4</span>
+            <div class="grow">
+              <h3 class="text-lg md:text-xl font-semibold">Escribe un prompt claro (descripción)</h3>
+              <p class="mt-2 text-slate-700">
+                Indica <strong>sujeto</strong>, <strong>luz</strong>, <strong>ambiente</strong>, <strong>estilo</strong>
+                y <strong>tamaño</strong>.
+                Evita frases vagas como “hazlo bonito”. Sé específico.
+              </p>
+              <div class="mt-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
+                <p class="text-sm font-semibold text-slate-800 mb-2">Plantilla orientativa</p>
+                <pre
+                  class="text-sm leading-relaxed whitespace-pre-wrap text-slate-800"><code>Sujeto principal + entorno + tipo de luz + estilo/estética + encuadre + resolución/aspect ratio
+Ej.: “Taza de café cerámica blanca sobre mesa de madera clara, luz lateral suave, estilo editorial realista, encuadre cercano, formato cuadrado 1024x1024”.</code></pre>
+              </div>
+
+              <!-- Sección de imagen -->
+              <div class="grow">
+                <figure class="mt-3 rounded-xl border border-slate-200 p-3 bg-slate-50">
+                  <img src="/assets/images/nano-banana/propt-inicial.png" alt="Prompt inicial"
+                    class="rounded-lg w-full object-cover">
+                  <figcaption class="mt-2 text-sm text-slate-500"> Prompt
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Paso 5-->
+        <li class="bg-white/70 backdrop-blur rounded-2xl p-5 shadow-sm ring-1 ring-slate-200">
+          <div class="flex items-start gap-4">
+            <span
+              class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white font-semibold">5</span>
+            <div class="grow">
+              <h3 class="text-lg md:text-xl font-semibold">Configura los parámetros clave</h3>
+              <p class="mt-2 text-slate-700">Ajusta estos controles en el panel lateral de AI Studio:</p>
+
+              <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Resolución -->
+                <div class="rounded-2xl border border-slate-200 p-4">
+                  <p class="text-sm font-semibold text-slate-800">Resolución</p>
+                  <ul class="mt-1 text-sm text-slate-700 space-y-1">
+                    <li>512×512 → rápido, pruebas.</li>
+                    <li><strong>1024×1024</strong> → balance recomendado.</li>
+                    <li>2048×2048 → máxima calidad (más tiempo).</li>
+                  </ul>
+                </div>
+                <!-- Temperature -->
+                <div class="rounded-2xl border border-slate-200 p-4">
+                  <p class="text-sm font-semibold text-slate-800">Temperature (creatividad)</p>
+                  <ul class="mt-1 text-sm text-slate-700 space-y-1">
+                    <li>0.3 → resultados consistentes.</li>
+                    <li><strong>0.5–0.7</strong> → balance.</li>
+                    <li>1.0 → más variedad, menos control.</li>
+                  </ul>
+                </div>
+                <!-- Aspect Ratio -->
+                <div class="rounded-2xl border border-slate-200 p-4">
+                  <p class="text-sm font-semibold text-slate-800">Relación de aspecto</p>
+                  <ul class="mt-1 text-sm text-slate-700 space-y-1">
+                    <li>1:1 → cuadrado (producto, catálogo).</li>
+                    <li>16:9 → horizontal (web, slides).</li>
+                    <li>9:16 → vertical (reels/historias).</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="mt-4 rounded-xl border-l-4 border-amber-400 bg-amber-50 p-4">
+                <p class="text-sm text-amber-900">
+                  <strong>Consejo:</strong> comienza con 1024×1024 y Temperature 0.5. Si buscas estilos más creativos,
+                  sube gradualmente la Temperature.
+                </p>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Paso 6 Genera el resultado -->
+        <li class="bg-white/70 backdrop-blur rounded-2xl p-5 shadow-sm ring-1 ring-slate-200">
+          <div class="flex items-start gap-4">
+            <span
+              class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white font-semibold">6</span>
+            <div class="grow">
+              <h3 class="text-lg md:text-xl font-semibold">Genera, evalúa y refina</h3>
+              <p class="mt-2 text-slate-700">
+                Haz clic en <span class="font-medium">Run</span>. Cuando aparezca el resultado:
+              </p>
+              <ul class="mt-2 list-disc pl-5 text-slate-700 space-y-1">
+                <li><strong>Evalúa</strong> luz, encuadre y texturas.</li>
+                <li><strong>Refina</strong> el prompt con cambios puntuales:
+                  <em>“incrementa contraste de sombras”</em>, <em>“bokeh más suave en fondo”</em>, <em>“mantén textura
+                    natural de piel”</em>.
+                </li>
+                <li><strong>Repite</strong> hasta lograr coherencia con tu objetivo.</li>
+              </ul>
+              <figure class="mt-3 rounded-xl border border-slate-200 p-3 bg-slate-50">
+                <!-- Reemplaza el src por tu captura -->
+                <img src="/assets/images/nano-banana/imagen -generada-1.png" alt="Botón Run y panel de resultados"
+                  class="rounded-lg w-full object-cover">
+                <figcaption class="mt-2 text-sm text-slate-500">botón “Run” y primer resultado</figcaption>
+              </figure>
+            </div>
+          </div>
+        </li>
+
+      </ol>
+
+      <!-- Ejemplo guiado -->
+      <div class="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <h3 class="text-lg md:text-xl font-semibold">🔍 Ejemplo guiado (listo para replicar)</h3>
+        <div class="mt-4 grid gap-4 md:grid-cols-3">
+          <div class="rounded-xl border border-slate-200 p-4">
+            <p class="text-sm font-semibold text-slate-800">Prompt</p>
+            <pre class="mt-2 text-sm text-slate-800 whitespace-pre-wrap"><code>Retrato corporativo realista de mujer joven en oficina moderna, 
+bokeh cálido de fondo, luz lateral suave tipo softbox, 
+encuadre medio, formato 1024x1024.</code></pre>
+          </div>
+          <div class="rounded-xl border border-slate-200 p-4">
+            <p class="text-sm font-semibold text-slate-800">Parámetros</p>
+            <ul class="mt-2 text-sm text-slate-700 space-y-1">
+              <li>Resolución: 1024×1024</li>
+              <li>Temperature: 0.5</li>
+              <li>Aspect Ratio: 1:1</li>
+            </ul>
+          </div>
+          <div class="rounded-xl border border-slate-200 p-4">
+            <p class="text-sm font-semibold text-slate-800">Refinamientos típicos</p>
+            <ul class="mt-2 text-sm text-slate-700 space-y-1">
+              <li>“mantén textura natural de la piel”</li>
+              <li>“reduce brillo en frente y mejillas”</li>
+              <li>“bokeh ligeramente más suave”</li>
+            </ul>
+          </div>
+        </div>
+        <!-- Imagenes esperadas -->
+        <div class="mt-4  gap-4 md:grid-cols-2">
+          <figure class="rounded-xl border border-slate-200 p-3 bg-slate-50">
+            <img src="/assets/images/nano-banana/mujer.png" alt="Resultado esperado del retrato corporativo"
+              class="rounded-lg w-full object-cover">
+            <figcaption class="mt-2 text-sm text-slate-500">Resultado esperado: retrato listo para perfil profesional.
+              <p class="mt-2 text-center text-gray-400">imagen creada con NanoBanana</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Checklist y resolución de problemas -->
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <h4 class="text-base font-semibold">✅ Checklist antes de descargar</h4>
+          <ul class="mt-3 list-disc pl-5 text-slate-700 space-y-1">
+            <li>La luz y el color se ven naturales y consistentes.</li>
+            <li>No hay artefactos en bordes de objetos o cabello.</li>
+            <li>La resolución y el aspecto (1:1, 16:9, 9:16) son los que necesitas.</li>
+            <li>Guardaste el prompt/alias para repetir el estilo.</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <h4 class="text-base font-semibold">🛠️ Si algo sale mal</h4>
+          <details class="mt-2 rounded-lg border border-slate-200 p-3">
+            <summary class="cursor-pointer font-medium">Sombras extrañas o poco realistas</summary>
+            <p class="mt-2 text-sm text-slate-700">Añade: “sombras suaves y coherentes con luz lateral”, “reflejos
+              sutiles, sin halo”.</p>
+          </details>
+          <details class="mt-2 rounded-lg border border-slate-200 p-3">
+            <summary class="cursor-pointer font-medium">Piel demasiado plastificada</summary>
+            <p class="mt-2 text-sm text-slate-700">Añade: “mantén textura natural de piel”, “evita suavizado excesivo”.
+              Baja la Temperature a 0.4–0.5.</p>
+          </details>
+          <details class="mt-2 rounded-lg border border-slate-200 p-3">
+            <summary class="cursor-pointer font-medium">Fondo con ruido o bokeh inconsistente</summary>
+            <p class="mt-2 text-sm text-slate-700">Indica: “bokeh uniforme y suave”, “fondo limpio sin artefactos”.
+              Prueba 1024×1024 o mayor.</p>
+          </details>
+        </div>
+      </div>
+
+      <!-- Nota de políticas -->
+      <div class="mt-8 rounded-xl border-l-4 border-sky-400 bg-sky-50 p-4">
+        <p class="text-sm text-sky-900">
+          <strong>Nota:</strong> respeta las políticas de uso de contenido y privacidad.
+          El contenido generado puede incluir <em>marcas de agua invisibles (SynthID)</em> para trazabilidad.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- 5) JavaScript -->
+    <section id="js" class="scroll-mt-24 mt-10">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-4xl">💻</span>
+        <h2 class="text-3xl font-bold text-gray-900 m-0">Integración con JavaScript (SDK oficial)</h2>
+      </div>
+
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Cuando necesites automatizar o incorporar la generación de imágenes a un sitio o herramienta interna, la
+        integración con JavaScript es muy directa. La idea general es: instancias el cliente con tu API key, envías la
+        descripción (y opcionalmente una imagen) y guardas el binario devuelto como archivo.
+      </p>
+
+      <div class="bg-gradient-to-r from-yellow-50 to-amber-50 rounded-2xl p-6 border border-yellow-200 mb-6">
+        <h3 class="text-lg font-semibold text-yellow-900 mb-4 flex items-center gap-2">
+          <span class="text-2xl">🔄</span>
+          Flujo de trabajo explicado para principiantes
+        </h3>
+        <div class="grid gap-3 md:grid-cols-2">
+          <div class="flex items-center gap-3">
+            <span class="text-blue-500">🔧</span>
+            <span class="text-yellow-800"><strong>Inicializar:</strong> instala el SDK y crea un cliente con tu
+              clave</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-green-500">📝</span>
+            <span class="text-yellow-800"><strong>Describir:</strong> arma un texto claro con el resultado
+              deseado</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-purple-500">⚡</span>
+            <span class="text-yellow-800"><strong>Generar:</strong> envía la solicitud al modelo y espera la
+              respuesta</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-orange-500">💾</span>
+            <span class="text-yellow-800"><strong>Guardar:</strong> recorre las partes de la respuesta y escribe el
+              archivo</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="flex items-center justify-between mb-3">
+          <h4 class="text-lg font-semibold text-gray-900 flex items-center gap-2">
+            <span class="text-2xl">📄</span>
+            Ejemplo completo en JavaScript
+          </h4>
+          <button (click)="copyCodeToClipboard(jsCodeExample, 'JavaScript')"
+            class="px-3 py-1.5 text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors flex items-center gap-1">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M8 4v12a2 2 0 002 2h8a2 2 0 002-2V7.242a2 2 0 00-.602-1.43L16.83 2.28A2 2 0 0015.41 2H10a2 2 0 00-2 2z"
+                stroke="currentColor" stroke-width="2" />
+              <path d="M16 18v2a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2h2" stroke="currentColor" stroke-width="2" />
+            </svg>
+            Copiar
+          </button>
+        </div>
+        <pre
+          class="rounded-2xl bg-gray-900 p-6 text-sm text-gray-100 overflow-auto border border-gray-700 hover:border-gray-600 transition-colors"><code>{{jsCodeExample }}</code>
+        </pre>
+      </div>
+    </section>
+
+    <!-- 6) Python -->
+    <section id="python" class="scroll-mt-24 mt-10">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-4xl">🐍</span>
+        <h2 class="text-3xl font-bold text-gray-900 m-0">Integración con Python (SDK oficial)</h2>
+      </div>
+
+      <p class="text-gray-700 leading-relaxed mb-6">
+        En Python el patrón es idéntico: crea el cliente, envía la descripción y guarda la imagen. Si trabajas en
+        ciencia de datos, esta ruta es cómoda para incorporar el modelo a notebooks o scripts de preproducción.
+      </p>
+
+      <div class="relative">
+        <div class="flex items-center justify-between mb-3">
+          <h4 class="text-lg font-semibold text-gray-900 flex items-center gap-2">
+            <span class="text-2xl">📄</span>
+            Ejemplo completo en Python
+          </h4>
+          <button (click)="copyCodeToClipboard(pythonCodeExample, 'Python')"
+            class="px-3 py-1.5 text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors flex items-center gap-1">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M8 4v12a2 2 0 002 2h8a2 2 0 002-2V7.242a2 2 0 00-.602-1.43L16.83 2.28A2 2 0 0015.41 2H10a2 2 0 00-2 2z"
+                stroke="currentColor" stroke-width="2" />
+              <path d="M16 18v2a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2h2" stroke="currentColor" stroke-width="2" />
+            </svg>
+            Copiar
+          </button>
+        </div>
+        <pre
+          class="rounded-2xl bg-gray-900 p-6 text-sm text-gray-100 overflow-auto border border-gray-700 hover:border-gray-600 transition-colors"><code>{{ pythonCodeExample }}</code>
+        </pre>
+      </div>
+    </section>
+
+    <!-- 7) cURL -->
+    <section id="curl" class="scroll-mt-24 mt-10">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-4xl">🌐</span>
+        <h2 class="text-3xl font-bold text-gray-900 m-0">REST con cURL: prueba mínima</h2>
+      </div>
+
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Si prefieres no instalar SDKs, puedes usar cURL para enviar una solicitud REST y decodificar la respuesta base64
+        en tu lenguaje favorito.
+      </p>
+
+      <div class="relative">
+        <div class="flex items-center justify-between mb-3">
+          <h4 class="text-lg font-semibold text-gray-900 flex items-center gap-2">
+            <span class="text-2xl">📄</span>
+            Ejemplo con cURL
+          </h4>
+          <button (click)="copyCodeToClipboard(curlCodeExample, 'cURL')"
+            class="px-3 py-1.5 text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors flex items-center gap-1">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M8 4v12a2 2 0 002 2h8a2 2 0 002-2V7.242a2 2 0 00-.602-1.43L16.83 2.28A2 2 0 0015.41 2H10a2 2 0 00-2 2z"
+                stroke="currentColor" stroke-width="2" />
+              <path d="M16 18v2a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2h2" stroke="currentColor" stroke-width="2" />
+            </svg>
+            Copiar
+          </button>
+        </div>
+        <pre
+          class="rounded-2xl bg-gray-900 p-6 text-sm text-gray-100 overflow-auto border border-gray-700 hover:border-gray-600 transition-colors"><code>{{ curlCodeExample }}</code>
+        </pre>
+      </div>
+    </section>
+
+    <!-- 8) Edición -->
+    <section id="edicion" class="scroll-mt-24 mt-10">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-4xl">✂️</span>
+        <h2 class="text-3xl font-bold text-gray-900 m-0">Edición por texto: qué pedir y cómo pedirlo</h2>
+      </div>
+
+      <div class="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-2xl p-6 border border-indigo-200 mb-6">
+        <p class="text-lg text-indigo-800 m-0">
+          <strong>💡 La edición funciona mejor cuando das instrucciones concretas</strong> y, si es necesario, limitas
+          el área afectada con descripciones claras.
+        </p>
+      </div>
+
+      <div class="grid gap-4 md:grid-cols-2 mb-6">
+        <div class="bg-red-50 rounded-xl p-5 border border-red-200 hover:border-red-300 transition-colors">
+          <h4 class="font-semibold text-red-900 mb-3 flex items-center gap-2">
+            <span>🗑️</span> Eliminar objetos
+          </h4>
+          <p class="text-red-800 text-sm font-mono bg-red-100 p-3 rounded-lg">
+            "Elimina el cable que cruza por el piso y reconstruye el patrón de la madera"
+          </p>
+        </div>
+
+        <div class="bg-yellow-50 rounded-xl p-5 border border-yellow-200 hover:border-yellow-300 transition-colors">
+          <h4 class="font-semibold text-yellow-900 mb-3 flex items-center gap-2">
+            <span>💡</span> Reiluminación suave
+          </h4>
+          <p class="text-yellow-800 text-sm font-mono bg-yellow-100 p-3 rounded-lg">
+            "Iluminación templada lateral desde la izquierda, sombras suaves, tono cálido"
+          </p>
+        </div>
+
+        <div class="bg-green-50 rounded-xl p-5 border border-green-200 hover:border-green-300 transition-colors">
+          <h4 class="font-semibold text-green-900 mb-3 flex items-center gap-2">
+            <span>🎨</span> Corrección de color
+          </h4>
+          <p class="text-green-800 text-sm font-mono bg-green-100 p-3 rounded-lg">
+            "Balance de blancos neutro, contraste +8%, saturación +5%, sin recortar"
+          </p>
+        </div>
+
+        <div class="bg-purple-50 rounded-xl p-5 border border-purple-200 hover:border-purple-300 transition-colors">
+          <h4 class="font-semibold text-purple-900 mb-3 flex items-center gap-2">
+            <span>🌀</span> Desenfoque de fondo
+          </h4>
+          <p class="text-purple-800 text-sm font-mono bg-purple-100 p-3 rounded-lg">
+            "Bokeh suave en el fondo y nitidez leve en el sujeto principal, mantén ojos y manos bien definidos"
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9) Fusión -->
+    <section id="fusion" class="scroll-mt-24">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-4xl">🔄</span>
+        <h2 class="text-3xl font-bold text-gray-900 m-0">Fusión de múltiples imágenes (multi-image fusion)</h2>
+      </div>
+
+      <p class="text-gray-700 leading-relaxed mb-6">
+        La fusión permite combinar un <em class="text-blue-600 font-semibold">sujeto</em> con un <em
+          class="text-green-600 font-semibold">escenario</em> nuevo de forma coherente, ajustando perspectiva e
+        iluminación. Esto agiliza muchísimo catálogos de producto y previsualizaciones de campañas.
+      </p>
+
+      <div class="space-y-4">
+        <div
+          class="flex items-start gap-4 p-5 bg-white rounded-xl border border-gray-200 hover:shadow-md transition-all">
+          <div
+            class="flex-shrink-0 w-10 h-10 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center font-bold">
+            1</div>
+          <div>
+            <h4 class="font-semibold text-gray-900 mb-2">Prepara tus archivos</h4>
+            <p class="text-gray-600 text-sm">Sujeto (PNG con fondo transparente si lo tienes) y escenario (JPG/PNG)</p>
+          </div>
+        </div>
+
+        <div
+          class="flex items-start gap-4 p-5 bg-white rounded-xl border border-gray-200 hover:shadow-md transition-all">
+          <div
+            class="flex-shrink-0 w-10 h-10 bg-green-100 text-green-700 rounded-full flex items-center justify-center font-bold">
+            2</div>
+          <div>
+            <h4 class="font-semibold text-gray-900 mb-2">Indica posición y acabado</h4>
+            <p class="text-gray-600 text-sm">"sobre mesa de madera clara, luz natural de ventana, reflejo sutil en la
+              superficie"</p>
+          </div>
+        </div>
+
+        <div
+          class="flex items-start gap-4 p-5 bg-white rounded-xl border border-gray-200 hover:shadow-md transition-all">
+          <div
+            class="flex-shrink-0 w-10 h-10 bg-purple-100 text-purple-700 rounded-full flex items-center justify-center font-bold">
+            3</div>
+          <div>
+            <h4 class="font-semibold text-gray-900 mb-2">Genera y refina</h4>
+            <p class="text-gray-600 text-sm">Genera varias variantes y escoge la más realista; si la sombra o el reflejo
+              no convencen, acláralo en la siguiente iteración</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10) Prompts desde TS -->
+    <section id="prompts" class="scroll-mt-24 mt-10">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-4xl">💡</span>
+        <h2 class="text-3xl font-bold text-gray-900 m-0">Prompts recomendados</h2>
+      </div>
+
+      <div class="bg-gradient-to-r from-amber-50 to-yellow-50 rounded-2xl p-6 border border-amber-200 mb-6">
+        <p class="text-lg text-amber-800 m-0">
+          <strong>🎯 Prompts curados por categoría</strong> para que puedas copiar, pegar y adaptar según tus
+          necesidades específicas.
+        </p>
+      </div>
+
+      <!-- Prompts inyectados desde TS con mejor diseño -->
+      <div class="grid gap-4 md:grid-cols-2" id="prompts-list">
+        @for (prompt of prompts(); track trackByCategory($index, prompt)) {
+        <div
+          class="group bg-white rounded-2xl border border-gray-200 p-6 hover:border-blue-200 hover:shadow-md transition-all duration-300">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-2xl">{{ prompt.icon }}</span>
+            <h4 class="font-semibold text-gray-900">{{ prompt.category }}</h4>
+            <button (click)="copyCodeToClipboard(prompt.prompt, prompt.category)"
+              class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity px-2 py-1 text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md">
+              Copiar
+            </button>
+          </div>
+          <p class="text-sm font-mono text-gray-700 bg-gray-50 p-4 rounded-xl leading-relaxed border border-gray-100">
+            {{ prompt.prompt }}
+          </p>
+        </div>
+        }
+      </div>
+
+      <div class="mt-6 p-4 bg-blue-50 rounded-xl border border-blue-200">
+        <p class="text-sm text-blue-800 flex items-center gap-2">
+          <span class="text-lg">ℹ️</span>
+          <span><strong>Nota:</strong> Los prompts se definen en el TypeScript del componente y se renderizan
+            dinámicamente para facilitar el mantenimiento y las pruebas A/B.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- Nueva sección de ejemplos prácticos con espacios para imágenes -->
+    <!-- 10.5) Ejemplos prácticos paso a paso -->
+    <section id="ejemplos-practicos" class="scroll-mt-24 mt-10">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-4xl">🎬</span>
+        <h2 class="text-3xl font-bold text-gray-900 m-0">Ejemplos prácticos: del prompt al resultado</h2>
+      </div>
+
+      <div class="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-6 border border-emerald-200 mb-8">
+        <p class="text-lg text-emerald-800 m-0">
+          <strong>🎯 Tutoriales visuales paso a paso</strong> para que veas exactamente cómo aplicar los prompts y qué
+          resultados esperar en cada caso de uso.
+        </p>
+      </div>
+
+      <!-- Ejemplo 1: Generación de producto -->
+      <!-- Ejemplo 1: Producto para e-commerce (cambio sobrio y profesional) -->
+      <div class="mb-12 bg-white rounded-3xl border border-gray-200 p-8 shadow-sm hover:shadow-md transition-shadow">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="text-3xl">📱</span>
+          <h3 class="text-2xl font-bold text-gray-900">Ejemplo 1: De catálogo neutro a lifestyle realista</h3>
+        </div>
+
+        <div class="space-y-10">
+          <!-- PASO 1: Prompt inicial + Resultado directo -->
+          <section aria-label="Paso 1: Prompt inicial" class="grid gap-6 lg:grid-cols-2 items-start">
+            <!-- Prompt inicial -->
+            <div class="space-y-4 bg-blue-50 rounded-xl p-5 border border-blue-200 h-full">
+              <h4 class="font-semibold text-blue-900 flex items-center gap-2">
+                <span
+                  class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
+                Prompt inicial (ficha de producto)
+              </h4>
+              <p class="text-sm text-blue-900/80">Imagen base para tienda: limpia, de pie, con sombra real.</p>
+              <div class="bg-white p-4 rounded-lg border border-blue-100">
+                <code class="text-sm text-gray-800 font-mono block">
+"Smartphone negro mate DE PIE (upright), vista frontal 3/4, centrado. Fondo blanco puro #FFFFFF sin banding, seamless. 
+Sombra de suelo suave y realista (drop shadow natural, ángulo 35°, opacidad 25–35%). 
+Iluminación de estudio uniforme con softbox, sin hotspots, balance neutro (5600K). 
+Reflejo frontal muy sutil (5–8%) para resaltar el vidrio. 
+Sin props, sin textos, sin branding inventado. Alta resolución y bordes nítidos. 
+No deformar el dispositivo ni alterar su proporción."
+          </code>
+              </div>
+              <ul class="mt-2 text-sm text-blue-900/80 list-disc pl-5">
+                <li>Se solicita “DE PIE” explícitamente y sombra coherente.</li>
+                <li>Neutro y listo para recorte o subida directa al catálogo.</li>
+              </ul>
+            </div>
+
+            <!-- Resultado del prompt (Imagen 1) -->
+            <figure class="rounded-xl border border-gray-200 bg-gray-50 overflow-hidden h-full flex flex-col">
+              <div class="relative w-full flex-1">
+                <img src="/assets/images/nano-banana/smartphone.png"
+                  alt="Smartphone de pie sobre fondo blanco, sombra realista"
+                  class="w-full h-full object-contain bg-white" loading="lazy" />
+                <span class="absolute top-3 left-3 text-xs font-semibold bg-blue-600 text-white px-2 py-1 rounded">
+                  Resultado del prompt inicial
+                </span>
+              </div>
+              <figcaption class="text-center text-sm text-gray-600 px-4 py-3 border-t">
+                📸 Imagen de catálogo: fondo blanco puro, sombra de suelo creíble, producto de pie.
+              </figcaption>
+              <p class="mt-2 text-center text-gray-400">imagen creada con NanoBanana</p>
+            </figure>
+          </section>
+
+          <!-- PASO 2: Configuración -->
+          <section aria-label="Paso 2: Configuración" class="bg-amber-50 rounded-xl p-5 border border-amber-200">
+            <h4 class="font-semibold text-amber-900 mb-3 flex items-center gap-2">
+              <span
+                class="w-6 h-6 bg-amber-600 text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
+              Configuración recomendada
+            </h4>
+            <div class="grid sm:grid-cols-3 gap-3 text-sm">
+              <div class="rounded-lg border border-amber-200 bg-white p-3">
+                <p class="font-medium text-amber-900">Modelo</p>
+                <p class="text-amber-800">gemini-2.5-flash-image</p>
+              </div>
+              <div class="rounded-lg border border-amber-200 bg-white p-3">
+                <p class="font-medium text-amber-900">Resolución</p>
+                <p class="text-amber-800">1024×1024</p>
+                <p class="text-amber-700/80 text-xs mt-1">Suficiente para tienda + recorte</p>
+              </div>
+              <div class="rounded-lg border border-amber-200 bg-white p-3">
+                <p class="font-medium text-amber-900">Temperature</p>
+                <p class="text-amber-800">0.5–0.7</p>
+                <p class="text-amber-700/80 text-xs mt-1">Control de consistencia</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- PASO 3: Edición significativa (sobria) + Resultado final -->
+          <section aria-label="Paso 3: Edición" class="grid gap-6 lg:grid-cols-2 items-start">
+            <!-- Prompt de edición (Nano Banana - Edit) -->
+            <div class="bg-emerald-50 rounded-xl p-5 border border-emerald-200 h-full">
+              <h4 class="font-semibold text-emerald-900 mb-3 flex items-center gap-2">
+                <span
+                  class="w-6 h-6 bg-emerald-600 text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
+                Edición (cambio claro, sin exagerar colores)
+              </h4>
+              <p class="text-sm text-emerald-800 mb-2">
+                Usa este prompt en <strong>modo edición</strong> para pasar de “catálogo” a “lifestyle sobrio”:
+              </p>
+              <div class="bg-white p-3 rounded-lg border border-emerald-100">
+                <code class="text-xs text-gray-700 font-mono block">
+"Conserva el smartphone con su forma y proporciones intactas. Mantén la posición de pie. 
+Cambia el fondo blanco por una mesa de madera clara mate y pared gris cálido muy suave (#F3F4F6). 
+Iluminación tipo ventana lateral (difusa), sombras suaves y coherentes; añade una sombra de contacto más marcada bajo el borde del teléfono. 
+Introduce un único accesorio discreto a la izquierda (estuche de audífonos blanco cerrado), desenfocado sutil (profundidad de campo ligera). 
+Aplica un ligero color grading neutro (sin tonos magenta/cian fuertes). 
+Realza microdetalle en el borde metálico del teléfono y reduce reflejos especulares en la pantalla. 
+No añadir textos, logotipos inventados ni elementos llamativos. Estética calmada, premium y realista."
+          </code>
+              </div>
+              <ul class="mt-3 text-sm text-emerald-900/80 list-disc pl-5">
+                <li>Cambio visible: fondo + superficie + luz + prop mínimo.</li>
+                <li>Se mantiene la lectura del producto para e-commerce.</li>
+                <li>Sin colores chillones; look premium y natural.</li>
+              </ul>
+            </div>
+
+            <!-- Resultado tras edición (Imagen 2) -->
+            <figure class="rounded-xl border border-gray-200 bg-gray-50 overflow-hidden h-full flex flex-col">
+              <div class="relative w-full flex-1">
+                <img src="/assets/images/nano-banana/smartphone2.png"
+                  alt="Smartphone de pie en mesa de madera con luz de ventana, accesorio sutil"
+                  class="w-full h-full object-contain bg-white" loading="lazy" />
+                <span class="absolute top-3 left-3 text-xs font-semibold bg-emerald-600 text-white px-2 py-1 rounded">
+                  Resultado tras edición (lifestyle sobrio)
+                </span>
+              </div>
+              <figcaption class="text-center text-sm text-gray-600 px-4 py-3 border-t">
+                🛍️ Escena realista para tienda: mesa, pared suave, luz natural y un único prop desenfocado.
+              </figcaption>
+              <p class="mt-2 text-center text-gray-400">imagen creada con NanoBanana</p>
+            </figure>
+          </section>
+
+          <!-- MINI COMPARACIÓN ANTES / DESPUÉS -->
+          <section aria-label="Comparación antes y después" class="rounded-2xl border border-slate-200 bg-white p-4">
+            <h5 class="text-base font-semibold text-slate-900 mb-3">🔍 Comparación rápida</h5>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <figure class="border rounded-lg overflow-hidden bg-white">
+                <img src="/assets/images/nano-banana/smartphone.png" alt="Antes: catálogo en fondo blanco"
+                  class="w-full h-56 object-contain bg-white" loading="lazy" />
+                <figcaption class="text-center text-xs text-slate-600 px-3 py-2">Antes: catálogo blanco, de pie
+                </figcaption>
+              </figure>
+              <figure class="border rounded-lg overflow-hidden bg-white">
+                <img src="/assets/images/nano-banana/smartphone2.png" alt="Después: lifestyle sobrio con luz de ventana"
+                  class="w-full h-56 object-contain bg-white" loading="lazy" />
+                <figcaption class="text-center text-xs text-slate-600 px-3 py-2">Después: mesa madera + luz natural
+                </figcaption>
+              </figure>
+            </div>
+            <ul class="mt-3 text-sm text-slate-700 list-disc pl-5">
+              <li><strong>Qué cambió:</strong> fondo (blanco → pared suave), superficie (mármol → madera), luz (softbox
+                → ventana difusa), prop mínimo desenfocado, sombra de contacto más real.</li>
+              <li><strong>Por qué ayuda:</strong> mantiene legibilidad de e-commerce y añade contexto premium sin
+                distracciones.</li>
+            </ul>
+          </section>
+
+          <!-- Nota final -->
+          <div class="bg-green-50 rounded-xl p-4 border border-green-200">
+            <h5 class="font-semibold text-green-900 mb-1 flex items-center gap-2"><span>✨</span> Resultado esperado</h5>
+            <p class="text-sm text-green-800">
+              Dos versiones coherentes para tu tienda: una de catálogo puro y otra lifestyle realista. El producto se
+              mantiene intacto; el entorno comunica calidad.
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <!-- Ejemplo 2: Edición de imagen existente -->
+      <div class="mb-12 bg-white rounded-3xl border border-gray-200 p-8 shadow-sm hover:shadow-md transition-shadow">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="text-3xl">✂️</span>
+          <h3 class="text-2xl font-bold text-gray-900">Ejemplo 2: Edición de imagen existente</h3>
+        </div>
+
+        <div class="grid gap-8 lg:grid-cols-3">
+          <!-- Imagen original -->
+          <div class="space-y-4">
+            <h4 class="font-semibold text-gray-900 flex items-center gap-2">
+              <span
+                class="w-6 h-6 bg-orange-600 text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
+              Imagen original
+            </h4>
+            <div
+              class="bg-gray-50 rounded-xl p-6 border-2 border-dashed border-gray-300 text-center min-h-[200px] flex flex-col items-center justify-center">
+
+              <figure class="mt-3 rounded-xl border border-slate-200 p-3 bg-slate-50">
+
+                <!-- Imagen original -->
+                <img src="/assets/images/nano-banana/imagen-banana.png"
+                  alt="Pantalla de creación de proyecto en Google AI Studio" class="rounded-lg w-full object-cover">
+                <figcaption class="mt-2 text-sm text-slate-500"> imagen banana original
+                </figcaption>
+                <p class="mt-2 text-center text-gray-400">imagen creada con NanoBanana</p>
+              </figure>
+
+            </div>
+            <div class="bg-orange-50 rounded-lg p-3 border border-orange-200">
+              <p class="text-xs text-orange-800">
+                <strong>Problema:</strong> Baby banana sin protagonismo, fondo gris aburrido, luz plana que no resalta
+                textura.
+              </p>
+            </div>
+          </div>
+
+          <!-- Proceso de edición -->
+          <div class="space-y-4">
+            <h4 class="font-semibold text-gray-900 flex items-center gap-2">
+              <span
+                class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
+              Prompt de edición
+            </h4>
+            <div class="bg-blue-50 rounded-xl p-4 border border-blue-200">
+              <div class="bg-white p-3 rounded-lg border border-blue-100">
+                <code class="text-xs text-gray-800 font-mono leading-relaxed">
+                  "Convierte el plátano en una espada futurista de energía azul, manteniendo la mano que lo sostiene. El cuerpo del plátano debe transformarse en una hoja brillante con textura de plasma, emitiendo destellos de luz azul intensa y reflejos metálicos en los bordes. Las cáscaras abiertas deben convertirse en aletas tecnológicas de aspecto cibernético. Cambia el fondo gris por un paisaje espacial con estrellas y nebulosas púrpuras difuminadas, generando contraste con el resplandor azul de la espada. Asegúrate de que la iluminación de la mano y el resplandor de la hoja coincidan para lograr realismo"
+                </code>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Resultado final -->
+          <div class="space-y-4">
+            <h4 class="font-semibold text-gray-900 flex items-center gap-2">
+              <span
+                class="w-6 h-6 bg-green-600 text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
+              Resultado final
+            </h4>
+            <div
+              class="bg-gray-50 rounded-xl p-6 border-2 border-dashed border-gray-300 text-center min-h-[200px] flex flex-col items-center justify-center">
+              <figure class="mt-3 rounded-xl border border-slate-200 p-3 bg-slate-50">
+                <!-- Reemplaza el src por tu captura -->
+                <img src="/assets/images/nano-banana/imagen-banana-editada.png"
+                  alt="Pantalla de creación de proyecto en Google AI Studio" class="rounded-lg w-full object-cover">
+                <figcaption class="mt-2 text-sm text-slate-500"> imagen banana editada.
+                </figcaption>
+                <p class="mt-2 text-center text-gray-400">imagen creada con NanoBanana</p>
+              </figure>
+
+            </div>
+            <div class="bg-green-50 rounded-lg p-3 border border-green-200">
+              <p class="text-xs text-green-800">
+                <strong>Logrado:</strong> Baby banana convertida en protagonista: detalle heroico, iluminación que
+                resalta su textura, fondo minimalista que la hace parecer una joya en exhibición.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Tips para mejores resultados -->
+      <div class="bg-gradient-to-r from-yellow-50 to-amber-50 rounded-2xl p-6 border border-yellow-200">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-2xl">💡</span>
+          <h4 class="text-lg font-bold text-yellow-900">Tips para replicar estos ejemplos</h4>
+        </div>
+        <div class="grid gap-4 md:grid-cols-2">
+          <div class="space-y-3">
+            <div class="flex items-start gap-2">
+              <span class="text-yellow-600 mt-1">🔸</span>
+              <span class="text-sm text-yellow-800"><strong>Sé específico:</strong> Menciona materiales, texturas y
+                acabados exactos</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-yellow-600 mt-1">🔸</span>
+              <span class="text-sm text-yellow-800"><strong>Describe la luz:</strong> Dirección, intensidad y calidad
+                (suave/dura)</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-yellow-600 mt-1">🔸</span>
+              <span class="text-sm text-yellow-800"><strong>Itera gradualmente:</strong> Haz un cambio por vez para
+                evaluar el impacto</span>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <div class="flex items-start gap-2">
+              <span class="text-yellow-600 mt-1">🔸</span>
+              <span class="text-sm text-yellow-800"><strong>Guarda versiones:</strong> Documenta qué prompts funcionan
+                mejor</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-yellow-600 mt-1">🔸</span>
+              <span class="text-sm text-yellow-800"><strong>Prueba variaciones:</strong> Cambia ángulos y encuadres para
+                más opciones</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-yellow-600 mt-1">🔸</span>
+              <span class="text-sm text-yellow-800"><strong>Verifica calidad:</strong> Revisa resolución y compresión
+                antes de usar</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11) Buenas prácticas -->
+    <section id="buenas-practicas" class="scroll-mt-24 mt-10">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-4xl">⭐</span>
+        <h2 class="text-3xl font-bold text-gray-900 m-0">Buenas prácticas y errores frecuentes</h2>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        <div class="bg-green-50 rounded-2xl border border-green-200 p-6 hover:border-green-300 transition-colors">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-2xl">✅</span>
+            <h3 class="text-lg font-bold text-green-900">Buenas prácticas</h3>
+          </div>
+          <ul class="space-y-3 text-sm text-green-800">
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-0.5">•</span>
+              <span>Describe sujeto, luz, ambiente, estilo y tamaño; evita etiquetas inconexas</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-0.5">•</span>
+              <span>Itera con cambios mínimos entre versiones para comparar con criterio</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-0.5">•</span>
+              <span>Especifica orientación y resolución final para evitar recortes no deseados</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-0.5">•</span>
+              <span>Si trabajas con marca, define paleta y referencias visuales desde el inicio</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-0.5">•</span>
+              <span>Documenta: guarda prompts, versiones y decisiones de diseño</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-red-50 rounded-2xl border border-red-200 p-6 hover:border-red-300 transition-colors">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-2xl">❌</span>
+            <h3 class="text-lg font-bold text-red-900">Errores a evitar</h3>
+          </div>
+          <ul class="space-y-3 text-sm text-red-800">
+            <li class="flex items-start gap-2">
+              <span class="text-red-600 mt-0.5">•</span>
+              <span>Prompts vagos ("hazlo bonito") sin detalle técnico de luz/estilo</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-600 mt-0.5">•</span>
+              <span>Ignorar un paso de ajuste final (nitidez, compresión, perfil de color)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-600 mt-0.5">•</span>
+              <span>No revisar políticas de contenido ni derechos de imagen</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-red-600 mt-0.5">•</span>
+              <span>No controlar el peso de archivos al exportar para web</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12) FAQ -->
+    <section id="faq" class="scroll-mt-24 mt-10">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-4xl">❓</span>
+        <h2 class="text-3xl font-bold text-gray-900 m-0">Preguntas frecuentes</h2>
+      </div>
+
+      <div class="space-y-4">
+        <details class="group rounded-2xl border border-gray-200 p-6 hover:border-blue-200 transition-colors">
+          <summary
+            class="cursor-pointer font-semibold text-gray-900 flex items-center gap-3 hover:text-blue-700 transition-colors">
+            <span class="text-xl">🍌</span>
+            ¿"Nano Banana" es un producto distinto a Gemini?
+            <svg class="ml-auto w-5 h-5 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <p class="mt-4 text-sm text-gray-700 leading-relaxed pl-8">
+            Es el alias coloquial de la generación nativa de imágenes con el modelo Gemini 2.5 Flash Image. En la
+            práctica, usarás el identificador del modelo de imagen vigente en tus llamadas a la API.
+          </p>
+        </details>
+
+        <details class="group rounded-2xl border border-gray-200 p-6 hover:border-green-200 transition-colors">
+          <summary
+            class="cursor-pointer font-semibold text-gray-900 flex items-center gap-3 hover:text-green-700 transition-colors">
+            <span class="text-xl">🎨</span>
+            ¿Necesito saber diseño?
+            <svg class="ml-auto w-5 h-5 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <p class="mt-4 text-sm text-gray-700 leading-relaxed pl-8">
+            No es imprescindible, pero ayuda comprender conceptos básicos de luz, composición y color. Con descripciones
+            claras puedes obtener resultados muy dignos y mejorar con iteración.
+          </p>
+        </details>
+
+        <details class="group rounded-2xl border border-gray-200 p-6 hover:border-purple-200 transition-colors">
+          <summary
+            class="cursor-pointer font-semibold text-gray-900 flex items-center gap-3 hover:text-purple-700 transition-colors">
+            <span class="text-xl">💼</span>
+            ¿Se puede usar en flujos profesionales?
+            <svg class="ml-auto w-5 h-5 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <p class="mt-4 text-sm text-gray-700 leading-relaxed pl-8">
+            Sí, integrándolo con SDKs y estableciendo controles de calidad visual, políticas de derechos y versiones de
+            exportación para web/impresión.
+          </p>
+        </details>
+
+        <details class="group rounded-2xl border border-gray-200 p-6 hover:border-orange-200 transition-colors">
+          <summary
+            class="cursor-pointer font-semibold text-gray-900 flex items-center gap-3 hover:text-orange-700 transition-colors">
+            <span class="text-xl">📱</span>
+            ¿Esto es lo mismo que "Gemini Nano" en Android?
+            <svg class="ml-auto w-5 h-5 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <p class="mt-4 text-sm text-gray-700 leading-relaxed pl-8">
+            No. Gemini Nano es el modelo <em>on-device</em> para Android. Aquí nos centramos en la generación/edición de
+            imágenes vía API (Gemini 2.5 Flash Image).
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <!-- CTA final Nano Banana -->
+    <section id="cta-final" appAnimateOnView="fade-up" aria-label="CTA Nano Banana" class="mt-12">
+      <div class="relative rounded-3xl p-8 md:p-12 text-white overflow-hidden 
+              bg-gradient-to-r from-slate-900 via-neutral-900 to-black">
+        <!-- Accentos banana -->
+        <div class="pointer-events-none absolute inset-0 opacity-70" style="background-image:
+           radial-gradient(ellipse at 15% 20%, rgba(250,204,21,0.22), transparent 45%),
+           radial-gradient(ellipse at 85% 30%, rgba(234,179,8,0.18), transparent 50%),
+           radial-gradient(ellipse at 70% 85%, rgba(255,237,74,0.15), transparent 55%);">
+        </div>
+        <div
+          class="absolute top-0 right-0 w-40 h-40 bg-yellow-400/10 rounded-full -translate-y-20 translate-x-20 blur-2xl">
+        </div>
+        <div
+          class="absolute bottom-0 left-0 w-32 h-32 bg-yellow-300/10 rounded-full translate-y-16 -translate-x-16 blur-2xl">
+        </div>
+
+        <div class="relative text-center max-w-3xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            🍌 Dale superpoderes a tus imágenes con <span class="text-yellow-300">Nano Banana</span>
+          </h2>
+          <p class="text-lg md:text-xl text-white/90 leading-relaxed mb-8">
+            Genera una imagen de catálogo impecable y edítala con precisión milimétrica.
+            Cambios <span class="font-semibold text-yellow-300">claros y profesionales</span> sin colores exagerados:
+            luz natural, superficies reales y detalles que venden.
+          </p>
+
+          <div class="flex flex-wrap justify-center gap-3">
+
+
+            <button (click)="onShare()" class="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-bold border border-white/20
+                 hover:bg-white/15 transition-all duration-300 hover:scale-105">
+              📤 Compartir este artículo
+            </button>
+          </div>
+
+          <p class="mt-5 text-xs text-white/70">
+            Ideal para e-commerce • Cambios significativos en segundos • Mantén la estética de marca sin estridencias
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+<!-- Bloque AdSense manual -->
+<app-adsense-block adSlot="5928675878"></app-adsense-block>
+
+
+    <!-- Referencias mejoradas -->
+    <section aria-label="Referencias" class="mt-10 bg-gray-50 rounded-2xl p-6 border border-gray-200">
+      <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <span class="text-2xl">📚</span>
+        Referencias / Lecturas recomendadas
+      </h3>
+      <ul class="space-y-2 text-sm text-gray-700">
+        <li class="flex items-start gap-2">
+          <span class="text-blue-500 mt-1">🔗</span>
+          <span>Documentación oficial del modelo de imagen de Gemini (identificadores y cuotas vigentes)</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-green-500 mt-1">🔗</span>
+          <span>Guías de prompting para generación/edición de imágenes y políticas de uso</span>
+        </li>
+      </ul>
+    </section>
+  </article>
+
+  <!-- Barra inferior mejorada -->
+  <footer
+    class="sticky bottom-0 z-30 mt-12 border-t border-gray-200 bg-white/95 backdrop-blur-sm supports-[backdrop-filter]:bg-white/80">
+    <div class="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
+      <div class="flex items-center gap-3">
+        <button (click)="onShare()" [disabled]="isSharing()"
+          class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-medium hover:bg-gray-50 transition-all hover:scale-105 disabled:opacity-50">
+          @if (isSharing()) {
+          <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+            </path>
+          </svg>
+          } @else {
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13" stroke="currentColor"
+              stroke-width="2" />
+          </svg>
+          }
+          <span>Compartir</span>
+        </button>
+
+        <button (click)="onBookmark()"
+          class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-medium hover:bg-gray-50 transition-all hover:scale-105"
+          [class.bg-yellow-50]="saved()" [class.border-yellow-200]="saved()" [class.text-yellow-700]="saved()">
+          @if (saved()) {
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2v16z" />
+          </svg>
+          } @else {
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2v16z" stroke="currentColor" stroke-width="2" />
+          </svg>
+          }
+          <span>{{ saved() ? 'Guardado' : 'Guardar' }}</span>
+        </button>
+      </div>
+
+      <!-- <a href="#introduccion"
+        class="text-sm text-blue-700 hover:text-blue-900 hover:underline transition-colors flex items-center gap-1">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+          <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" />
+        </svg>
+        Volver al inicio
+      </a> -->
+      <button type="button"
+        class="flex items-center gap-2 text-blue-700 hover:text-blue-900 hover:underline transition-colors p-2 rounded-lg hover:bg-blue-50"
+        [class.bg-blue-100]="activeSection() === 'introduccion'" (click)="scrollTo('introduccion')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+          <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" />
+        </svg>
+        Volver al inicio
+      </button>
+    </div>
+  </footer>
+</div>

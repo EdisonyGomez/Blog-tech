@@ -102,6 +102,19 @@ export class CanvaAi implements OnInit, OnDestroy {
     }
   }
 
+    articleMeta = {
+    categoria: "Productividad",
+    tiempoLectura: 12,
+    fechaPublicacion: "22 de agosto de 2025",
+    fechaActualizacion: "10 de agosto de 2025",
+    autorNombre: "Edinson Gomez",
+    autorFoto: "/assets/images/me/me.png",
+    autorPerfil: "/about-me",
+  };
+
+   get fechaISO(): string {
+    return "2025-08-22";
+  }
   // @HostListener("window:scroll", ["$event"])
   onScroll() {
     this.updateReadingProgress()

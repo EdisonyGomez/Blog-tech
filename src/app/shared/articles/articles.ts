@@ -490,6 +490,194 @@ export const Articulos: Article[] = [
     `,
     bookmarked: false,
   },
+  {
+  id: 9,
+  titulo: "Construye tu Memoria Personal con IA: RAG doméstico y privacidad primero",
+  resumen:
+    "Crea tu ‘segundo cerebro’ con IA: rutas No-Code y Low-Code local (Ollama + Chroma/Qdrant), privacidad por diseño y un tablero de métricas para lograr decisiones más rápidas con citas a tus fuentes.",
+  fecha: "30 de agosto de 2025",
+  fechaActualizacion: "30 de agosto de 2025",
+  slug: "memoria-personal-con-ia",
+  categoria: "Herramientas",
+  tiempoLectura: 14,
+  vistas: 0,
+  likes: 0,
+  expanded: false,
+  autor: "Edinson Gomez",
+  tags: [
+    "Memoria Personal",
+    "RAG",
+    "Privacidad",
+    "Ollama",
+    "Chroma",
+    "Qdrant",
+    "Markdown",
+    "Obsidian",
+    "Notion",
+    "Automatización"
+  ],
+  dificultad: "Intermedio",
+  tipoContenido: "Guía",
+  imagenDestacada: "/assets/images/info/segundo-cerebro-ia.png",
+  metaDescripcion:
+    "Aprende a montar una Memoria Personal con IA: RAG doméstico, rutas No-Code y Low-Code local, privacidad por diseño y métricas de éxito en 30 días.",
+  palabrasClave: [
+    "memoria personal",
+    "RAG",
+    "segundo cerebro",
+    "Ollama",
+    "Chroma",
+    "Qdrant",
+    "Obsidian",
+    "Notion",
+    "privacidad",
+    "IA local",
+    "embeddings",
+    "gestión del conocimiento"
+  ],
+  tiempoImplementacion: "30-60 minutos (No-Code) / 2-3 horas (Low-Code)",
+  herramientasNecesarias: [
+    "Notion o Google Drive",
+    "Zapier o Make",
+    "Obsidian (Markdown)",
+    "Ollama",
+    "Chroma o Qdrant"
+  ],
+  nivelAhorro: "Alto",
+  puntuacionSEO: 96,
+  estadisticasImpacto: {
+    tiempoAhorrado: "2-4 horas semanales",
+    porcentajeMejora: "70% menos tiempo de búsqueda",
+    usuariosAyudados: 0
+  },
+  recursosAdicionales: {
+    plantillas: [
+      "Estructura de carpetas Markdown (vault)",
+      "Checklist de ingesta y limpieza de notas",
+      "Tablero semanal de métricas (respuesta y citas)"
+    ],
+    herramientasRecomendadas: [
+      "Obsidian",
+      "Ollama",
+      "Qdrant",
+      "Chroma",
+      "Notion"
+    ],
+    enlacesUtiles: [
+      "https://obsidian.md",
+      "https://ollama.com",
+      "https://qdrant.tech",
+      "https://www.trychroma.com",
+      "/articulos/organiza-tareas-ia",
+      "/articulos/productividad-con-ia"
+    ]
+  },
+  actualizacionesPendientes: false,
+  featured: true,
+  trending: true,
+  comentariosHabilitados: true,
+  contenidoPreview: `
+    <h4>🗂️ Tu conocimiento, en orden (y privado)</h4>
+    <ul>
+      <li><strong>Dos rutas:</strong> No-Code (rápida) y Low-Code local con Ollama + Chroma/Qdrant</li>
+      <li><strong>Privacidad por diseño:</strong> datos bajo tu control y respuestas con <em>citas</em> a tus notas</li>
+      <li><strong>Mantenimiento fácil:</strong> estandariza títulos, etiquetas y limpia duplicados</li>
+      <li><strong>Prompts incluidos:</strong> consulta con contexto, resúmenes vivos y vacíos de información</li>
+      <li><strong>Métricas:</strong> &lt; 3 min para encontrar respuesta y % de decisiones con fuente</li>
+    </ul>
+    <p><em>Resultado:</em> decisiones más rápidas, menos ruido y aprendizaje acumulativo.</p>
+  `,
+  bookmarked: false,
+},
+{
+  id: 10,
+  titulo: "Cómo usar “Nano Banana” (Gemini 2.5 Flash Image) para crear y editar imágenes con IA",
+  resumen:
+    "Guía completa y práctica para principiantes: configuración en Google AI Studio, generación sin código, integración con JavaScript/Python, edición por texto, fusión de imágenes y mejores prácticas. Incluye sección de prompts inyectados desde el TS.",
+  fecha: "5 de septiembre de 2025",
+  fechaActualizacion: "5 de septiembre de 2025",
+  slug: "nano-banana",
+  categoria: "Herramientas",
+  tiempoLectura: 14,
+  vistas: 0,
+  likes: 0,
+  expanded: false,
+  autor: "Equipo IA Blog",
+  tags: [
+    "Gemini",
+    "Nano Banana",
+    "Generación de Imágenes",
+    "Edición con IA",
+    "Google AI Studio",
+    "JavaScript",
+    "Python"
+  ],
+  dificultad: "Principiante",
+  tipoContenido: "Guía",
+  imagenDestacada: "/assets/images/articulos/nano-banana-gemini-flash-image.png",
+  metaDescripcion:
+    "Aprende a usar “Nano Banana” (Gemini 2.5 Flash Image) para generar y editar imágenes con IA. Pasos sin código, integración con JS/Python, edición por texto, fusión multi-imagen y buenas prácticas.",
+  palabrasClave: [
+    "Nano Banana",
+    "Gemini 2.5 Flash Image",
+    "Google AI Studio",
+    "generar imágenes con IA",
+    "editar imágenes con IA",
+    "SDK @google/genai",
+    "google-genai",
+    "prompts de imagen"
+  ],
+  tiempoImplementacion: "20-40 minutos",
+  herramientasNecesarias: [
+    "Google AI Studio",
+    "GEMINI_API_KEY",
+    "Node.js 18+ (opcional)",
+    "Python 3.9+ (opcional)",
+    "@google/genai (JS, opcional)",
+    "google-genai (Python, opcional)"
+  ],
+  nivelAhorro: "Alto",
+  puntuacionSEO: 93,
+  estadisticasImpacto: {
+    tiempoAhorrado: "2-4 horas por pieza visual",
+    porcentajeMejora: "70% reducción de iteraciones manuales",
+    usuariosAyudados: 0
+  },
+  recursosAdicionales: {
+    plantillas: [
+      "Plantilla de prompts por categoría (producto, retrato, póster, infografía)",
+      "Checklist de exportación para web (peso, nitidez, perfil de color)"
+    ],
+    herramientasRecomendadas: [
+      "Google AI Studio",
+      "@google/genai",
+      "google-genai",
+      "Photopea/Photoshop (post-pro ligero)"
+    ],
+    enlacesUtiles: [
+      "/articulos/organiza-tareas-ia",
+      "/articulos/usar-chatgpt-vida-diaria"
+    ]
+  },
+  actualizacionesPendientes: false,
+  featured: true,
+  trending: true,
+  comentariosHabilitados: true,
+  contenidoPreview: `
+    <h4>🖼️ Crea y edita imágenes con IA (paso a paso)</h4>
+    <ul>
+      <li><strong>Sin código:</strong> genera imágenes desde Google AI Studio y valida ideas en minutos.</li>
+      <li><strong>Con código:</strong> integra el modelo en JS/Python para automatizar y escalar.</li>
+      <li><strong>Edición textual:</strong> elimina objetos, reilumina, corrige color y aplica desenfoque de fondo.</li>
+      <li><strong>Fusión multi-imagen:</strong> combina producto + escenario con instrucciones claras.</li>
+      <li><strong>UX/SEO:</strong> estructura semántica, accesibilidad y buenas prácticas para web.</li>
+    </ul>
+    <p class="text-sm">Nota: la sección de <em>Prompts</em> se renderiza desde el <strong>TS</strong> con <code>@for</code> (no se incluyen en el HTML).</p>
+  `,
+  bookmarked: false
+}
+
+
 ]
 
 // Funciones auxiliares para el manejo de artículos

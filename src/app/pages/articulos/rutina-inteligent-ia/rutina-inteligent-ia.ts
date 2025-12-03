@@ -154,6 +154,20 @@ export class RutinaInteligentIa implements OnInit {
     });
   }
 
+    articleMeta = {
+    categoria: "Productividad",
+    tiempoLectura: 12,
+    fechaPublicacion: "25 de julio de 2025",
+    fechaActualizacion: "30 de agosto de 2025",
+    autorNombre: "Edinson Gomez",
+    autorFoto: "/assets/images/me/me.png",
+    autorPerfil: "/about-me",
+  };
+
+   get fechaISO(): string {
+    return "2025-08-10";
+  }
+
   goBack(): void {
     this.location.back()
   }

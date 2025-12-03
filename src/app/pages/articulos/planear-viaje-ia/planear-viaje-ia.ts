@@ -91,6 +91,22 @@ export class PlanearViajeIa implements OnInit {
     private seo: SeoService
   ) {}
 
+
+    articleMeta = {
+    categoria: "Productividad",
+    tiempoLectura: 12,
+    fechaPublicacion: "22 de agosto de 2025",
+    fechaActualizacion: "30 de agosto de 2025",
+    autorNombre: "Edinson Gomez",
+    autorFoto: "/assets/images/me/me.png",
+    autorPerfil: "/about-me",
+  };
+
+   get fechaISO(): string {
+    return "2025-08-22";
+  }
+
+
  ngOnInit() {
     this.scrollService.scrollToTop();
 
